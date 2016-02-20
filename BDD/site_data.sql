@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Dim 14 Février 2016 à 18:25
+-- Généré le :  Sam 20 Février 2016 à 19:32
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -31,10 +31,20 @@ USE `site_data`;
 DROP TABLE IF EXISTS `actualites`;
 CREATE TABLE IF NOT EXISTS `actualites` (
   `ID_actualites` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `DateCreation` date NOT NULL,
   `Titre` varchar(80) NOT NULL,
   `Article` varchar(140) NOT NULL,
   PRIMARY KEY (`ID_actualites`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Contenu de la table `actualites`
+--
+
+INSERT INTO `actualites` (`ID_actualites`, `DateCreation`, `Titre`, `Article`) VALUES
+(1, '2016-02-01', 'Puy-en-Velay', 'Toto a la piscine'),
+(2, '2016-02-25', 'Patate', 'Frite a la cantine'),
+(3, '2016-02-12', 'Toto bisous', 'Toto et maman');
 
 -- --------------------------------------------------------
 
@@ -139,11 +149,20 @@ CREATE TABLE IF NOT EXISTS `matierestoprojet` (
 DROP TABLE IF EXISTS `parcours`;
 CREATE TABLE IF NOT EXISTS `parcours` (
   `ID_parcours` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `Nom` varchar(20) NOT NULL,
+  `Nom` varchar(40) NOT NULL,
   `Description` varchar(2000) NOT NULL,
   `Couleur` varchar(10) NOT NULL,
   PRIMARY KEY (`ID_parcours`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Contenu de la table `parcours`
+--
+
+INSERT INTO `parcours` (`ID_parcours`, `Nom`, `Description`, `Couleur`) VALUES
+(1, 'Infographie', '', ''),
+(2, 'Technical Artist', '', ''),
+(3, '3D Temps réel et Réalité Virtuelle', '', '');
 
 -- --------------------------------------------------------
 
