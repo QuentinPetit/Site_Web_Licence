@@ -205,6 +205,26 @@
 			<div class="actu col-xs-12 col-md-4">
 				
 				<div id="owl-example" class="owl-carousel owl-theme">
+					<?php
+							
+					include('../PHP/connexion.php');
+
+						$sql = "SELECT Miniature FROM projets ORDER BY Date DESC LIMIT 2";
+						$result = $conn->query($sql);
+
+						if ($result->num_rows > 0) {
+							// output data of each row
+							while($row = $result->fetch_assoc()) {
+							echo "<h2>". utf8_encode($row["Titre"]) ."</h2>";
+							echo "<article>". utf8_encode($row["Article"]) ."</article>";
+							}
+						} else {
+							 echo "0 results";
+						}
+
+					include('../PHP/deconnexion.php');
+
+				?>  
 					<div class="item"><img src="../Pictures/0b4f995a.jpg" alt="Owl Image"></div>
 					<div class="item"><img src="../Pictures/1d3878a9.jpg" alt="Owl Image"></div>
 					<div class="item"><img src="../Pictures/136c27e7.jpg" alt="Owl Image"></div>
