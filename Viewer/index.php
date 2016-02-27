@@ -93,7 +93,6 @@
 			    $elem.on('mouseout',function(){
 			      isPause = false;
 			    })
-			 
 		});
 
 
@@ -116,7 +115,10 @@
 	</head>
 
 	<header>
-
+		<div>
+			<img src="../Pictures/logo.png"/>
+			<img src="../Pictures/worker.jpg"/>
+		</div>
 		<ul id="menu">
 			<li><a href="index.html">Accueil</a></li>
 			<li><a href="parcours.html">Parcours</a>
