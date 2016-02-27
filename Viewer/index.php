@@ -232,6 +232,11 @@
 					<div class="item"><img src="../Pictures/c7d064d4.jpg" alt="Owl Image"></div>
 					<div class="item"><img src="../Pictures/croatie-lacs-plitvice-cascades-7.jpg" alt="Owl Image"></div>
 					<div class="item"><img src="../Pictures/d6ec1e3e9f_seychelles-45.jpg" alt="Owl Image"></div>
+					<div class="item"><img src="../Pictures/0ced1177.jpg" alt="Owl Image"></div>
+					<div class="item"><img src="../Pictures/6812976929_6654ee46d1_b.jpg" alt="Owl Image"></div>
+					<div class="item"><img src="../Pictures/fond-ecran-paysage.jpg" alt="Owl Image"></div>
+
+
 				</div>
 				
 			</div>
