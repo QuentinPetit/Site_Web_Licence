@@ -103,11 +103,30 @@ color:#000;
 	width: 50%;
 	float: left;
 }
-#owl-example .item{
+
+
+#owl-example .item img{
+  display: block;
+  width: 100%;
+  height: auto;
+}
+#bar{
+  width: 0%;
+  max-width: 100%;
+  height: 4px;
+  background: #7fc242;
+}
+#progressBar{
+  width: 100%;
+  background: #EDEDED;
+}
+
+
+/*#owl-example .item{
   margin: 3px;
 }
 #owl-example .item img{
   display: block;
   width: 100%;
   height: auto;
-}
+}*/
