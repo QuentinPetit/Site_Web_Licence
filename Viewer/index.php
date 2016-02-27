@@ -11,7 +11,7 @@
 		<script type="text/javascript" src="../Ressources/owl-carousel/owl.carousel.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function() {
-				$("#owl-demo").owlCarousel({
+				$("#owl-example").owlCarousel({
 
 					//console.log("owlCarousel");
 					autoPlay: 3000, //Set AutoPlay to 3 seconds

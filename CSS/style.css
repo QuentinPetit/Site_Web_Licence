@@ -103,7 +103,11 @@ color:#000;
 	width: 50%;
 	float: left;
 }
-
-
-
-
+#owl-example .item{
+  margin: 3px;
+}
+#owl-example .item img{
+  display: block;
+  width: 100%;
+  height: auto;
+}
