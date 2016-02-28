@@ -1,4 +1,4 @@
-<!DOCTYPE htm>
+<!DOCTYPE html>
 
 <html>
 	<head>
@@ -11,107 +11,7 @@
 		<script type="text/javascript" src="../Ressources/owl-carousel/jquery-1.9.1.min.js"></script>
 		<script type="text/javascript" src="../Ressources/owl-carousel/owl.carousel.js"></script>
 		<script type="text/javascript" src="../Ressources/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
-		<script type="text/javascript">
-			$(document).ready(function() {
- 
-			  var time = 7; // time in seconds
-			 
-			  var $progressBar,
-			      $bar, 
-			      $elem, 
-			      isPause, 
-			      tick,
-			      percentTime;
-			 
-			    //Init the carousel
-			    $("#owl-example").owlCarousel({
-			      slideSpeed : 500,
-			      paginationSpeed : 500,
-			      singleItem : true,
-			      afterInit : progressBar,
-			      afterMove : moved,
-			      startDragging : pauseOnDragging
-			    });
-			 
-			    //Init progressBar where elem is $("#owl-example")
-			    function progressBar(elem){
-			      $elem = elem;
-			      //build progress bar elements
-			      buildProgressBar();
-			      //start counting
-			      start();
-			    }
-			 
-			    //create div#progressBar and div#bar then prepend to $("#owl-example")
-			    function buildProgressBar(){
-			      $progressBar = $("<div>",{
-			        id:"progressBar"
-			      });
-			      $bar = $("<div>",{
-			        id:"bar"
-			      });
-			      $progressBar.append($bar).prependTo($elem);
-			    }
-			 
-			    function start() {
-			      //reset timer
-			      percentTime = 0;
-			      isPause = false;
-			      //run interval every 0.01 second
-			      tick = setInterval(interval, 10);
-			    };
-			 
-			    function interval() {
-			      if(isPause === false){
-			        percentTime += 1 / time;
-			        $bar.css({
-			           width: percentTime+"%"
-			         });
-			        //if percentTime is equal or greater than 100
-			        if(percentTime >= 100){
-			          //slide to next item 
-			          $elem.trigger('owl.next')
-			        }
-			      }
-			    }
-			    //pause while dragging 
-			    function pauseOnDragging(){
-			      isPause = true;
-			    }
-			 
-			    //moved callback
-			    function moved(){
-			      //clear interval
-			      clearTimeout(tick);
-			      //start again
-			      start();
-			    }
-			    //uncomment this to make pause on mouseover 
-			    $elem.on('mouseover',function(){
-			      isPause = true;
-			    })
-			    $elem.on('mouseout',function(){
-			      isPause = false;
-			    })
-		});
-
-
-	    /*$(document).ready(function() {
-	     
-	      $("#owl-demo").owlCarousel({
-	     
-	          autoPlay: 3000, //Set AutoPlay to 3 seconds
-	     
-	          items : 4,
-	          itemsDesktop : [1199,3],
-	          itemsDesktopSmall : [979,3]
-	     
-	      });
-	     
-	    });*/
-
-
-		</script>
+		<script type="text/javascript" src="../JS/customCaroussel.js"></script>
 	</head>
 
 	<header>
@@ -124,7 +24,7 @@
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="index.php">Accueil</a></li>
 					<li class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown" href="parcours.html">Parcours</a>
+						<a class="dropdown-toggle" href="parcours.php">Parcours</a>
 						
 						<ul class="dropdown-menu">
 							<?php
@@ -207,36 +107,29 @@
 				<div id="owl-example" class="owl-carousel owl-theme">
 					<?php
 							
-					include('../PHP/connexion.php');
+						include('../PHP/connexion.php');
 
-						$sql = "SELECT Miniature FROM projets ORDER BY Date DESC LIMIT 2";
-						$result = $conn->query($sql);
+							$sql = "SELECT a.Miniature
+								FROM projets AS a
+								LEFT JOIN projets AS a2
+								ON a.ID_parcours = a2.ID_parcours AND a.Date <= a2.Date
+								GROUP BY a.ID_projets
+								HAVING COUNT(*) <= 2
+								ORDER BY a.ID_parcours, a.Date DESC, a.Poids DESC";
+							$result = $conn->query($sql);
 
-						if ($result->num_rows > 0) {
-							// output data of each row
-							while($row = $result->fetch_assoc()) {
-							echo "<h2>". utf8_encode($row["Titre"]) ."</h2>";
-							echo "<article>". utf8_encode($row["Article"]) ."</article>";
+							if ($result->num_rows > 0) {
+								// output data of each row
+								while($row = $result->fetch_assoc()) {
+								echo "<div class='item'><img src='". utf8_encode($row["Miniature"]) ."'alt='Owl Image'></div>";
+								}
+							} else {
+								 echo "0 results";
 							}
-						} else {
-							 echo "0 results";
-						}
 
-					include('../PHP/deconnexion.php');
+						include('../PHP/deconnexion.php');
 
-				?>  
-					<div class="item"><img src="../Pictures/0b4f995a.jpg" alt="Owl Image"></div>
-					<div class="item"><img src="../Pictures/1d3878a9.jpg" alt="Owl Image"></div>
-					<div class="item"><img src="../Pictures/136c27e7.jpg" alt="Owl Image"></div>
-					<div class="item"><img src="../Pictures/apk0duvhadivsgm9htgfsqkavtfce0gv75apectsa7ivpnotldxefyjpayzkjk6rqoxybietolzo2hsb3f7leiw3sfaug_mk5ljjmdwnsi55bgrqbbuakzf8z8czmiih8.jpg" alt="Owl Image"></div>
-					<div class="item"><img src="../Pictures/c7d064d4.jpg" alt="Owl Image"></div>
-					<div class="item"><img src="../Pictures/croatie-lacs-plitvice-cascades-7.jpg" alt="Owl Image"></div>
-					<div class="item"><img src="../Pictures/d6ec1e3e9f_seychelles-45.jpg" alt="Owl Image"></div>
-					<div class="item"><img src="../Pictures/0ced1177.jpg" alt="Owl Image"></div>
-					<div class="item"><img src="../Pictures/6812976929_6654ee46d1_b.jpg" alt="Owl Image"></div>
-					<div class="item"><img src="../Pictures/fond-ecran-paysage.jpg" alt="Owl Image"></div>
-
-
+					?> 
 				</div>
 				
 			</div>

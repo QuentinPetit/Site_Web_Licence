@@ -123,8 +123,8 @@ color:#000;
 #owl-example .item{
   margin: 3px;
 }
-/*#owl-example .item img{
-  display: block;
-  width: 100%;
-  height: auto;
-}*/
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0; // remove the gap so it doesn't close
+ }
