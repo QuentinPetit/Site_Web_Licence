@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Sam 27 Février 2016 à 20:02
+-- Généré le :  Dim 28 Février 2016 à 20:00
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -151,6 +151,7 @@ CREATE TABLE IF NOT EXISTS `parcours` (
   `ID_parcours` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `Nom` varchar(40) NOT NULL,
   `Description` varchar(2000) NOT NULL,
+  `Plaquette` varchar(100) NOT NULL,
   `Couleur` varchar(10) NOT NULL,
   PRIMARY KEY (`ID_parcours`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
@@ -159,10 +160,10 @@ CREATE TABLE IF NOT EXISTS `parcours` (
 -- Contenu de la table `parcours`
 --
 
-INSERT INTO `parcours` (`ID_parcours`, `Nom`, `Description`, `Couleur`) VALUES
-(1, 'Infographie', '', ''),
-(2, 'Technical Artist', '', ''),
-(3, '3D Temps réel et Réalité Virtuelle', '', '');
+INSERT INTO `parcours` (`ID_parcours`, `Nom`, `Description`, `Plaquette`, `Couleur`) VALUES
+(1, 'Infographie', 'L’année 1866 fut marquée par un événement\r\nbizarre, un phénomène inexpliqué et inexplicable\r\nque personne n’a sans doute oublié. Sans parler\r\ndes   rumeurs   qui   agitaient   les   populations   des\r\nports et surexcitaient l’esprit public à l’intérieur\r\ndes   continents,   les   gens   de   mer   furent\r\nparticulièrement   émus.   Les   négociants,\r\narmateurs,   capitaines   de   navires,   skippers   et\r\nmasters de l’Europe et de l’Amérique, officiers\r\ndes marines militaires de tous pays, et, après eux,\r\nles   gouvernements   des   divers   États   des   deux\r\ncontinents, se préoccupèrent de ce fait au plus\r\nhaut point.', '../PDF/AvatarDrive.zip', '#36802D'),
+(2, 'Technical Artist', 'Les faits relatifs à cette apparition, consignés\r\naux   divers   livres   de   bord,   s’accordaient   assez\r\nexactement sur la structure de l’objet ou de l’être\r\nen question, la vitesse inouïe de ses mouvements,\r\nla puissance surprenante de sa locomotion, la vie\r\nparticulière dont il semblait doué. Si c’était un\r\ncétacé, il surpassait en volume tous ceux que la\r\nscience avait classés jusqu’alors. Ni Cuvier, ni\r\nLacépède, ni M. Dumeril, ni M. de Quatrefages\r\nn’eussent admis l’existence d’un tel monstre – à\r\nmoins de l’avoir vu, ce qui s’appelle vu de leurs\r\npropres yeux de savants', '../PDF/TP2___OSG__Semestre_4__2013_2014.pdf', '#F215C9'),
+(3, '3D Temps réel et Réalité Virtuelle', 'En   effet,   le   20   juillet   1866,   le   steamer\r\nGovernor Higginson\r\n, de Calcutta and Burnach\r\nSteam Navigation Company, avait rencontré cette\r\nmasse mouvante à cinq milles dans l’est des côtes\r\nde l’Australie. Le capitaine Baker se crut, tout\r\nd’abord, en présence d’un écueil inconnu\r\n; il se\r\ndisposait   même   à   en   déterminer   la   situation\r\nexacte, quand deux colonnes d’eau, projetées par\r\nl’inexplicable objet, s’élancèrent en sifflant à cent\r\ncinquante pieds dans l’air. Donc, à moins que cet\r\nécueil   ne   fût   soumis   aux   expansions\r\nintermittentes   d’un   geyser,   le   \r\nGovernor\r\nHigginson\r\n  avait   affaire   bel   et   bien   à   quelque\r\nmammifère   aquatique,   inconnu   jusque-là,   qui\r\nrejetait   par   ses   évents   des   colonnes   d’eau,\r\nmélangées d’air et de vapeur.', '../PDF/TP3___OSG__Semestre_4__2013_2014.pdf', '#F9EC31');
 
 -- --------------------------------------------------------
 
@@ -179,7 +180,7 @@ CREATE TABLE IF NOT EXISTS `projets` (
   `Caractéristique` varchar(2000) NOT NULL,
   `Logiciel` varchar(2000) NOT NULL,
   `Matériel` varchar(2000) NOT NULL,
-  `Poids` int(40) NOT NULL,
+  `Poids` int(3) NOT NULL,
   `Miniature` varchar(200) NOT NULL,
   `Fichier_Projet` varchar(200) NOT NULL,
   `Vidéo` varchar(200) NOT NULL,
@@ -217,7 +218,16 @@ CREATE TABLE IF NOT EXISTS `reseausociaux` (
   `ID_parcours` int(11) unsigned NOT NULL,
   PRIMARY KEY (`ID_reseausociaux`),
   KEY `ID_parcours` (`ID_parcours`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Contenu de la table `reseausociaux`
+--
+
+INSERT INTO `reseausociaux` (`ID_reseausociaux`, `Lien`, `Logo`, `ID_parcours`) VALUES
+(1, 'https://twitter.com/LicenceMIND3DTR', '../Pictures/Logo/twitter.jpg', 3),
+(2, 'https://twitter.com/LicenceMINDTA', '../Pictures/Logo/twitter.jpg', 2),
+(3, 'https://www.facebook.com/zuck', '../Pictures/Logo/facebook.png', 3);
 
 --
 -- Contraintes pour les tables exportées
