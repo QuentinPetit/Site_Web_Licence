@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Dim 28 Février 2016 à 20:00
+-- Généré le :  Sam 05 Mars 2016 à 20:09
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -109,7 +109,15 @@ CREATE TABLE IF NOT EXISTS `entreprises` (
   `Lien` varchar(200) NOT NULL,
   `Logo` varchar(80) NOT NULL,
   PRIMARY KEY (`ID_entreprises`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Contenu de la table `entreprises`
+--
+
+INSERT INTO `entreprises` (`ID_entreprises`, `Nom`, `Lien`, `Logo`) VALUES
+(1, 'Microsoft', 'https://www.microsoft.com/fr-fr', '../Pictures/Logo/microsoft.png'),
+(2, 'Maskott', 'http://www.maskott.com/', '../Pictures/Logo/maskott.png');
 
 -- --------------------------------------------------------
 

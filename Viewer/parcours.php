@@ -75,38 +75,66 @@
 	</header>
 	<body>
 		<div class="row">
-			<?php 	
-				include('../PHP/connexion.php');
-				$sql = "SELECT * FROM parcours";
-				$result = $conn->query($sql);
-				if ($result->num_rows > 0){
-					while ($row = $result->fetch_assoc()) {
-						echo "<section class='col-xs-12 well' style='background:".utf8_encode($row["Couleur"])."'> 
-						<h3>".utf8_encode($row["Nom"])."</h3>
-						<p>".utf8_encode($row["Description"])."</p>
-						<a class='btn btn-default' href=".utf8_encode($row["Plaquette"])." target='_blank'>Télécharger la plaquette</a>";
-						
-						$sqlreseausociaux = "SELECT * FROM reseausociaux WHERE ID_parcours = ".utf8_encode($row["ID_parcours"]);
-						$resultreseausociaux = $conn->query($sqlreseausociaux);
-						if ($resultreseausociaux->num_rows>0){
-							while ($rowreseausociaux=$resultreseausociaux->fetch_assoc()) {
-								echo "<a class='btn btn-default' href='".utf8_encode($rowreseausociaux["Lien"])."' target='_blank'><img class='img-responsive' src='".utf8_encode($rowreseausociaux["Logo"])."'></a>";
+			<div class="col-xs-12" id="Parcours">
+				<h2>Parcours</h2>
+				<?php 	
+					include('../PHP/connexion.php');
+
+					$sql = "SELECT * FROM parcours";
+					$result = $conn->query($sql);
+					if ($result->num_rows > 0){
+						while ($row = $result->fetch_assoc()) {
+							echo "<section class='col-xs-12 well' style='background:".utf8_encode($row["Couleur"])."'> 
+							<h3>".utf8_encode($row["Nom"])."</h3>
+							<p>".utf8_encode($row["Description"])."</p>
+							<a class='btn btn-default' href=".utf8_encode($row["Plaquette"])." target='_blank'>Télécharger la plaquette</a>";
+							
+							$sqlreseausociaux = "SELECT * FROM reseausociaux WHERE ID_parcours = ".utf8_encode($row["ID_parcours"]);
+							$resultreseausociaux = $conn->query($sqlreseausociaux);
+							if ($resultreseausociaux->num_rows>0){
+								while ($rowreseausociaux=$resultreseausociaux->fetch_assoc()) {
+									echo "<a class='btn btn-default' href='".utf8_encode($rowreseausociaux["Lien"])."' target='_blank'><img class='img-responsive' src='".utf8_encode($rowreseausociaux["Logo"])."'></a>";
+								}
+							}else{
+								echo "0 result";
 							}
-						}else{
-							echo "0 result";
+							echo "</section>";
 						}
-						echo "</section>";
+					} else {
+						echo "0 results";
 					}
-				} else {
-					echo "0 results";
-				}
 
-				include('../PHP/deconnexion.php');
-			?>
-			<!--<a href="https://twitter.com/LicenceMIND3DTR" class="twitter-follow-button" data-show-count="true" data-size="large">Follow @LicenceMIND3DTR</a>
-			<a href="https://twitter.com/LicenceMINDTA" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @LicenceMINDTA</a>-->
+					include('../PHP/deconnexion.php');
+				?>
+			</div>
+			<div class="col-xs-12" id="Entreprises">
+				<h2>Entreprises</h2>
+				<?php
 
+					include('../PHP/connexion.php');
+					$sql = "SELECT * FROM entreprises";
+					$result = $conn->query($sql);
 
+					if ($result->num_rows>0) {
+						while ( $row = $result->fetch_assoc()) {
+							echo "
+							<div class='col-xs-4 col-sm-3 col-md-2'>
+								<a href='".utf8_encode($row["Lien"])."' target='_blank'>
+									<img class='img-responsive' src='".utf8_encode($row["Logo"])."'>
+								</a>
+								<p>".utf8_encode($row["Nom"])."</p>
+							</div>";
+						}
+
+					} else {
+						echo "0 results";
+					}
+					
+
+					include('../PHP/deconnexion.php');
+
+				?>
+			</div>
 		</div>
 	</body>
 </html>
