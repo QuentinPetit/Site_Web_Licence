@@ -123,7 +123,7 @@
 							echo "
 							<div class='col-xs-4 col-sm-3 col-md-2'>
 								<a href='".utf8_encode($row["Lien"])."' target='_blank'>
-									<img class='img-responsive' src='". utf8_encode($row["Miniature"]) ."'>
+									<img class='img-responsive' src='". utf8_encode($row["Logo"]) ."'>
 								</a>
 								<p>".utf8_encode($row["Nom"])."</p>
 							</div>";
