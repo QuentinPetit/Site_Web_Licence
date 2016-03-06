@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Dim 06 Mars 2016 à 17:55
+-- Généré le :  Dim 06 Mars 2016 à 18:33
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -38,11 +38,6 @@ CREATE TABLE IF NOT EXISTS `actualites` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
--- Vider la table avant d'insérer `actualites`
---
-
-TRUNCATE TABLE `actualites`;
---
 -- Contenu de la table `actualites`
 --
 
@@ -67,11 +62,6 @@ CREATE TABLE IF NOT EXISTS `administrateur` (
   PRIMARY KEY (`ID_administrateur`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Cette table représente chacun des administrateurs ' AUTO_INCREMENT=1 ;
 
---
--- Vider la table avant d'insérer `administrateur`
---
-
-TRUNCATE TABLE `administrateur`;
 -- --------------------------------------------------------
 
 --
@@ -90,11 +80,6 @@ CREATE TABLE IF NOT EXISTS `eleves` (
   PRIMARY KEY (`ID_eleves`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Cette table représente chacun des élèves de la promo. ' AUTO_INCREMENT=1 ;
 
---
--- Vider la table avant d'insérer `eleves`
---
-
-TRUNCATE TABLE `eleves`;
 -- --------------------------------------------------------
 
 --
@@ -111,11 +96,6 @@ CREATE TABLE IF NOT EXISTS `elevestoprojet` (
   KEY `ID_projets` (`ID_projets`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Vider la table avant d'insérer `elevestoprojet`
---
-
-TRUNCATE TABLE `elevestoprojet`;
 -- --------------------------------------------------------
 
 --
@@ -131,11 +111,6 @@ CREATE TABLE IF NOT EXISTS `entreprises` (
   PRIMARY KEY (`ID_entreprises`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
---
--- Vider la table avant d'insérer `entreprises`
---
-
-TRUNCATE TABLE `entreprises`;
 --
 -- Contenu de la table `entreprises`
 --
@@ -157,11 +132,6 @@ CREATE TABLE IF NOT EXISTS `matieres` (
   PRIMARY KEY (`ID_matieres`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Vider la table avant d'insérer `matieres`
---
-
-TRUNCATE TABLE `matieres`;
 -- --------------------------------------------------------
 
 --
@@ -178,11 +148,6 @@ CREATE TABLE IF NOT EXISTS `matierestoprojet` (
   KEY `ID_matieres` (`ID_matieres`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Vider la table avant d'insérer `matierestoprojet`
---
-
-TRUNCATE TABLE `matierestoprojet`;
 -- --------------------------------------------------------
 
 --
@@ -199,11 +164,6 @@ CREATE TABLE IF NOT EXISTS `parcours` (
   PRIMARY KEY (`ID_parcours`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
---
--- Vider la table avant d'insérer `parcours`
---
-
-TRUNCATE TABLE `parcours`;
 --
 -- Contenu de la table `parcours`
 --
@@ -235,19 +195,14 @@ CREATE TABLE IF NOT EXISTS `projets` (
   `ID_parcours` int(11) unsigned NOT NULL,
   PRIMARY KEY (`ID_projets`),
   KEY `ID_parcours` (`ID_parcours`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
---
--- Vider la table avant d'insérer `projets`
---
-
-TRUNCATE TABLE `projets`;
 --
 -- Contenu de la table `projets`
 --
 
 INSERT INTO `projets` (`ID_projets`, `Nom`, `Date`, `Description`, `Caractéristique`, `Logiciel`, `Matériel`, `Poids`, `Miniature`, `Fichier_Projet`, `Vidéo`, `ID_parcours`) VALUES
-(1, 'eeee', '2016-02-01', 'azedjgvfkza', '2.5D', 'Potato', 'Une Passoire', 2, '../Pictures/0b4f995a.jpg', 'aqdohziuqq', 'asdf', 1),
+(1, 'eeee', '2016-01-01', 'azedjgvfkza', '2.5D', 'Potato', 'Une Passoire', 2, '../Pictures/0b4f995a.jpg', 'aqdohziuqq', 'asdf', 1),
 (2, 'ASDF the Game', '2016-01-01', 'ASDF', 'ASDF', 'ASDF', 'ASDF', 4, '../Pictures/1d3878a9.jpg', 'ASDF', 'ASDF', 1),
 (3, 'Tequilla', '2016-02-29', 'zdqsdf', 'dqfezfd', 'qzefqzfd', 'zzsfqzef', 5, '../Pictures/c7d064d4.jpg', 'azsd', 'zefef', 2),
 (4, 'Derp', '2016-02-02', 'gd', 'b', 'qrfq', 'qesrggqqes', 5, '../Pictures/136c27e7.jpg', 'WEZ4ERRF', 'qqrzqersq', 1),
@@ -255,7 +210,13 @@ INSERT INTO `projets` (`ID_projets`, `Nom`, `Date`, `Description`, `Caractérist
 (6, 'Toto à la plage', '2016-02-27', 'EIUD', 'EQUFZQ', 'FCLJKQ', 'zefis', 4, '../Pictures/croatie-lacs-plitvice-cascades-7.jpg', 'rese', 'zqrgf', 2),
 (8, 'What''s 9+10', '2016-02-21', '21', '21', '21', '21', 2, '../Pictures/d6ec1e3e9f_seychelles-45.jpg', '21', '21', 3),
 (9, 'OOOOOOOOOOO', '2016-02-10', 'OOOOOOOOOOOOOOOOOOOOOOOO', 'OOOOOOOOOOOOOO', 'OOOOOOOOOOOOO', 'O', 0, '../Pictures/0ced1177.jpg', 'OOOOOOOOOOOOO', 'OOOOOOOOOOOOOOOOOOOOOOOOO', 3),
-(10, 'Derp Origins', '2016-03-16', 'Derp Begins', 'Real 4.5D', 'kjckcvj', 'Balançoire', 1337, '../Pictures/6812976929_6654ee46d1_b.jpg', 'AAAAAAAAAAAAAA', 'Andthisisthevideo', 3);
+(10, 'Derp Origins', '2016-03-16', 'Derp Begins', 'Real 4.5D', 'kjckcvj', 'Balançoire', 1337, '../Pictures/6812976929_6654ee46d1_b.jpg', 'AAAAAAAAAAAAAA', 'Andthisisthevideo', 3),
+(11, 'AESTHETICS', '2015-02-01', 'sadboys2002', 'Vaporwave AESTHETICS', 'Vaporwa.ve', 'Une bouteille de Fiji', 5, '../Pictures/Aesthetics.png', 'oahdoii', 'https://www.youtube.com/watch?v=cU8HrO7XuiE', 1),
+(12, 'Arizona Ice Tea', '2015-02-01', 'zad', 'rgzerf', 'Windows 95', 'Une canette d''Arizona', 3, '../Pictures/Arizona.jpeg', 'asasdada', 'https://www.youtube.com/watch?v=cU8HrO7XuiE', 1),
+(13, 'Sadboys.exe', '2014-01-01', 'AAAA', 'asd', 'qerfsd', 'qzdefqs', 4, '../Pictures/Sadboys.png', 'azdqdd', 'https://www.youtube.com/watch?v=cU8HrO7XuiE', 1),
+(14, 'Gingseng Strip 2002', '2013-02-07', 'azdsd', 'adsqsddsq', 'yunglean.exe', 'Arizona cans', 4, '../Pictures/Yunglean.jpg', 'asdqsdaz', 'https://www.youtube.com/watch?v=vrQWhFysPKY', 1),
+(15, 'despair', '2014-01-01', 'whatislife?', 'ayy lmao', 'aaa', 'dqsdqsd', 3, '../Pictures/xKsMP6n.jpg', 'aozidbjajsd', 'https://www.youtube.com/watch?v=cU8HrO7XuiE', 1),
+(16, 'brbrbrbr', '2013-02-07', 'brbr', 'gibe moni pls', 'br.exe', 'brbrbr', 3, '../Pictures/logo.png', 'azsdqsd', 'qsddqfz', 1);
 
 -- --------------------------------------------------------
 
@@ -273,11 +234,6 @@ CREATE TABLE IF NOT EXISTS `reseausociaux` (
   KEY `ID_parcours` (`ID_parcours`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
---
--- Vider la table avant d'insérer `reseausociaux`
---
-
-TRUNCATE TABLE `reseausociaux`;
 --
 -- Contenu de la table `reseausociaux`
 --
