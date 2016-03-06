@@ -112,7 +112,7 @@
 				<?php
 
 					include('../PHP/connexion.php');
-					$sql = "SELECT * FROM entreprises";
+					$sql = "SELECT * FROM entreprises ORDER BY Nom";
 					$result = $conn->query($sql);
 
 					if ($result->num_rows>0) {
