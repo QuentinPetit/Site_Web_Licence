@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Dim 06 Mars 2016 à 17:47
+-- Généré le :  Dim 06 Mars 2016 à 17:55
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -38,6 +38,11 @@ CREATE TABLE IF NOT EXISTS `actualites` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
+-- Vider la table avant d'insérer `actualites`
+--
+
+TRUNCATE TABLE `actualites`;
+--
 -- Contenu de la table `actualites`
 --
 
@@ -62,6 +67,11 @@ CREATE TABLE IF NOT EXISTS `administrateur` (
   PRIMARY KEY (`ID_administrateur`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Cette table représente chacun des administrateurs ' AUTO_INCREMENT=1 ;
 
+--
+-- Vider la table avant d'insérer `administrateur`
+--
+
+TRUNCATE TABLE `administrateur`;
 -- --------------------------------------------------------
 
 --
@@ -80,6 +90,11 @@ CREATE TABLE IF NOT EXISTS `eleves` (
   PRIMARY KEY (`ID_eleves`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Cette table représente chacun des élèves de la promo. ' AUTO_INCREMENT=1 ;
 
+--
+-- Vider la table avant d'insérer `eleves`
+--
+
+TRUNCATE TABLE `eleves`;
 -- --------------------------------------------------------
 
 --
@@ -96,6 +111,11 @@ CREATE TABLE IF NOT EXISTS `elevestoprojet` (
   KEY `ID_projets` (`ID_projets`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+--
+-- Vider la table avant d'insérer `elevestoprojet`
+--
+
+TRUNCATE TABLE `elevestoprojet`;
 -- --------------------------------------------------------
 
 --
@@ -111,6 +131,11 @@ CREATE TABLE IF NOT EXISTS `entreprises` (
   PRIMARY KEY (`ID_entreprises`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
+--
+-- Vider la table avant d'insérer `entreprises`
+--
+
+TRUNCATE TABLE `entreprises`;
 --
 -- Contenu de la table `entreprises`
 --
@@ -132,6 +157,11 @@ CREATE TABLE IF NOT EXISTS `matieres` (
   PRIMARY KEY (`ID_matieres`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+--
+-- Vider la table avant d'insérer `matieres`
+--
+
+TRUNCATE TABLE `matieres`;
 -- --------------------------------------------------------
 
 --
@@ -148,6 +178,11 @@ CREATE TABLE IF NOT EXISTS `matierestoprojet` (
   KEY `ID_matieres` (`ID_matieres`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+--
+-- Vider la table avant d'insérer `matierestoprojet`
+--
+
+TRUNCATE TABLE `matierestoprojet`;
 -- --------------------------------------------------------
 
 --
@@ -164,6 +199,11 @@ CREATE TABLE IF NOT EXISTS `parcours` (
   PRIMARY KEY (`ID_parcours`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
+--
+-- Vider la table avant d'insérer `parcours`
+--
+
+TRUNCATE TABLE `parcours`;
 --
 -- Contenu de la table `parcours`
 --
@@ -198,6 +238,11 @@ CREATE TABLE IF NOT EXISTS `projets` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
+-- Vider la table avant d'insérer `projets`
+--
+
+TRUNCATE TABLE `projets`;
+--
 -- Contenu de la table `projets`
 --
 
@@ -222,20 +267,25 @@ DROP TABLE IF EXISTS `reseausociaux`;
 CREATE TABLE IF NOT EXISTS `reseausociaux` (
   `ID_reseausociaux` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `Lien` varchar(200) NOT NULL,
-  `Logo` varchar(200) NOT NULL,
+  `NomReseau` varchar(40) NOT NULL,
   `ID_parcours` int(11) unsigned NOT NULL,
   PRIMARY KEY (`ID_reseausociaux`),
   KEY `ID_parcours` (`ID_parcours`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
+-- Vider la table avant d'insérer `reseausociaux`
+--
+
+TRUNCATE TABLE `reseausociaux`;
+--
 -- Contenu de la table `reseausociaux`
 --
 
-INSERT INTO `reseausociaux` (`ID_reseausociaux`, `Lien`, `Logo`, `ID_parcours`) VALUES
-(1, 'https://twitter.com/LicenceMIND3DTR', '../Pictures/Logo/twitter.jpg', 3),
-(2, 'https://twitter.com/LicenceMINDTA', '../Pictures/Logo/twitter.jpg', 2),
-(3, 'https://www.facebook.com/zuck', '../Pictures/Logo/facebook.png', 3);
+INSERT INTO `reseausociaux` (`ID_reseausociaux`, `Lien`, `NomReseau`, `ID_parcours`) VALUES
+(1, 'https://twitter.com/LicenceMIND3DTR', 'twitter', 3),
+(2, 'https://twitter.com/LicenceMINDTA', 'twitter', 2),
+(3, 'https://www.facebook.com/zuck', 'facebook', 3);
 
 --
 -- Contraintes pour les tables exportées
