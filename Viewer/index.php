@@ -37,7 +37,7 @@
 								if ($result->num_rows > 0) {
 									// output data of each row
 									while($row = $result->fetch_assoc()) {
-									echo "<li><a href='parcours.html'>". utf8_encode($row["Nom"]) ."</a></li>";
+									echo "<li><a href='parcours.php#".utf8_encode($row["Nom"])."'>". utf8_encode($row["Nom"]) ."</a></li>";
 									}
 								} else {
 									 echo "0 results";

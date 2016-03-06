@@ -6,7 +6,10 @@
 		<meta charset="UTF-8"/>
 		<link type="text/css" rel="stylesheet" href="../CSS/style.css">
 		<script type="text/javascript" src="../Ressources/owl-carousel/jquery-1.9.1.min.js"></script>
+		<link rel="stylesheet" href="../Ressources/font-awesome-4.5.0/css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="../Ressources/bootstrap-3.3.6-dist/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../Ressources/bootstrap-social-gh-pages/assets/css/docs.css">
+		<link rel="stylesheet" href="../Ressources/bootstrap-social-gh-pages/bootstrap-social.css">
 		<script type="text/javascript" src="../Ressources/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
 	</head>
 
@@ -85,7 +88,7 @@
 					if ($result->num_rows > 0){
 						while ($row = $result->fetch_assoc()) {
 							echo "<section class='col-xs-12 well' style='background:".utf8_encode($row["Couleur"])."'> 
-							<h3>".utf8_encode($row["Nom"])."</h3>
+							<a name='".utf8_encode($row["Nom"])."'><h3>".utf8_encode($row["Nom"])."</h3></a>
 							<p>".utf8_encode($row["Description"])."</p>
 							<a class='btn btn-default' href=".utf8_encode($row["Plaquette"])." target='_blank'>Télécharger la plaquette</a>";
 							
@@ -93,7 +96,7 @@
 							$resultreseausociaux = $conn->query($sqlreseausociaux);
 							if ($resultreseausociaux->num_rows>0){
 								while ($rowreseausociaux=$resultreseausociaux->fetch_assoc()) {
-									echo "<a class='btn btn-default' href='".utf8_encode($rowreseausociaux["Lien"])."' target='_blank'><img class='img-responsive' src='".utf8_encode($rowreseausociaux["Logo"])."'></a>";
+									echo "<a class='btn btn-social-icon btn-".utf8_encode($rowreseausociaux["NomReseau"])."' href='".utf8_encode($rowreseausociaux["Lien"])."' target='_blank'><i class='fa fa-".utf8_encode($rowreseausociaux["NomReseau"])."'></i></a>";
 								}
 							}else{
 								echo "0 result";
