@@ -31,7 +31,7 @@
 
 								include('../PHP/connexion.php');
 
-								$sql = "SELECT Nom FROM parcours";
+								$sql = "SELECT * FROM parcours";
 								$result = $conn->query($sql);
 
 								if ($result->num_rows > 0) {
@@ -55,13 +55,13 @@
 								
 								include('../PHP/connexion.php');
 
-								$sql = "SELECT Nom FROM parcours";
+								$sql = "SELECT * FROM parcours";
 								$result = $conn->query($sql);
 
 								if ($result->num_rows > 0) {
 									// output data of each row
 									while($row = $result->fetch_assoc()) {
-									echo "<li><a href='projets.php'>". utf8_encode($row["Nom"]) ."</a></li>";
+									echo "<li><a href='projets.php?parcoursId=".utf8_encode($row["ID_parcours"])."'>". utf8_encode($row["Nom"]) ."</a></li>";
 									}
 								} else {
 									 echo "0 results";
