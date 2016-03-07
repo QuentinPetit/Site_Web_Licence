@@ -86,7 +86,17 @@
 					echo "
 						<div class='picholder col-xs-4 col-sm-3 col-md-2'>
 								<img class='img-responsive fancypics' src='".utf8_encode($row["Miniature"])."'>
-								<div class='overlay'><p class='text_box'>".utf8_encode($row["Nom"])."</p></div>
+								<div class='overlay'>
+									<p class='text_box'>".utf8_encode($row["Nom"])."</p>
+									<div class='star-rating'> 
+										<div class='star-rating-value'>
+
+										</div>
+										<div class='star-rating-bg'>
+
+										</div>
+									</div>
+								</div>
 						</div>";
 				}
 			} else {
