@@ -88,7 +88,7 @@
 				while ($row = $result->fetch_assoc()) {
 					echo "
 						<div class='picholder col-xs-4 col-sm-3 col-md-2'>
-								<img class='img-responsive fancypics' src='".utf8_encode($row["Miniature"])."'>
+								<img class='fancypics' src='".utf8_encode($row["Miniature"])."'>
 								<div class='overlay'>
 									<p class='text_box'>".utf8_encode($row["Nom"])."</p>
 									<div class='star-rating'><input id='inner-rating' type='hidden' class='rating' data-readonly value='".$row["Poids"]."'></div>
