@@ -89,12 +89,8 @@
 								<div class='overlay'>
 									<p class='text_box'>".utf8_encode($row["Nom"])."</p>
 									<div class='star-rating'> 
-										<div class='star-rating-value'>
-
-										</div>
-										<div class='star-rating-bg'>
-
-										</div>
+										<div class='star-rating-value'></div>
+										<div class='star-rating-bg'></div>
 									</div>
 								</div>
 						</div>";
