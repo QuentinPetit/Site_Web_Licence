@@ -71,34 +71,27 @@
 				</div>
 			</nav>
 	</header>
+
 	<body>
 		<?php
 
-			$parcoursId=$_GET['parcoursId'];
-
 			include('../PHP/connexion.php');
 
-			$sql="SELECT * FROM projets WHERE ID_parcours='".$parcoursId."'ORDER BY Date DESC, Poids DESC";
+			$projetID = $_GET['projetID'];
+			$sql = "SELECT * FROM projets WHERE ID_projets =".$projetID;
 			$result = $conn->query($sql);
 
 			if ($result->num_rows > 0) {
 				while ($row = $result->fetch_assoc()) {
-					echo "
-						<div class='picholder col-xs-4 col-sm-3 col-md-2'>
-								<img class='img-responsive fancypics' src='".utf8_encode($row["Miniature"])."'>
-								<div class='overlay'><p class='text_box'>".utf8_encode($row["Nom"])."</p></div>
-						</div>";
+					# code...
 				}
 			} else {
-				echo "0 results";
+				# code...
 			}
 			
 
 			include('../PHP/deconnexion.php');
+
 		?>
 	</body>
-
-	<footer>
-
-	</footer>
-</html>
+</hmtl>
