@@ -5,8 +5,11 @@
 		<meta charset="UTF-8"/>
 		<link type="text/css" rel="stylesheet" href="../CSS/style.css">
 		<link rel="stylesheet" type="text/css" href="../Ressources/bootstrap-3.3.6-dist/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../Ressources/font-awesome-4.5.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../Ressources/bootstrap-rating-master/bootstrap-rating.css">
 		<script type="text/javascript" src="../Ressources/owl-carousel/jquery-1.9.1.min.js"></script>
 		<script type="text/javascript" src="../Ressources/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../Ressources/bootstrap-rating-master/bootstrap-rating.js"></script>
 	</head>
 		<header>
 			<div>
@@ -88,10 +91,7 @@
 								<img class='img-responsive fancypics' src='".utf8_encode($row["Miniature"])."'>
 								<div class='overlay'>
 									<p class='text_box'>".utf8_encode($row["Nom"])."</p>
-									<div class='star-rating'> 
-										<div class='star-rating-value'></div>
-										<div class='star-rating-bg'></div>
-									</div>
+									<div class='star-rating'><input id='inner-rating' type='hidden' class='rating' data-readonly value='".$row["Poids"]."'></div>
 								</div>
 						</div>";
 				}

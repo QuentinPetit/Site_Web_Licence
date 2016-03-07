@@ -165,3 +165,7 @@ color:#000;
   position: absolute;
   background-color: #ffbe10;
 }
+
+#inner-rating{
+  text-align:center;
+}
