@@ -80,7 +80,7 @@
 
 	<body>
 		<div class="row">
-			<div class="actu col-xs-12 col-md-8 well">
+			<div class="actu col-xs-12 col-sm-8 well">
 				<?php
 							
 					include('../PHP/connexion.php');
@@ -102,7 +102,7 @@
 
 				?>  
 			</div>
-			<div class="actu col-xs-12 col-md-4">
+			<div class="actu col-xs-12 col-sm-4">
 				
 				<div id="owl-example" class="owl-carousel owl-theme">
 					<?php

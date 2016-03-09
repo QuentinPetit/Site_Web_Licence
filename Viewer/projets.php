@@ -81,23 +81,40 @@
 				<?php
 
 					$parcoursId=$_GET['parcoursId'];
-
+					$years;
+					$init=false;
 					include('../PHP/connexion.php');
 
 					$sql="SELECT * FROM projets WHERE ID_parcours='".$parcoursId."'ORDER BY Date DESC, Poids DESC";
 					$result = $conn->query($sql);
 					if ($result->num_rows > 0) {
-
+						echo"<section class='col-xs-12 well'>";
 						while ($row = $result->fetch_assoc()) {
+							if ($init==false) {
+								$years = date("Y", strtotime($row["Date"]));
+								echo "<h1>".$years."</h1>";
+								$init=true;
+							}
+							if(date("Y", strtotime($row["Date"]))!=$years)
+							{
+								$years = date("Y", strtotime($row["Date"]));
+								echo "</section>";
+								echo"<section class='col-xs-12 well'>";
+								echo "<h1>".$years."</h1>";
+							}
+
 							echo "
-								<div class='picholder col-xs-4 col-sm-3 col-md-2'>
-										<img class='fancypics' src='".utf8_encode($row["Miniature"])."'>
+							<div class='picholder col-xs-4 col-sm-3 col-md-2'>
+									<img class='fancypics' src='".utf8_encode($row["Miniature"])."'>
+									<a href='projet.php?projetID=".utf8_encode($row["ID_projets"])."'>
 										<div class='overlay'>
 											<p class='text_box'>".utf8_encode($row["Nom"])."</p>
 											<div class='star-rating'><input id='inner-rating' type='hidden' class='rating' data-readonly value='".$row["Poids"]."'></div>
 										</div>
-								</div>";
-						}
+									</a>
+							</div>";							
+							
+						} echo "</section>";
 					} else {
 						echo "0 results";
 					}

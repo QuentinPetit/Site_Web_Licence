@@ -73,25 +73,36 @@
 	</header>
 
 	<body>
-		<?php
+		<div class="row">
+			<div class="col-xs-12 well">
+				<?php
 
-			include('../PHP/connexion.php');
+					include('../PHP/connexion.php');
 
-			$projetID = $_GET['projetID'];
-			$sql = "SELECT * FROM projets WHERE ID_projets =".$projetID;
-			$result = $conn->query($sql);
+					$projetID = $_GET['projetID'];
+					
+					$sql = "SELECT * FROM projets WHERE ID_projets =".$projetID;
+					$result = $conn->query($sql);
 
-			if ($result->num_rows > 0) {
-				while ($row = $result->fetch_assoc()) {
-					# code...
-				}
-			} else {
-				# code...
-			}
-			
+					if ($result->num_rows > 0) {
+						while ($row = $result->fetch_assoc()) {
+							echo "<h1>".utf8_encode($row["Nom"])."</h1>
+							<div align='center' class='embed-responsive embed-responsive-16by9'>
+								<video class='embed-responsive-item'>
+									<source src='".utf8_encode($row["Vidéo"])."'>
+								</video>
+							</div>";
 
-			include('../PHP/deconnexion.php');
+						}
+					} else {
+						echo "0 results";
+					}
+					
 
-		?>
+					include('../PHP/deconnexion.php');
+
+				?>
+			</div>
+		</div>
 	</body>
 </hmtl>
