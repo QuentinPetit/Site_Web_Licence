@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.14
+-- version 4.5.2
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Dim 06 Mars 2016 à 18:33
--- Version du serveur :  5.6.17
--- Version de PHP :  5.5.12
+-- Généré le :  Mer 09 Mars 2016 à 16:46
+-- Version du serveur :  5.7.9
+-- Version de PHP :  5.6.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Base de données :  `site_data`
@@ -30,12 +30,12 @@ USE `site_data`;
 
 DROP TABLE IF EXISTS `actualites`;
 CREATE TABLE IF NOT EXISTS `actualites` (
-  `ID_actualites` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `ID_actualites` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `DateCreation` date NOT NULL,
   `Titre` varchar(80) NOT NULL,
   `Article` varchar(140) NOT NULL,
   PRIMARY KEY (`ID_actualites`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `actualites`
@@ -54,13 +54,13 @@ INSERT INTO `actualites` (`ID_actualites`, `DateCreation`, `Titre`, `Article`) V
 
 DROP TABLE IF EXISTS `administrateur`;
 CREATE TABLE IF NOT EXISTS `administrateur` (
-  `ID_administrateur` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `ID_administrateur` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `Nom` varchar(20) NOT NULL,
   `Prenom` varchar(20) NOT NULL,
   `UserName` varchar(20) NOT NULL,
   `Password` varchar(10) NOT NULL,
   PRIMARY KEY (`ID_administrateur`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Cette table représente chacun des administrateurs ' AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Cette table représente chacun des administrateurs ';
 
 -- --------------------------------------------------------
 
@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `administrateur` (
 
 DROP TABLE IF EXISTS `eleves`;
 CREATE TABLE IF NOT EXISTS `eleves` (
-  `ID_eleves` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `ID_eleves` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `Nom` varchar(20) NOT NULL,
   `Prenom` varchar(20) NOT NULL,
   `UserName` varchar(20) NOT NULL,
@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `eleves` (
   `CV_PDF` varchar(40) NOT NULL,
   `CV_en_Ligne` varchar(40) NOT NULL,
   PRIMARY KEY (`ID_eleves`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Cette table représente chacun des élèves de la promo. ' AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Cette table représente chacun des élèves de la promo. ';
 
 -- --------------------------------------------------------
 
@@ -88,13 +88,13 @@ CREATE TABLE IF NOT EXISTS `eleves` (
 
 DROP TABLE IF EXISTS `elevestoprojet`;
 CREATE TABLE IF NOT EXISTS `elevestoprojet` (
-  `ID_elevestoprojet` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `ID_eleves` int(11) unsigned NOT NULL,
-  `ID_projets` int(11) unsigned NOT NULL,
+  `ID_elevestoprojet` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `ID_eleves` int(11) UNSIGNED NOT NULL,
+  `ID_projets` int(11) UNSIGNED NOT NULL,
   PRIMARY KEY (`ID_elevestoprojet`),
   KEY `ID_eleves` (`ID_eleves`),
   KEY `ID_projets` (`ID_projets`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -104,12 +104,12 @@ CREATE TABLE IF NOT EXISTS `elevestoprojet` (
 
 DROP TABLE IF EXISTS `entreprises`;
 CREATE TABLE IF NOT EXISTS `entreprises` (
-  `ID_entreprises` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `ID_entreprises` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `Nom` varchar(40) NOT NULL,
   `Lien` varchar(200) NOT NULL,
   `Logo` varchar(80) NOT NULL,
   PRIMARY KEY (`ID_entreprises`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `entreprises`
@@ -127,10 +127,10 @@ INSERT INTO `entreprises` (`ID_entreprises`, `Nom`, `Lien`, `Logo`) VALUES
 
 DROP TABLE IF EXISTS `matieres`;
 CREATE TABLE IF NOT EXISTS `matieres` (
-  `ID_matieres` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `ID_matieres` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `Nom` int(11) NOT NULL,
   PRIMARY KEY (`ID_matieres`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -140,13 +140,13 @@ CREATE TABLE IF NOT EXISTS `matieres` (
 
 DROP TABLE IF EXISTS `matierestoprojet`;
 CREATE TABLE IF NOT EXISTS `matierestoprojet` (
-  `ID_matierestoprojet` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `ID_projets` int(11) unsigned NOT NULL,
-  `ID_matieres` int(11) unsigned NOT NULL,
+  `ID_matierestoprojet` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `ID_projets` int(11) UNSIGNED NOT NULL,
+  `ID_matieres` int(11) UNSIGNED NOT NULL,
   PRIMARY KEY (`ID_matierestoprojet`),
   KEY `ID_projets` (`ID_projets`),
   KEY `ID_matieres` (`ID_matieres`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -156,13 +156,13 @@ CREATE TABLE IF NOT EXISTS `matierestoprojet` (
 
 DROP TABLE IF EXISTS `parcours`;
 CREATE TABLE IF NOT EXISTS `parcours` (
-  `ID_parcours` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `ID_parcours` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `Nom` varchar(40) NOT NULL,
   `Description` varchar(2000) NOT NULL,
   `Plaquette` varchar(100) NOT NULL,
   `Couleur` varchar(10) NOT NULL,
   PRIMARY KEY (`ID_parcours`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `parcours`
@@ -181,7 +181,7 @@ INSERT INTO `parcours` (`ID_parcours`, `Nom`, `Description`, `Plaquette`, `Coule
 
 DROP TABLE IF EXISTS `projets`;
 CREATE TABLE IF NOT EXISTS `projets` (
-  `ID_projets` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `ID_projets` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `Nom` varchar(50) NOT NULL,
   `Date` date NOT NULL,
   `Description` varchar(2000) NOT NULL,
@@ -191,21 +191,21 @@ CREATE TABLE IF NOT EXISTS `projets` (
   `Poids` int(3) NOT NULL,
   `Miniature` varchar(200) NOT NULL,
   `Fichier_Projet` varchar(200) NOT NULL,
-  `Vidéo` varchar(200) NOT NULL,
-  `ID_parcours` int(11) unsigned NOT NULL,
+  `Video` varchar(200) NOT NULL,
+  `ID_parcours` int(11) UNSIGNED NOT NULL,
   PRIMARY KEY (`ID_projets`),
   KEY `ID_parcours` (`ID_parcours`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `projets`
 --
 
-INSERT INTO `projets` (`ID_projets`, `Nom`, `Date`, `Description`, `Caractéristique`, `Logiciel`, `Matériel`, `Poids`, `Miniature`, `Fichier_Projet`, `Vidéo`, `ID_parcours`) VALUES
+INSERT INTO `projets` (`ID_projets`, `Nom`, `Date`, `Description`, `Caractéristique`, `Logiciel`, `Matériel`, `Poids`, `Miniature`, `Fichier_Projet`, `Video`, `ID_parcours`) VALUES
 (1, 'eeee', '2016-01-01', 'azedjgvfkza', '2.5D', 'Potato', 'Une Passoire', 2, '../Pictures/0b4f995a.jpg', 'aqdohziuqq', 'asdf', 1),
 (2, 'ASDF the Game', '2016-01-01', 'ASDF', 'ASDF', 'ASDF', 'ASDF', 4, '../Pictures/1d3878a9.jpg', 'ASDF', 'ASDF', 1),
 (3, 'Tequilla', '2016-02-29', 'zdqsdf', 'dqfezfd', 'qzefqzfd', 'zzsfqzef', 5, '../Pictures/c7d064d4.jpg', 'azsd', 'zefef', 2),
-(4, 'Derp', '2016-02-02', 'gd', 'b', 'qrfq', 'qesrggqqes', 5, '../Pictures/136c27e7.jpg', 'WEZ4ERRF', 'qqrzqersq', 1),
+(4, 'Derp', '2016-02-02', 'gd', 'b', 'qrfq', 'qesrggqqes', 5, '../Pictures/136c27e7.jpg', 'WEZ4ERRF', '../Video/VideoTest.mp4', 1),
 (5, 'Derp 2', '2016-02-17', 'Derp''s revenge', 'zef', 'Unity', 'JH NBJH? ', 0, '../Pictures/apk0duvhadivsgm9htgfsqkavtfce0gv75apectsa7ivpnotldxefyjpayzkjk6rqoxybietolzo2hsb3f7leiw3sfaug_mk5ljjmdwnsi55bgrqbbuakzf8z8czmiih8.jpg', 'aaaasssssssss', 'rsrgfvere', 2),
 (6, 'Toto à la plage', '2016-02-27', 'EIUD', 'EQUFZQ', 'FCLJKQ', 'zefis', 4, '../Pictures/croatie-lacs-plitvice-cascades-7.jpg', 'rese', 'zqrgf', 2),
 (8, 'What''s 9+10', '2016-02-21', '21', '21', '21', '21', 2, '../Pictures/d6ec1e3e9f_seychelles-45.jpg', '21', '21', 3),
@@ -226,13 +226,13 @@ INSERT INTO `projets` (`ID_projets`, `Nom`, `Date`, `Description`, `Caractérist
 
 DROP TABLE IF EXISTS `reseausociaux`;
 CREATE TABLE IF NOT EXISTS `reseausociaux` (
-  `ID_reseausociaux` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `ID_reseausociaux` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `Lien` varchar(200) NOT NULL,
   `NomReseau` varchar(40) NOT NULL,
-  `ID_parcours` int(11) unsigned NOT NULL,
+  `ID_parcours` int(11) UNSIGNED NOT NULL,
   PRIMARY KEY (`ID_reseausociaux`),
   KEY `ID_parcours` (`ID_parcours`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `reseausociaux`

@@ -87,9 +87,9 @@
 					if ($result->num_rows > 0) {
 						while ($row = $result->fetch_assoc()) {
 							echo "<h1>".utf8_encode($row["Nom"])."</h1>
-							<div align='center' class='embed-responsive embed-responsive-16by9'>
-								<video class='embed-responsive-item'>
-									<source src='".utf8_encode($row["Vidéo"])."'>
+							<div align='center' class='embed-responsive embed-responsive-16by9 videoplayer'>
+								<video class='embed-responsive-item' controls>
+									<source src='".utf8_encode($row["Video"])."' type = 'video/mp4'>
 								</video>
 							</div>";
 
