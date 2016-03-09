@@ -1,0 +1,4 @@
+Dépliage des UV d'un modélisation déjà faite d'une citerne.
+Création et application de la texture/Rendu.
+But : Obtenir une texture rouillée/usée par le temps avec quelques détails (logo, noirceur sur les bords).
+Softs utilisés: 3ds Max, Photoshop

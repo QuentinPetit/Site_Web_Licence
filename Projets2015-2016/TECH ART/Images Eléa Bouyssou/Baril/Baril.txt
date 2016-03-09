@@ -1,0 +1,4 @@
+Dépliage des UV d'un modélisation déjà faite d'un baril.
+Création et application de la texture/Rendu.
+But : Obtenir une texture rouillée avec quelques reliefs et détails (logo, noirceur sur les bords).
+Softs utilisés : Photoshop, ZBrush, 3ds Max.
