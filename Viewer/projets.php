@@ -3,10 +3,11 @@
 	<head>
 		<title>Licence Professionnelle Image & Son</title>
 		<meta charset="UTF-8"/>
-		<link type="text/css" rel="stylesheet" href="../CSS/style.css">
+		
 		<link rel="stylesheet" type="text/css" href="../Ressources/bootstrap-3.3.6-dist/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../Ressources/font-awesome-4.5.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="../Ressources/bootstrap-rating-master/bootstrap-rating.css">
+		<link type="text/css" rel="stylesheet" href="../CSS/style.css">
 		<script type="text/javascript" src="../Ressources/owl-carousel/jquery-1.9.1.min.js"></script>
 		<script type="text/javascript" src="../Ressources/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="../Ressources/bootstrap-rating-master/bootstrap-rating.js"></script>
@@ -75,33 +76,37 @@
 			</nav>
 	</header>
 	<body>
-		<?php
+		<div class="row">
+			<div class="col-xs-12 well">
+				<?php
 
-			$parcoursId=$_GET['parcoursId'];
+					$parcoursId=$_GET['parcoursId'];
 
-			include('../PHP/connexion.php');
+					include('../PHP/connexion.php');
 
-			$sql="SELECT * FROM projets WHERE ID_parcours='".$parcoursId."'ORDER BY Date DESC, Poids DESC";
-			$result = $conn->query($sql);
+					$sql="SELECT * FROM projets WHERE ID_parcours='".$parcoursId."'ORDER BY Date DESC, Poids DESC";
+					$result = $conn->query($sql);
+					if ($result->num_rows > 0) {
 
-			if ($result->num_rows > 0) {
-				while ($row = $result->fetch_assoc()) {
-					echo "
-						<div class='picholder col-xs-4 col-sm-3 col-md-2'>
-								<img class='fancypics' src='".utf8_encode($row["Miniature"])."'>
-								<div class='overlay'>
-									<p class='text_box'>".utf8_encode($row["Nom"])."</p>
-									<div class='star-rating'><input id='inner-rating' type='hidden' class='rating' data-readonly value='".$row["Poids"]."'></div>
-								</div>
-						</div>";
-				}
-			} else {
-				echo "0 results";
-			}
-			
+						while ($row = $result->fetch_assoc()) {
+							echo "
+								<div class='picholder col-xs-4 col-sm-3 col-md-2'>
+										<img class='fancypics' src='".utf8_encode($row["Miniature"])."'>
+										<div class='overlay'>
+											<p class='text_box'>".utf8_encode($row["Nom"])."</p>
+											<div class='star-rating'><input id='inner-rating' type='hidden' class='rating' data-readonly value='".$row["Poids"]."'></div>
+										</div>
+								</div>";
+						}
+					} else {
+						echo "0 results";
+					}
+					
 
-			include('../PHP/deconnexion.php');
-		?>
+					include('../PHP/deconnexion.php');
+				?>
+			</div>
+		</div>
 	</body>
 
 	<footer>

@@ -132,7 +132,12 @@ color:#000;
 .picholder:hover .overlay{opacity:1;}
 .picholder:hover .fancypics{opacity:0.7;}
 
- .overlay {
+.picholder{
+  padding:0px;
+  margin: 5px;
+}
+
+.overlay {
   bottom: 0;left: 0; top: 0; right: 0;
   margin: auto;
   position: absolute;
