@@ -15,67 +15,7 @@
 	</head>
 
 	<header>
-		<div>
-			<img src="../Pictures/logo.png"/>
-			<img src="../Pictures/worker.jpg"/>
-		</div>
-		<nav class="navbar navbar-default">
-			<div class="container-fluid">
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="index.php">Accueil</a></li>
-					<li class="dropdown">
-						<a class="dropdown-toggle" href="parcours.php">Parcours</a>
-						
-						<ul class="dropdown-menu">
-							<?php
-
-								include('../PHP/connexion.php');
-
-								$sql = "SELECT * FROM parcours";
-								$result = $conn->query($sql);
-
-								if ($result->num_rows > 0) {
-									// output data of each row
-									while($row = $result->fetch_assoc()) {
-									echo "<li><a href='parcours.php#".utf8_encode($row["Nom"])."'>". utf8_encode($row["Nom"]) ."</a></li>";
-									}
-								} else {
-									 echo "0 results";
-								}
-								
-								include('../PHP/deconnexion.php');
-
-							?>  
-						</ul>
-					</li>
-					<li class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown" href="parcours.html">Projets</a>
-						<ul class="dropdown-menu">
-							<?php
-								
-								include('../PHP/connexion.php');
-
-								$sql = "SELECT * FROM parcours";
-								$result = $conn->query($sql);
-
-								if ($result->num_rows > 0) {
-									// output data of each row
-									while($row = $result->fetch_assoc()) {
-									echo "<li><a href='projets.php?parcoursId=".utf8_encode($row["ID_parcours"])."'>". utf8_encode($row["Nom"]) ."</a></li>";
-									}
-								} else {
-									 echo "0 results";
-								}
-
-								include('../PHP/deconnexion.php');
-
-							?>  
-						</ul>
-					</li>
-					<li><a href='contact.html'>Contact</a></li>
-				</ul>
-			</div>
-		</nav>
+		<?php include('../PHP/header.php') ?>
 	</header>
 
 	<body>
@@ -109,7 +49,7 @@
 							
 						include('../PHP/connexion.php');
 
-							$sql = "SELECT a.Miniature
+							$sql = "SELECT a.*
 								FROM projets AS a
 								LEFT JOIN projets AS a2
 								ON a.ID_parcours = a2.ID_parcours AND a.Date <= a2.Date
@@ -121,7 +61,11 @@
 							if ($result->num_rows > 0) {
 								// output data of each row
 								while($row = $result->fetch_assoc()) {
-								echo "<div class='item'><img src='". utf8_encode($row["Miniature"]) ."'alt='Owl Image'></div>";
+								echo "<div class='item'>
+										<a href='projet.php?projetID=".utf8_encode($row["ID_projets"])."'>
+											<img src='". utf8_encode($row["Miniature"]) ."'alt='".utf8_encode($row["Nom"])."'>
+										</a>
+									</div>";
 								}
 							} else {
 								 echo "0 results";
