@@ -25,22 +25,24 @@
 					$init=false;
 					include('../PHP/connexion.php');
 
-					$sql="SELECT * FROM projets WHERE ID_parcours='".$parcoursId."'ORDER BY Date DESC, Poids DESC";
+					$sql="SELECT * FROM projets NATURAL JOIN anneescolaire WHERE ID_parcours='".$parcoursId."'ORDER BY DateFin DESC, Poids DESC";
 					$result = $conn->query($sql);
 					if ($result->num_rows > 0) {
 						echo"<section class='col-xs-12 well'>";
 						while ($row = $result->fetch_assoc()) {
 							if ($init==false) {
-								$years = date("Y", strtotime($row["Date"]));
-								echo "<h1>".$years."</h1>";
+								$EndYears = date("Y", strtotime($row["DateFin"]));
+								$StartYears = date("Y", strtotime($row["DateDebut"]));
+								echo "<h1>".$StartYears."-".$EndYears."</h1>";
 								$init=true;
 							}
-							if(date("Y", strtotime($row["Date"]))!=$years)
+							if(date("Y", strtotime($row["DateFin"]))!=$EndYears || date("Y", strtotime($row["DateDebut"]))!=$StartYears)
 							{
-								$years = date("Y", strtotime($row["Date"]));
+								$StartYears = date("Y", strtotime($row["DateDebut"]));
+								$EndYears = date("Y", strtotime($row["DateFin"]));
 								echo "</section>";
 								echo"<section class='col-xs-12 well'>";
-								echo "<h1>".$years."</h1>";
+								echo "<h1>".$StartYears."-".$EndYears."</h1>";
 							}
 
 							echo "
