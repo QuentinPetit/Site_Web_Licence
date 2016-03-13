@@ -1,6 +1,25 @@
 <div>
 	<img src="../Pictures/logo.png"/>
-	<img src="../Pictures/worker.jpg"/>
+	<?php
+
+		include('../PHP/connexion.php');
+
+		$sql = "SELECT * FROM promotions, anneescolaire WHERE promotions.ID_Annee = anneescolaire.ID_Annee ORDER BY anneescolaire.DateDebut DESC LIMIT 1";
+		$result = $conn->query($sql);
+
+		if ($result->num_rows > 0) {
+			// output data of each row
+			while($row = $result->fetch_assoc()) {
+			echo "<img src='".utf8_encode($row["Lien"])."'/>";
+			}
+		} else {
+			 echo "0 results";
+		}
+		
+		include('../PHP/deconnexion.php');
+
+	?>
+	
 </div>
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
