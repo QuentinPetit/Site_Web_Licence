@@ -29,7 +29,7 @@
 					if ($result->num_rows > 0){
 						while ($row = $result->fetch_assoc()) {
 							echo "<section class='col-xs-12 well' style='background:".utf8_encode($row["Couleur"])."'> 
-							<a name='".utf8_encode($row["Nom"])."'><h3>".utf8_encode($row["Nom"])."</h3></a>
+							<a name='".utf8_encode($row["Nom"])."' href='parcoursDetail.php?parcoursId=".utf8_encode($row["ID_parcours"])."'><h3>".utf8_encode($row["Nom"])."</h3></a>
 							<p>".utf8_encode($row["Description"])."</p>
 							<a class='btn btn-default' href=".utf8_encode($row["Plaquette"])." target='_blank'>Télécharger la plaquette</a>";
 							
