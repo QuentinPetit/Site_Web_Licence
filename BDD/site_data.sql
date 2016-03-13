@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Sam 12 Mars 2016 à 16:38
+-- Généré le :  Dim 13 Mars 2016 à 20:54
 -- Version du serveur :  5.7.9
 -- Version de PHP :  5.6.16
 
@@ -282,6 +282,29 @@ INSERT INTO `projets` (`ID_projets`, `Nom`, `Date`, `Description`, `Caracteristi
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `promotions`
+--
+
+DROP TABLE IF EXISTS `promotions`;
+CREATE TABLE IF NOT EXISTS `promotions` (
+  `ID_Promo` int(11) NOT NULL AUTO_INCREMENT,
+  `Lien` varchar(200) NOT NULL,
+  `ID_Annee` int(10) UNSIGNED NOT NULL,
+  PRIMARY KEY (`ID_Promo`),
+  KEY `ID_Annee` (`ID_Annee`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `promotions`
+--
+
+INSERT INTO `promotions` (`ID_Promo`, `Lien`, `ID_Annee`) VALUES
+(1, '../Pictures/worker.jpg', 3),
+(2, '../Pictures/worker2.jpg', 2);
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `reseausociaux`
 --
 
@@ -328,6 +351,12 @@ ALTER TABLE `matierestoprojet`
 ALTER TABLE `projets`
   ADD CONSTRAINT `projets_ibfk_1` FOREIGN KEY (`ID_parcours`) REFERENCES `parcours` (`ID_parcours`),
   ADD CONSTRAINT `projets_ibfk_2` FOREIGN KEY (`ID_Annee`) REFERENCES `anneescolaire` (`ID_Annee`);
+
+--
+-- Contraintes pour la table `promotions`
+--
+ALTER TABLE `promotions`
+  ADD CONSTRAINT `promotions_ibfk_1` FOREIGN KEY (`ID_Annee`) REFERENCES `anneescolaire` (`ID_Annee`);
 
 --
 -- Contraintes pour la table `reseausociaux`
