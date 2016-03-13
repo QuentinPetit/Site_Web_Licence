@@ -21,7 +21,7 @@
 
 					$projetID = $_GET['projetID'];
 					
-					$sql = "SELECT * FROM projets NATURAL JOIN elevestoprojet, eleves NATURAL JOIN elevestoprojet WHERE projets.ID_projets =".$projetID;
+					$sql = "SELECT * FROM projets WHERE projets.ID_projets =".$projetID; //
 					$result = $conn->query($sql);
 
 					if ($result->num_rows > 0) {
@@ -32,11 +32,24 @@
 									<source src='".utf8_encode($row["Video"])."' type = 'video/mp4'>
 								</video>
 							</div>
-							<div>
+							<div class='col-xs-12 well'>
 							<h2>Description</h2>
 							<p>".utf8_encode($row["Description"])."</p>
 							<h2>Caractéristiques</h2>
 							<p>".utf8_encode($row["Caracteristique"])."</p>
+							</div>
+							<div class='col-xs-12 well'>
+								<h2>Participants</h2>
+								";
+								$sqleleves="SELECT eleves.Nom, eleves.Prenom FROM eleves, projets, elevestoprojet WHERE projets.ID_projets = elevestoprojet.ID_projets AND eleves.ID_eleves = elevestoprojet.ID_eleves AND projets.ID_projets =".$projetID;
+								$resulteeleves = $conn->query($sqleleves);
+								if($resulteeleves->num_rows >0)
+								{
+									while ($roweleves = $resulteeleves->fetch_assoc()) {
+										echo utf8_encode($roweleves["Nom"])." ".utf8_encode($roweleves["Prenom"]).",";
+									}
+								}
+								echo "
 							</div>
 							<div>
 								<div class='break col-xs-12 col-sm-8 well'>
@@ -45,9 +58,7 @@
 									<h2>Software</h2>
 									<p>".utf8_encode($row["Logiciel"])."</p>
 								</div>
-								<div>
-									<h2>Participants</h2>
-									``
+								
 								</div>
 								<div class='break col-xs-12 col-sm-4'>
 									<a class='btn btn-default' href=".utf8_encode($row["Fichier_Projet"]).">Télécharger le projet</a>
