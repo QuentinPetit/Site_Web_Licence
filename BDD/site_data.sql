@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 14 Mars 2016 à 15:44
+-- Généré le :  Lun 14 Mars 2016 à 15:50
 -- Version du serveur :  5.7.9
 -- Version de PHP :  5.6.16
 
@@ -214,11 +214,11 @@ DROP TABLE IF EXISTS `parcours`;
 CREATE TABLE IF NOT EXISTS `parcours` (
   `ID_parcours` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `Nom` varchar(40) NOT NULL,
-  `Description` varchar(2000) NOT NULL,
-  `Objectifs` varchar(2000) NOT NULL,
-  `Competences` varchar(2000) NOT NULL,
-  `Logiciels` varchar(2000) NOT NULL,
-  `Admission` varchar(2000) NOT NULL,
+  `Description` text NOT NULL,
+  `Objectifs` text NOT NULL,
+  `Competences` text NOT NULL,
+  `Logiciels` text NOT NULL,
+  `Admission` text NOT NULL,
   `Plaquette` varchar(100) NOT NULL,
   `Couleur` varchar(10) NOT NULL,
   PRIMARY KEY (`ID_parcours`)
@@ -244,10 +244,10 @@ CREATE TABLE IF NOT EXISTS `projets` (
   `ID_projets` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `Nom` varchar(50) NOT NULL,
   `Date` date NOT NULL,
-  `Description` varchar(2000) NOT NULL,
-  `Caracteristique` varchar(2000) NOT NULL,
-  `Logiciel` varchar(2000) NOT NULL,
-  `Materiel` varchar(2000) NOT NULL,
+  `Description` text NOT NULL,
+  `Caracteristique` text NOT NULL,
+  `Logiciel` text NOT NULL,
+  `Materiel` text NOT NULL,
   `Poids` int(3) NOT NULL,
   `Miniature` varchar(200) NOT NULL,
   `Fichier_Projet` varchar(200) NOT NULL,
