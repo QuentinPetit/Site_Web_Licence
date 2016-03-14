@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 14 Mars 2016 à 15:50
+-- Généré le :  Lun 14 Mars 2016 à 17:08
 -- Version du serveur :  5.7.9
 -- Version de PHP :  5.6.16
 
@@ -184,9 +184,20 @@ INSERT INTO `entreprises` (`ID_entreprises`, `Nom`, `Lien`, `Logo`) VALUES
 DROP TABLE IF EXISTS `matieres`;
 CREATE TABLE IF NOT EXISTS `matieres` (
   `ID_matieres` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `Nom` int(11) NOT NULL,
+  `Nom` varchar(200) NOT NULL,
   PRIMARY KEY (`ID_matieres`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `matieres`
+--
+
+INSERT INTO `matieres` (`ID_matieres`, `Nom`) VALUES
+(1, 'ASIA'),
+(2, 'Unity 3D'),
+(3, 'Modélisation'),
+(4, 'Anglais'),
+(5, 'Réalité Virtuelle');
 
 -- --------------------------------------------------------
 
@@ -202,7 +213,29 @@ CREATE TABLE IF NOT EXISTS `matierestoprojet` (
   PRIMARY KEY (`ID_matierestoprojet`),
   KEY `ID_projets` (`ID_projets`),
   KEY `ID_matieres` (`ID_matieres`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `matierestoprojet`
+--
+
+INSERT INTO `matierestoprojet` (`ID_matierestoprojet`, `ID_projets`, `ID_matieres`) VALUES
+(1, 1, 1),
+(2, 2, 5),
+(3, 4, 5),
+(4, 11, 4),
+(5, 12, 1),
+(6, 13, 3),
+(7, 14, 3),
+(8, 15, 4),
+(9, 16, 3),
+(10, 2, 4),
+(11, 5, 2),
+(13, 3, 3),
+(14, 6, 1),
+(15, 8, 4),
+(16, 9, 2),
+(17, 10, 4);
 
 -- --------------------------------------------------------
 
@@ -242,6 +275,8 @@ INSERT INTO `parcours` (`ID_parcours`, `Nom`, `Description`, `Objectifs`, `Compe
 DROP TABLE IF EXISTS `projets`;
 CREATE TABLE IF NOT EXISTS `projets` (
   `ID_projets` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `ID_parcours` int(11) UNSIGNED NOT NULL,
+  `ID_Annee` int(11) UNSIGNED NOT NULL,
   `Nom` varchar(50) NOT NULL,
   `Date` date NOT NULL,
   `Description` text NOT NULL,
@@ -255,8 +290,6 @@ CREATE TABLE IF NOT EXISTS `projets` (
   `Video` varchar(200) DEFAULT NULL,
   `Image` varchar(200) DEFAULT NULL,
   `Mode` varchar(200) DEFAULT NULL,
-  `ID_parcours` int(11) UNSIGNED NOT NULL,
-  `ID_Annee` int(11) UNSIGNED NOT NULL,
   PRIMARY KEY (`ID_projets`),
   KEY `ID_parcours` (`ID_parcours`),
   KEY `ID_Annee` (`ID_Annee`)
@@ -266,22 +299,22 @@ CREATE TABLE IF NOT EXISTS `projets` (
 -- Contenu de la table `projets`
 --
 
-INSERT INTO `projets` (`ID_projets`, `Nom`, `Date`, `Description`, `Caracteristique`, `Logiciel`, `Materiel`, `Poids`, `Miniature`, `Fichier_Projet`, `Lien`, `Video`, `Image`, `Mode`, `ID_parcours`, `ID_Annee`) VALUES
-(1, 'eeee', '2016-01-01', 'azedjgvfkza', '2.5D', 'Potato', 'Une Passoire', 2, '../Pictures/0b4f995a.jpg', 'aqdohziuqq', '', 'asdf', NULL, NULL, 1, 3),
-(2, 'ASDF the Game', '2016-01-01', 'ASDF', 'ASDF', 'ASDF', 'ASDF', 4, '../Pictures/1d3878a9.jpg', 'ASDF', '', '../Video/VideoTest2.mp4', NULL, NULL, 1, 3),
-(3, 'Tequilla', '2016-02-29', 'zdqsdf', 'dqfezfd', 'qzefqzfd', 'zzsfqzef', 5, '../Pictures/c7d064d4.jpg', 'azsd', '', NULL, NULL, NULL, 2, 3),
-(4, 'Derp', '2016-02-02', 'gd', 'b', 'qrfq', 'qesrggqqes', 5, '../Pictures/136c27e7.jpg', '../PDF/AvatarDrive.zip', 'http://iutweb-lepuy.u-clermont1.fr/nawak/', '../Video/VideoTest.mp4', NULL, NULL, 1, 3),
-(5, 'Derp 2', '2016-02-17', 'Derp''s revenge', 'zef', 'Unity', 'JH NBJH? ', 0, '../Pictures/apk0duvhadivsgm9htgfsqkavtfce0gv75apectsa7ivpnotldxefyjpayzkjk6rqoxybietolzo2hsb3f7leiw3sfaug_mk5ljjmdwnsi55bgrqbbuakzf8z8czmiih8.jpg', 'aaaasssssssss', '', 'rsrgfvere', NULL, NULL, 2, 3),
-(6, 'Toto à la plage', '2016-02-27', 'EIUD', 'EQUFZQ', 'FCLJKQ', 'zefis', 4, '../Pictures/croatie-lacs-plitvice-cascades-7.jpg', 'rese', '', 'zqrgf', NULL, NULL, 2, 3),
-(8, 'What''s 9+10', '2016-02-21', '21', '21', '21', '21', 2, '../Pictures/d6ec1e3e9f_seychelles-45.jpg', '21', '', '21', NULL, NULL, 3, 3),
-(9, 'OOOOOOOOOOO', '2016-02-10', 'OOOOOOOOOOOOOOOOOOOOOOOO', 'OOOOOOOOOOOOOO', 'OOOOOOOOOOOOO', 'O', 0, '../Pictures/0ced1177.jpg', 'OOOOOOOOOOOOO', '', 'OOOOOOOOOOOOOOOOOOOOOOOOO', NULL, NULL, 3, 3),
-(10, 'Derp Origins', '2016-03-16', 'Derp Begins', 'Real 4.5D', 'kjckcvj', 'Balançoire', 1337, '../Pictures/6812976929_6654ee46d1_b.jpg', 'AAAAAAAAAAAAAA', '', 'Andthisisthevideo', NULL, NULL, 3, 3),
-(11, 'AESTHETICS', '2015-02-01', 'sadboys2002', 'Vaporwave AESTHETICS', 'Vaporwa.ve', 'Une bouteille de Fiji', 5, '../Pictures/Aesthetics.png', 'oahdoii', '', NULL, NULL, NULL, 1, 2),
-(12, 'Arizona Ice Tea', '2015-02-01', 'zad', 'rgzerf', 'Windows 95', 'Une canette d''Arizona', 3, '../Pictures/Arizona.jpeg', 'asasdada', '', NULL, NULL, NULL, 1, 2),
-(13, 'Sadboys.exe', '2014-01-01', 'AAAA', 'asd', 'qerfsd', 'qzdefqs', 4, '../Pictures/Sadboys.png', 'azdqdd', '', NULL, NULL, NULL, 1, 1),
-(14, 'Gingseng Strip 2002', '2013-02-07', 'azdsd', 'adsqsddsq', 'yunglean.exe', 'Arizona cans', 4, '../Pictures/Yunglean.jpg', 'asdqsdaz', '', NULL, NULL, NULL, 1, 4),
-(15, 'despair', '2014-01-01', 'whatislife?', 'ayy lmao', 'aaa', 'dqsdqsd', 3, '../Pictures/xKsMP6n.jpg', 'aozidbjajsd', '', NULL, NULL, NULL, 1, 1),
-(16, 'brbrbrbr', '2013-02-07', 'brbr', 'gibe moni pls', 'br.exe', 'brbrbr', 3, '../Pictures/logo.png', 'azsdqsd', '', 'qsddqfz', NULL, NULL, 1, 4);
+INSERT INTO `projets` (`ID_projets`, `ID_parcours`, `ID_Annee`, `Nom`, `Date`, `Description`, `Caracteristique`, `Logiciel`, `Materiel`, `Poids`, `Miniature`, `Fichier_Projet`, `Lien`, `Video`, `Image`, `Mode`) VALUES
+(1, 1, 3, 'eeee', '2016-01-01', 'azedjgvfkza', '2.5D', 'Potato', 'Une Passoire', 2, '../Pictures/0b4f995a.jpg', 'aqdohziuqq', '', 'asdf', NULL, NULL),
+(2, 1, 3, 'ASDF the Game', '2016-01-01', 'ASDF', 'ASDF', 'ASDF', 'ASDF', 4, '../Pictures/1d3878a9.jpg', 'ASDF', '', '../Video/VideoTest2.mp4', NULL, NULL),
+(3, 2, 3, 'Tequilla', '2016-02-29', 'zdqsdf', 'dqfezfd', 'qzefqzfd', 'zzsfqzef', 5, '../Pictures/c7d064d4.jpg', 'azsd', '', NULL, NULL, NULL),
+(4, 1, 3, 'Derp', '2016-02-02', 'gd', 'b', 'qrfq', 'qesrggqqes', 5, '../Pictures/136c27e7.jpg', '../PDF/AvatarDrive.zip', 'http://iutweb-lepuy.u-clermont1.fr/nawak/', '../Video/VideoTest.mp4', NULL, NULL),
+(5, 2, 3, 'Derp 2', '2016-02-17', 'Derp''s revenge', 'zef', 'Unity', 'JH NBJH? ', 0, '../Pictures/apk0duvhadivsgm9htgfsqkavtfce0gv75apectsa7ivpnotldxefyjpayzkjk6rqoxybietolzo2hsb3f7leiw3sfaug_mk5ljjmdwnsi55bgrqbbuakzf8z8czmiih8.jpg', 'aaaasssssssss', '', 'rsrgfvere', NULL, NULL),
+(6, 2, 3, 'Toto à la plage', '2016-02-27', 'EIUD', 'EQUFZQ', 'FCLJKQ', 'zefis', 4, '../Pictures/croatie-lacs-plitvice-cascades-7.jpg', 'rese', '', 'zqrgf', NULL, NULL),
+(8, 3, 3, 'What''s 9+10', '2016-02-21', '21', '21', '21', '21', 2, '../Pictures/d6ec1e3e9f_seychelles-45.jpg', '21', '', '21', NULL, NULL),
+(9, 3, 3, 'OOOOOOOOOOO', '2016-02-10', 'OOOOOOOOOOOOOOOOOOOOOOOO', 'OOOOOOOOOOOOOO', 'OOOOOOOOOOOOO', 'O', 0, '../Pictures/0ced1177.jpg', 'OOOOOOOOOOOOO', '', 'OOOOOOOOOOOOOOOOOOOOOOOOO', NULL, NULL),
+(10, 3, 3, 'Derp Origins', '2016-03-16', 'Derp Begins', 'Real 4.5D', 'kjckcvj', 'Balançoire', 1337, '../Pictures/6812976929_6654ee46d1_b.jpg', 'AAAAAAAAAAAAAA', '', 'Andthisisthevideo', NULL, NULL),
+(11, 1, 2, 'AESTHETICS', '2015-02-01', 'sadboys2002', 'Vaporwave AESTHETICS', 'Vaporwa.ve', 'Une bouteille de Fiji', 5, '../Pictures/Aesthetics.png', 'oahdoii', '', NULL, NULL, NULL),
+(12, 1, 2, 'Arizona Ice Tea', '2015-02-01', 'zad', 'rgzerf', 'Windows 95', 'Une canette d''Arizona', 3, '../Pictures/Arizona.jpeg', 'asasdada', '', NULL, NULL, NULL),
+(13, 1, 1, 'Sadboys.exe', '2014-01-01', 'AAAA', 'asd', 'qerfsd', 'qzdefqs', 4, '../Pictures/Sadboys.png', 'azdqdd', '', NULL, NULL, NULL),
+(14, 1, 4, 'Gingseng Strip 2002', '2013-02-07', 'azdsd', 'adsqsddsq', 'yunglean.exe', 'Arizona cans', 4, '../Pictures/Yunglean.jpg', 'asdqsdaz', '', NULL, NULL, NULL),
+(15, 1, 1, 'despair', '2014-01-01', 'whatislife?', 'ayy lmao', 'aaa', 'dqsdqsd', 3, '../Pictures/xKsMP6n.jpg', 'aozidbjajsd', '', NULL, NULL, NULL),
+(16, 1, 4, 'brbrbrbr', '2013-02-07', 'brbr', 'gibe moni pls', 'br.exe', 'brbrbr', 3, '../Pictures/logo.png', 'azsdqsd', '', 'qsddqfz', NULL, NULL);
 
 -- --------------------------------------------------------
 
