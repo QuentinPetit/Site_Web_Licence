@@ -1,5 +1,47 @@
+
+<?php
+	if (isset($_POST["submit"])) {
+		$name = $_POST['name'];
+		$email = $_POST['email'];
+		$message = $_POST['message'];
+		$human = intval($_POST['human']);
+		$from = 'Demo Contact Form'; 
+		$to = 'quentin43@sfr.fr'; 
+		$subject = 'Message from your website ';
+		$errName;$errEmail;$errMessage;$errHuman;
+		$body = "From: $name\n E-Mail: $email\n Message:\n $message";
+
+		// Check if name has been entered
+		if (!$_POST['name']) {
+			$errName = 'Please enter your name';
+		}
+
+		// Check if email has been entered and is valid
+		if (!$_POST['email'] || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+			$errEmail = 'Please enter a valid email address';
+		}
+
+		//Check if message has been entered
+		if (!$_POST['message']) {
+			$errMessage = 'Please enter your message';
+		}
+		//Check if simple anti-bot test is correct
+		if ($human !== 5) {
+			$errHuman = 'Your anti-spam is incorrect';
+		}
+		echo $errName+" "+$errEmail+" "+$errMessage+" "+$errHuman;
+		// If there are no errors, send the email
+		if (!$errName && !$errEmail && !$errMessage && !$errHuman) {
+			if (mail ($to, $subject, $body, $from)) {
+				$result='<div class="alert alert-success">Thank You! I will be in touch</div>';
+			} else {
+				$result='<div class="alert alert-danger">Sorry there was an error sending your message. Please try again later</div>';
+			}
+		}
+	}
+?>
+
 <!DOCTYPE html>
-<<!DOCTYPE html>
 <html>
 	<head>
 		<title>Licence Professionnelle Image & Son</title>
@@ -15,217 +57,48 @@
 	<body>
 		<div class="row">
 			<div class="col-xs-12 well">
-				<form name="contactform" method="post">
-					<table width="450px">
-						<tr>
-							<td valign="top">
-								<label for="first_name">First Name *</label>
-							</td>
-							<td valign="top">
-								<input  type="text" name="first_name" maxlength="50" size="30">
-							</td>
-						</tr>
 
-						<tr>
-							<td valign="top">
-								<label for="last_name">Last Name *</label>
-							</td>
-							<td valign="top">
-								<input  type="text" name="last_name" maxlength="50" size="30">
-							</td>
-						</tr>
+				<form class="form-horizontal" role="form" method="post" action="contact.php">
+					<div class="form-group">
+						<label for="name" class="col-sm-2 control-label">Name</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="name" name="name" placeholder="First & Last Name" value="<?php echo htmlspecialchars($_POST['name']); ?>">
+							<?php echo "<p class='text-danger'>$errName</p>";?>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="email" class="col-sm-2 control-label">Email</label>
+						<div class="col-sm-10">
+							<input type="email" class="form-control" id="email" name="email" placeholder="example@domain.com" value="<?php echo htmlspecialchars($_POST['email']); ?>">
+							<?php echo "<p class='text-danger'>$errEmail</p>";?>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="message" class="col-sm-2 control-label">Message</label>
+						<div class="col-sm-10">
+							<textarea class="form-control" rows="4" name="message"><?php echo htmlspecialchars($_POST['message']);?></textarea>
+							<?php echo "<p class='text-danger'>$errMessage</p>";?>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="human" class="col-sm-2 control-label">2 + 3 = ?</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="human" name="human" placeholder="Your Answer">
+							<?php echo "<p class='text-danger'>$errHuman</p>";?>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-10 col-sm-offset-2">
+							<input id="submit" name="submit" type="submit" value="Send" class="btn btn-primary">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-10 col-sm-offset-2">
+							<?php echo $result; ?>    
+						</div>
+					</div>
+				</form> 
 
-						<tr>
-							<td valign="top">
-								<label for="email">Email Address *</label>
-							</td>
-							<td valign="top">
-								<input  type="text" name="email" maxlength="80" size="30">
-							</td>
-						</tr>
-
-						<tr>
-							<td valign="top">
-								<label for="telephone">Telephone Number</label>
-							</td>
-							<td valign="top">
-								<input  type="text" name="telephone" maxlength="30" size="30">
-							</td>
-						</tr>
-
-						<tr>
-							<td valign="top">
-								<label for="comments">Comments *</label>
-							</td>
-							<td valign="top">
-								<textarea  name="comments" maxlength="1000" cols="25" rows="6"></textarea>
-							</td>
-						</tr>
-
-						<tr>
-							<td colspan="2" style="text-align:center">
-								<input type="submit" value="Submit">
-							</td>
-						</tr>
-					</table>
-				</form>
-				<?php
- 					//ini_set('SMTP','smtp.sfr.fr');
- 					//ini_set('smtp_port',465);
- 					//ini_set('sendmail_from', 'quentin43@sfr.fr');
-					if(isset($_POST['email'])) {
-					 
-					     
-					 
-					    // EDIT THE 2 LINES BELOW AS REQUIRED
-					 
-					    $email_to = "quentin43@sfr.fr";
-					 
-					    $email_subject = "Your email subject line";
-					 
-					     
-					 
-					     
-					 
-					    function died($error) {
-					 
-					        // your error code can go here
-					 
-					        echo "We are very sorry, but there were error(s) found with the form you submitted. ";
-					 
-					        echo "These errors appear below.<br /><br />";
-					 
-					        echo $error."<br /><br />";
-					 
-					        echo "Please go back and fix these errors.<br /><br />";
-					 
-					        die();
-					 
-					    }
-					 
-					     
-					 
-					    // validation expected data exists
-					 
-					    if(!isset($_POST['first_name']) ||
-					 
-					        !isset($_POST['last_name']) ||
-					 
-					        !isset($_POST['email']) ||
-					 
-					        !isset($_POST['telephone']) ||
-					 
-					        !isset($_POST['comments'])) {
-					 
-					        died('We are sorry, but there appears to be a problem with the form you submitted.');       
-					 
-					    }
-					 
-					     
-					 
-					    $first_name = $_POST['first_name']; // required
-					 
-					    $last_name = $_POST['last_name']; // required
-					 
-					    $email_from = $_POST['email']; // required
-					 
-					    $telephone = $_POST['telephone']; // not required
-					 
-					    $comments = $_POST['comments']; // required
-					 
-					     
-					 
-					    $error_message = "";
-					 
-					    $email_exp = '/^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/';
-					 
-					  if(!preg_match($email_exp,$email_from)) {
-					 
-					    $error_message .= 'The Email Address you entered does not appear to be valid.<br />';
-					 
-					  }
-					 
-					    $string_exp = "/^[A-Za-z .'-]+$/";
-					 
-					  if(!preg_match($string_exp,$first_name)) {
-					 
-					    $error_message .= 'The First Name you entered does not appear to be valid.<br />';
-					 
-					  }
-					 
-					  if(!preg_match($string_exp,$last_name)) {
-					 
-					    $error_message .= 'The Last Name you entered does not appear to be valid.<br />';
-					 
-					  }
-					 
-					  if(strlen($comments) < 2) {
-					 
-					    $error_message .= 'The Comments you entered do not appear to be valid.<br />';
-					 
-					  }
-					 
-					  if(strlen($error_message) > 0) {
-					 
-					    died($error_message);
-					 
-					  }
-					 
-					    $email_message = "Form details below.\n\n";
-					 
-					     
-					 
-					    function clean_string($string) {
-					 
-					      $bad = array("content-type","bcc:","to:","cc:","href");
-					 
-					      return str_replace($bad,"",$string);
-					 
-					    }
-					 
-					     
-					 
-					    $email_message .= "First Name: ".clean_string($first_name)."\n";
-					 
-					    $email_message .= "Last Name: ".clean_string($last_name)."\n";
-					 
-					    $email_message .= "Email: ".clean_string($email_from)."\n";
-					 
-					    $email_message .= "Telephone: ".clean_string($telephone)."\n";
-					 
-					    $email_message .= "Comments: ".clean_string($comments)."\n";
-					 
-					     
-					 
-					     
-					 
-					// create email headers
-					 
-					$headers = 'From: '.$email_from."\r\n".
-					 
-					'Reply-To: '.$email_from."\r\n" .
-					 
-					'X-Mailer: PHP/' . phpversion();
-					 
-					@mail($email_to, $email_subject, $email_message, $headers);  
-					 
-					?>
-					 
-					 
-					 
-					<!-- include your own success html here -->
-					 
-					 
-					 
-					Thank you for contacting us. We will be in touch with you very soon.
-					 
-					 
-					 
-					<?php
-					 
-					}
-					 
-					?>
 			</div>
 		</div>
 	</body>
