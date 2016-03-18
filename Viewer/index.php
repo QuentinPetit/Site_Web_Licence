@@ -49,23 +49,30 @@
 							
 						include('../PHP/connexion.php');
 
-							$sql = "SELECT a.*
-								FROM projets AS a
-								LEFT JOIN projets AS a2
-								ON a.ID_parcours = a2.ID_parcours AND a.Date <= a2.Date
-								GROUP BY a.ID_projets
-								HAVING COUNT(*) <= 2
-								ORDER BY a.ID_parcours, a.Date DESC, a.Poids DESC";
+							$sql = "SELECT ID_parcours FROM parcours";
 							$result = $conn->query($sql);
-
 							if ($result->num_rows > 0) {
 								// output data of each row
 								while($row = $result->fetch_assoc()) {
-								echo "<div class='item'>
-										<a href='projet.php?projetID=".utf8_encode($row["ID_projets"])."'>
-											<img src='". utf8_encode($row["Miniature"]) ."'alt='".utf8_encode($row["Nom"])."'>
-										</a>
-									</div>";
+									$sqlprojets = "SELECT * 
+												   FROM parcours, projets, projetstoparcours
+												   WHERE parcours.ID_parcours = projetstoparcours.ID_parcours
+												   AND projets.ID_projets = projetstoparcours.ID_projets
+												   AND parcours.ID_parcours = ".$row["ID_parcours"]."
+												   ORDER BY projets.Date DESC, projets.Poids DESC
+												   LIMIT 2";
+									$resultprojets = $conn->query($sqlprojets);
+									if ($resultprojets->num_rows>0)
+									{
+										while($rowprojets = $resultprojets->fetch_assoc())
+										{
+											echo "<div class='item'>
+												<a href='projet.php?projetID=".utf8_encode($rowprojets["ID_projets"])."'>
+													<img src='". utf8_encode($rowprojets["Miniature"]) ."'alt='".utf8_encode($rowprojets["Nom"])."'>
+												</a>
+											</div>";
+										}	
+									}
 								}
 							} else {
 								 echo "0 results";

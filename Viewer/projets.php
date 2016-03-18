@@ -26,10 +26,12 @@
 					$init=false;
 					include('../PHP/connexion.php');
 
-					$sql="SELECT projets.Nom AS NomProjet, matieres.Nom AS NomMatiere, anneescolaire.DateFin, anneescolaire.DateDebut, projets.Miniature, projets.Poids, projets.ID_projets FROM projets, matierestoprojet, matieres, anneescolaire WHERE projets.ID_Annee = anneescolaire.ID_Annee 
+					$sql="SELECT projets.Nom AS NomProjet, matieres.Nom AS NomMatiere, anneescolaire.DateFin, anneescolaire.DateDebut, projets.Miniature, projets.Poids, projets.ID_projets FROM projets, matierestoprojet, matieres, anneescolaire, projetstoparcours, parcours WHERE projets.ID_Annee = anneescolaire.ID_Annee 
 						AND projets.ID_projets = matierestoprojet.ID_projets
 						AND matieres.ID_matieres = matierestoprojet.ID_matieres
-						AND ID_parcours='".$parcoursId."'ORDER BY DateFin DESC, NomMatiere, Poids DESC";
+						AND projets.ID_projets = projetstoparcours.ID_projets
+						AND parcours.ID_parcours = projetstoparcours.ID_parcours
+						AND parcours.ID_parcours='".$parcoursId."'ORDER BY DateFin DESC, NomMatiere, Poids DESC";
 					$result = $conn->query($sql);
 					if ($result->num_rows > 0) {
 						echo"<section class='col-xs-12 well'>";
