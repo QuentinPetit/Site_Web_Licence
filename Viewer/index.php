@@ -21,6 +21,7 @@
 	<body>
 		<div class="row">
 			<div class="actu col-xs-12 col-sm-8 well">
+			<h1>Actualités</h1>
 				<?php
 							
 					include('../PHP/connexion.php');

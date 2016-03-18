@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 14 Mars 2016 à 17:08
+-- Généré le :  Ven 18 Mars 2016 à 16:50
 -- Version du serveur :  5.7.9
 -- Version de PHP :  5.6.16
 
@@ -85,6 +85,44 @@ INSERT INTO `anneescolaire` (`ID_Annee`, `DateDebut`, `DateFin`) VALUES
 (2, '2014-09-01', '2015-08-28'),
 (3, '2015-09-01', '2016-08-29'),
 (4, '2012-09-03', '2013-08-28');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `data`
+--
+
+DROP TABLE IF EXISTS `data`;
+CREATE TABLE IF NOT EXISTS `data` (
+  `ID_data` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `ID_type` int(11) UNSIGNED NOT NULL,
+  `Lien` varchar(200) NOT NULL,
+  PRIMARY KEY (`ID_data`),
+  KEY `ID_type` (`ID_type`)
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `data`
+--
+
+INSERT INTO `data` (`ID_data`, `ID_type`, `Lien`) VALUES
+(1, 2, '../Video/VideoTest.mp4'),
+(2, 2, '../Video/VideoTest2.mp4'),
+(18, 1, '../Pictures/0b4f995a.jpg'),
+(19, 1, '../Pictures/1d3878a9.jpg'),
+(20, 1, '../Pictures/c7d064d4.jpg'),
+(21, 1, '../Pictures/136c27e7.jpg'),
+(22, 1, '../Pictures/apk0duvhadivsgm9htgfsqkavtfce0gv75apectsa7ivpnotldxefyjpayzkjk6rqoxybietolzo2hsb3f7leiw3sfaug_mk5ljjmdwnsi55bgrqbbuakzf8z8czmiih8.jpg'),
+(23, 1, '../Pictures/croatie-lacs-plitvice-cascades-7.jpg'),
+(24, 1, '../Pictures/d6ec1e3e9f_seychelles-45.jpg'),
+(25, 1, '../Pictures/0ced1177.jpg'),
+(26, 1, '../Pictures/6812976929_6654ee46d1_b.jpg'),
+(27, 1, '../Pictures/Aesthetics.png'),
+(28, 1, '../Pictures/Arizona.jpeg'),
+(29, 1, '../Pictures/Sadboys.png'),
+(30, 1, '../Pictures/Yunglean.jpg'),
+(31, 1, '../Pictures/xKsMP6n.jpg'),
+(32, 1, '../Pictures/logo.png');
 
 -- --------------------------------------------------------
 
@@ -275,7 +313,6 @@ INSERT INTO `parcours` (`ID_parcours`, `Nom`, `Description`, `Objectifs`, `Compe
 DROP TABLE IF EXISTS `projets`;
 CREATE TABLE IF NOT EXISTS `projets` (
   `ID_projets` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `ID_parcours` int(11) UNSIGNED NOT NULL,
   `ID_Annee` int(11) UNSIGNED NOT NULL,
   `Nom` varchar(50) NOT NULL,
   `Date` date NOT NULL,
@@ -291,7 +328,6 @@ CREATE TABLE IF NOT EXISTS `projets` (
   `Image` varchar(200) DEFAULT NULL,
   `Mode` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`ID_projets`),
-  KEY `ID_parcours` (`ID_parcours`),
   KEY `ID_Annee` (`ID_Annee`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
@@ -299,22 +335,61 @@ CREATE TABLE IF NOT EXISTS `projets` (
 -- Contenu de la table `projets`
 --
 
-INSERT INTO `projets` (`ID_projets`, `ID_parcours`, `ID_Annee`, `Nom`, `Date`, `Description`, `Caracteristique`, `Logiciel`, `Materiel`, `Poids`, `Miniature`, `Fichier_Projet`, `Lien`, `Video`, `Image`, `Mode`) VALUES
-(1, 1, 3, 'eeee', '2016-01-01', 'azedjgvfkza', '2.5D', 'Potato', 'Une Passoire', 2, '../Pictures/0b4f995a.jpg', 'aqdohziuqq', '', 'asdf', NULL, NULL),
-(2, 1, 3, 'ASDF the Game', '2016-01-01', 'ASDF', 'ASDF', 'ASDF', 'ASDF', 4, '../Pictures/1d3878a9.jpg', 'ASDF', '', '../Video/VideoTest2.mp4', NULL, NULL),
-(3, 2, 3, 'Tequilla', '2016-02-29', 'zdqsdf', 'dqfezfd', 'qzefqzfd', 'zzsfqzef', 5, '../Pictures/c7d064d4.jpg', 'azsd', '', NULL, NULL, NULL),
-(4, 1, 3, 'Derp', '2016-02-02', 'gd', 'b', 'qrfq', 'qesrggqqes', 5, '../Pictures/136c27e7.jpg', '../PDF/AvatarDrive.zip', 'http://iutweb-lepuy.u-clermont1.fr/nawak/', '../Video/VideoTest.mp4', NULL, NULL),
-(5, 2, 3, 'Derp 2', '2016-02-17', 'Derp''s revenge', 'zef', 'Unity', 'JH NBJH? ', 0, '../Pictures/apk0duvhadivsgm9htgfsqkavtfce0gv75apectsa7ivpnotldxefyjpayzkjk6rqoxybietolzo2hsb3f7leiw3sfaug_mk5ljjmdwnsi55bgrqbbuakzf8z8czmiih8.jpg', 'aaaasssssssss', '', 'rsrgfvere', NULL, NULL),
-(6, 2, 3, 'Toto à la plage', '2016-02-27', 'EIUD', 'EQUFZQ', 'FCLJKQ', 'zefis', 4, '../Pictures/croatie-lacs-plitvice-cascades-7.jpg', 'rese', '', 'zqrgf', NULL, NULL),
-(8, 3, 3, 'What''s 9+10', '2016-02-21', '21', '21', '21', '21', 2, '../Pictures/d6ec1e3e9f_seychelles-45.jpg', '21', '', '21', NULL, NULL),
-(9, 3, 3, 'OOOOOOOOOOO', '2016-02-10', 'OOOOOOOOOOOOOOOOOOOOOOOO', 'OOOOOOOOOOOOOO', 'OOOOOOOOOOOOO', 'O', 0, '../Pictures/0ced1177.jpg', 'OOOOOOOOOOOOO', '', 'OOOOOOOOOOOOOOOOOOOOOOOOO', NULL, NULL),
-(10, 3, 3, 'Derp Origins', '2016-03-16', 'Derp Begins', 'Real 4.5D', 'kjckcvj', 'Balançoire', 1337, '../Pictures/6812976929_6654ee46d1_b.jpg', 'AAAAAAAAAAAAAA', '', 'Andthisisthevideo', NULL, NULL),
-(11, 1, 2, 'AESTHETICS', '2015-02-01', 'sadboys2002', 'Vaporwave AESTHETICS', 'Vaporwa.ve', 'Une bouteille de Fiji', 5, '../Pictures/Aesthetics.png', 'oahdoii', '', NULL, NULL, NULL),
-(12, 1, 2, 'Arizona Ice Tea', '2015-02-01', 'zad', 'rgzerf', 'Windows 95', 'Une canette d''Arizona', 3, '../Pictures/Arizona.jpeg', 'asasdada', '', NULL, NULL, NULL),
-(13, 1, 1, 'Sadboys.exe', '2014-01-01', 'AAAA', 'asd', 'qerfsd', 'qzdefqs', 4, '../Pictures/Sadboys.png', 'azdqdd', '', NULL, NULL, NULL),
-(14, 1, 4, 'Gingseng Strip 2002', '2013-02-07', 'azdsd', 'adsqsddsq', 'yunglean.exe', 'Arizona cans', 4, '../Pictures/Yunglean.jpg', 'asdqsdaz', '', NULL, NULL, NULL),
-(15, 1, 1, 'despair', '2014-01-01', 'whatislife?', 'ayy lmao', 'aaa', 'dqsdqsd', 3, '../Pictures/xKsMP6n.jpg', 'aozidbjajsd', '', NULL, NULL, NULL),
-(16, 1, 4, 'brbrbrbr', '2013-02-07', 'brbr', 'gibe moni pls', 'br.exe', 'brbrbr', 3, '../Pictures/logo.png', 'azsdqsd', '', 'qsddqfz', NULL, NULL);
+INSERT INTO `projets` (`ID_projets`, `ID_Annee`, `Nom`, `Date`, `Description`, `Caracteristique`, `Logiciel`, `Materiel`, `Poids`, `Miniature`, `Fichier_Projet`, `Lien`, `Video`, `Image`, `Mode`) VALUES
+(1, 3, 'eeee', '2016-01-01', 'azedjgvfkza', '2.5D', 'Potato', 'Une Passoire', 2, '../Pictures/0b4f995a.jpg', 'aqdohziuqq', '', 'asdf', NULL, NULL),
+(2, 3, 'ASDF the Game', '2016-01-01', 'ASDF', 'ASDF', 'ASDF', 'ASDF', 4, '../Pictures/1d3878a9.jpg', 'ASDF', '', '../Video/VideoTest2.mp4', NULL, NULL),
+(3, 3, 'Tequilla', '2016-02-29', 'zdqsdf', 'dqfezfd', 'qzefqzfd', 'zzsfqzef', 5, '../Pictures/c7d064d4.jpg', 'azsd', '', NULL, NULL, NULL),
+(4, 3, 'Derp', '2016-02-02', 'gd', 'b', 'qrfq', 'qesrggqqes', 5, '../Pictures/136c27e7.jpg', '../PDF/AvatarDrive.zip', 'http://iutweb-lepuy.u-clermont1.fr/nawak/', '../Video/VideoTest.mp4', NULL, NULL),
+(5, 3, 'Derp 2', '2016-02-17', 'Derp''s revenge', 'zef', 'Unity', 'JH NBJH? ', 0, '../Pictures/apk0duvhadivsgm9htgfsqkavtfce0gv75apectsa7ivpnotldxefyjpayzkjk6rqoxybietolzo2hsb3f7leiw3sfaug_mk5ljjmdwnsi55bgrqbbuakzf8z8czmiih8.jpg', 'aaaasssssssss', '', 'rsrgfvere', NULL, NULL),
+(6, 3, 'Toto à la plage', '2016-02-27', 'EIUD', 'EQUFZQ', 'FCLJKQ', 'zefis', 4, '../Pictures/croatie-lacs-plitvice-cascades-7.jpg', 'rese', '', 'zqrgf', NULL, NULL),
+(8, 3, 'What''s 9+10', '2016-02-21', '21', '21', '21', '21', 2, '../Pictures/d6ec1e3e9f_seychelles-45.jpg', '21', '', '21', NULL, NULL),
+(9, 3, 'OOOOOOOOOOO', '2016-02-10', 'OOOOOOOOOOOOOOOOOOOOOOOO', 'OOOOOOOOOOOOOO', 'OOOOOOOOOOOOO', 'O', 0, '../Pictures/0ced1177.jpg', 'OOOOOOOOOOOOO', '', 'OOOOOOOOOOOOOOOOOOOOOOOOO', NULL, NULL),
+(10, 3, 'Derp Origins', '2016-03-16', 'Derp Begins', 'Real 4.5D', 'kjckcvj', 'Balançoire', 1337, '../Pictures/6812976929_6654ee46d1_b.jpg', 'AAAAAAAAAAAAAA', '', 'Andthisisthevideo', NULL, NULL),
+(11, 2, 'AESTHETICS', '2015-02-01', 'sadboys2002', 'Vaporwave AESTHETICS', 'Vaporwa.ve', 'Une bouteille de Fiji', 5, '../Pictures/Aesthetics.png', 'oahdoii', '', NULL, NULL, NULL),
+(12, 2, 'Arizona Ice Tea', '2015-02-01', 'zad', 'rgzerf', 'Windows 95', 'Une canette d''Arizona', 3, '../Pictures/Arizona.jpeg', 'asasdada', '', NULL, NULL, NULL),
+(13, 1, 'Sadboys.exe', '2014-01-01', 'AAAA', 'asd', 'qerfsd', 'qzdefqs', 4, '../Pictures/Sadboys.png', 'azdqdd', '', NULL, NULL, NULL),
+(14, 4, 'Gingseng Strip 2002', '2013-02-07', 'azdsd', 'adsqsddsq', 'yunglean.exe', 'Arizona cans', 4, '../Pictures/Yunglean.jpg', 'asdqsdaz', '', NULL, NULL, NULL),
+(15, 1, 'despair', '2014-01-01', 'whatislife?', 'ayy lmao', 'aaa', 'dqsdqsd', 3, '../Pictures/xKsMP6n.jpg', 'aozidbjajsd', '', NULL, NULL, NULL),
+(16, 4, 'brbrbrbr', '2013-02-07', 'brbr', 'gibe moni pls', 'br.exe', 'brbrbr', 3, '../Pictures/logo.png', 'azsdqsd', '', 'qsddqfz', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `projetstoparcours`
+--
+
+DROP TABLE IF EXISTS `projetstoparcours`;
+CREATE TABLE IF NOT EXISTS `projetstoparcours` (
+  `ID_projetstoparcours` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `ID_projets` int(10) UNSIGNED NOT NULL,
+  `ID_parcours` int(10) UNSIGNED NOT NULL,
+  PRIMARY KEY (`ID_projetstoparcours`),
+  KEY `ID_projets` (`ID_projets`),
+  KEY `ID_parcours` (`ID_parcours`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `projetstoparcours`
+--
+
+INSERT INTO `projetstoparcours` (`ID_projetstoparcours`, `ID_projets`, `ID_parcours`) VALUES
+(1, 1, 1),
+(2, 2, 1),
+(3, 3, 2),
+(4, 4, 1),
+(5, 5, 2),
+(6, 6, 2),
+(7, 8, 3),
+(8, 9, 3),
+(9, 10, 3),
+(10, 11, 1),
+(11, 12, 1),
+(12, 13, 1),
+(13, 14, 1),
+(14, 15, 1),
+(15, 16, 1),
+(16, 4, 2),
+(17, 2, 3);
 
 -- --------------------------------------------------------
 
@@ -364,9 +439,38 @@ INSERT INTO `reseausociaux` (`ID_reseausociaux`, `Lien`, `NomReseau`, `ID_parcou
 (2, 'https://twitter.com/LicenceMINDTA', 'twitter', 2),
 (3, 'https://www.facebook.com/zuck', 'facebook', 3);
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `type`
+--
+
+DROP TABLE IF EXISTS `type`;
+CREATE TABLE IF NOT EXISTS `type` (
+  `ID_type` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `type` varchar(20) NOT NULL,
+  PRIMARY KEY (`ID_type`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `type`
+--
+
+INSERT INTO `type` (`ID_type`, `type`) VALUES
+(1, 'Image'),
+(2, 'Vidéo MP4'),
+(3, 'Vidéo Youtube'),
+(4, 'Modélisation');
+
 --
 -- Contraintes pour les tables exportées
 --
+
+--
+-- Contraintes pour la table `data`
+--
+ALTER TABLE `data`
+  ADD CONSTRAINT `data_ibfk_1` FOREIGN KEY (`ID_type`) REFERENCES `type` (`ID_type`);
 
 --
 -- Contraintes pour la table `elevestoprojet`
@@ -386,8 +490,14 @@ ALTER TABLE `matierestoprojet`
 -- Contraintes pour la table `projets`
 --
 ALTER TABLE `projets`
-  ADD CONSTRAINT `projets_ibfk_1` FOREIGN KEY (`ID_parcours`) REFERENCES `parcours` (`ID_parcours`),
   ADD CONSTRAINT `projets_ibfk_2` FOREIGN KEY (`ID_Annee`) REFERENCES `anneescolaire` (`ID_Annee`);
+
+--
+-- Contraintes pour la table `projetstoparcours`
+--
+ALTER TABLE `projetstoparcours`
+  ADD CONSTRAINT `projetstoparcours_ibfk_1` FOREIGN KEY (`ID_projets`) REFERENCES `projets` (`ID_projets`),
+  ADD CONSTRAINT `projetstoparcours_ibfk_2` FOREIGN KEY (`ID_parcours`) REFERENCES `parcours` (`ID_parcours`);
 
 --
 -- Contraintes pour la table `promotions`
