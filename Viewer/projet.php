@@ -26,13 +26,47 @@
 
 					if ($result->num_rows > 0) {
 						while ($row = $result->fetch_assoc()) {
-							echo "<h1>".utf8_encode($row["Nom"])."</h1>
-							<div align='center' class='embed-responsive embed-responsive-16by9 videoplayer'>
+							echo "<h1>".utf8_encode($row["Nom"])."</h1>";
+
+							$sqldata = "SELECT projets.ID_projets, data.Lien, type.Type FROM projets, data, datatoprojets, type 
+							WHERE projets.ID_projets = datatoprojets.ID_projets 
+							AND data.ID_data = datatoprojets.ID_data
+							AND type.ID_type = data.ID_type
+							AND projets.ID_projets = '".$projetID."'ORDER BY type.Type DESC";
+							$resultdata = $conn->query($sqldata);
+							if ($resultdata->num_rows > 0) {
+								while ($rowdata = $resultdata->fetch_assoc()) {
+									switch (utf8_encode($rowdata["Type"])) {
+										case 'Image':
+											echo "<img src='".utf8_encode($rowdata["Lien"])."'/>";
+											break;
+
+										case 'Vidéo MP4':
+											echo "<div align='center' class='embed-responsive embed-responsive-16by9 videoplayer'>
+													<video class='embed-responsive-item' controls>
+														<source src='".utf8_encode($rowdata["Lien"])."' type = 'video/mp4'>
+													</video>
+												</div>";
+											break;
+										case 'Vidéo Youtube':
+											echo "<iframe width='560' height='315' src='".utf8_encode($rowdata["Lien"])."' frameborder='0' allowfullscreen></iframe>";
+											break;
+										
+										default:
+											echo "format non pris en charge";
+											break;
+									}
+								}
+							} else {
+								echo "0 data";
+							}
+
+							/*<div align='center' class='embed-responsive embed-responsive-16by9 videoplayer'>
 								<video class='embed-responsive-item' controls>
 									<source src='".utf8_encode($row["Video"])."' type = 'video/mp4'>
 								</video>
-							</div>
-							<div class='col-xs-12 well'>
+							</div>*/
+							echo"<div class='col-xs-12 well'>
 							<h2>Description</h2>
 							<p>".utf8_encode($row["Description"])."</p>
 							<h2>Caractéristiques</h2>
@@ -41,7 +75,10 @@
 							<div class='col-xs-12 well'>
 								<h2>Participants</h2>
 								";
-								$sqleleves="SELECT eleves.Nom, eleves.Prenom FROM eleves, projets, elevestoprojet WHERE projets.ID_projets = elevestoprojet.ID_projets AND eleves.ID_eleves = elevestoprojet.ID_eleves AND projets.ID_projets =".$projetID;
+								$sqleleves="SELECT eleves.Nom, eleves.Prenom FROM eleves, projets, elevestoprojet 
+								WHERE projets.ID_projets = elevestoprojet.ID_projets 
+								AND eleves.ID_eleves = elevestoprojet.ID_eleves 
+								AND projets.ID_projets =".$projetID;
 								$resulteeleves = $conn->query($sqleleves);
 								if($resulteeleves->num_rows >0)
 								{
