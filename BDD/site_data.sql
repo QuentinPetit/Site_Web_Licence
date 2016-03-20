@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Ven 18 Mars 2016 à 16:50
+-- Généré le :  Dim 20 Mars 2016 à 12:19
 -- Version du serveur :  5.7.9
 -- Version de PHP :  5.6.16
 
@@ -99,30 +99,69 @@ CREATE TABLE IF NOT EXISTS `data` (
   `Lien` varchar(200) NOT NULL,
   PRIMARY KEY (`ID_data`),
   KEY `ID_type` (`ID_type`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `data`
 --
 
 INSERT INTO `data` (`ID_data`, `ID_type`, `Lien`) VALUES
-(1, 2, '../Video/VideoTest.mp4'),
-(2, 2, '../Video/VideoTest2.mp4'),
-(18, 1, '../Pictures/0b4f995a.jpg'),
-(19, 1, '../Pictures/1d3878a9.jpg'),
-(20, 1, '../Pictures/c7d064d4.jpg'),
-(21, 1, '../Pictures/136c27e7.jpg'),
-(22, 1, '../Pictures/apk0duvhadivsgm9htgfsqkavtfce0gv75apectsa7ivpnotldxefyjpayzkjk6rqoxybietolzo2hsb3f7leiw3sfaug_mk5ljjmdwnsi55bgrqbbuakzf8z8czmiih8.jpg'),
-(23, 1, '../Pictures/croatie-lacs-plitvice-cascades-7.jpg'),
-(24, 1, '../Pictures/d6ec1e3e9f_seychelles-45.jpg'),
-(25, 1, '../Pictures/0ced1177.jpg'),
-(26, 1, '../Pictures/6812976929_6654ee46d1_b.jpg'),
-(27, 1, '../Pictures/Aesthetics.png'),
-(28, 1, '../Pictures/Arizona.jpeg'),
-(29, 1, '../Pictures/Sadboys.png'),
-(30, 1, '../Pictures/Yunglean.jpg'),
-(31, 1, '../Pictures/xKsMP6n.jpg'),
-(32, 1, '../Pictures/logo.png');
+(1, 2, '../Video/VideoTest.mp4\r\n'),
+(2, 2, '../Video/VideoTest2.mp4\r\n'),
+(3, 1, '../Pictures/0b4f995a.jpg\r\n'),
+(4, 1, '../Pictures/1d3878a9.jpg\r\n'),
+(5, 1, '../Pictures/c7d064d4.jpg\r\n'),
+(6, 1, '../Pictures/136c27e7.jpg\r\n'),
+(7, 1, '../Pictures/apk0duvhadivsgm9htgfsqkavtfce0gv75apectsa7ivpnotldxefyjpayzkjk6rqoxybietolzo2hsb3f7leiw3sfaug_mk5ljjmdwnsi55bgrqbbuakzf8z8czmiih8.jpg\r\n'),
+(8, 1, '../Pictures/croatie-lacs-plitvice-cascades-7.jpg\r\n'),
+(9, 1, '../Pictures/d6ec1e3e9f_seychelles-45.jpg\r\n'),
+(10, 1, '../Pictures/0ced1177.jpg\r\n'),
+(11, 1, '../Pictures/6812976929_6654ee46d1_b.jpg\r\n'),
+(12, 1, '../Pictures/Aesthetics.png\r\n'),
+(13, 1, '../Pictures/Arizona.jpeg\r\n'),
+(14, 1, '../Pictures/Sadboys.png\r\n'),
+(15, 1, '../Pictures/Yunglean.jpg\r\n'),
+(16, 1, '../Pictures/xKsMP6n.jpg\r\n'),
+(17, 1, '../Pictures/logo.png\r\n');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `datatoprojets`
+--
+
+DROP TABLE IF EXISTS `datatoprojets`;
+CREATE TABLE IF NOT EXISTS `datatoprojets` (
+  `ID_datatoprojets` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `ID_data` int(11) UNSIGNED NOT NULL,
+  `ID_projets` int(11) UNSIGNED NOT NULL,
+  PRIMARY KEY (`ID_datatoprojets`),
+  KEY `ID_data` (`ID_data`),
+  KEY `ID_projets` (`ID_projets`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `datatoprojets`
+--
+
+INSERT INTO `datatoprojets` (`ID_datatoprojets`, `ID_data`, `ID_projets`) VALUES
+(1, 1, 4),
+(2, 2, 4),
+(3, 3, 4),
+(4, 4, 2),
+(5, 5, 1),
+(6, 6, 3),
+(7, 7, 4),
+(8, 8, 6),
+(9, 9, 8),
+(10, 10, 9),
+(11, 11, 10),
+(12, 12, 11),
+(13, 13, 12),
+(14, 14, 13),
+(16, 15, 14),
+(17, 16, 15),
+(18, 17, 16);
 
 -- --------------------------------------------------------
 
@@ -471,6 +510,13 @@ INSERT INTO `type` (`ID_type`, `type`) VALUES
 --
 ALTER TABLE `data`
   ADD CONSTRAINT `data_ibfk_1` FOREIGN KEY (`ID_type`) REFERENCES `type` (`ID_type`);
+
+--
+-- Contraintes pour la table `datatoprojets`
+--
+ALTER TABLE `datatoprojets`
+  ADD CONSTRAINT `datatoprojets_ibfk_1` FOREIGN KEY (`ID_data`) REFERENCES `data` (`ID_data`),
+  ADD CONSTRAINT `datatoprojets_ibfk_2` FOREIGN KEY (`ID_projets`) REFERENCES `projets` (`ID_projets`);
 
 --
 -- Contraintes pour la table `elevestoprojet`
