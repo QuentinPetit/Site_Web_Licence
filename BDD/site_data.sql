@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Dim 20 Mars 2016 à 12:19
+-- Généré le :  Dim 20 Mars 2016 à 20:19
 -- Version du serveur :  5.7.9
 -- Version de PHP :  5.6.16
 
@@ -176,8 +176,9 @@ CREATE TABLE IF NOT EXISTS `eleves` (
   `Prenom` varchar(20) NOT NULL,
   `UserName` varchar(20) NOT NULL,
   `Password` varchar(10) NOT NULL,
-  `CV_PDF` varchar(40) NOT NULL,
-  `CV_en_Ligne` varchar(40) NOT NULL,
+  `CV_visibility` tinyint(1) NOT NULL,
+  `CV_PDF` tinytext NOT NULL,
+  `CV_en_Ligne` tinytext NOT NULL,
   PRIMARY KEY (`ID_eleves`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1 COMMENT='Cette table représente chacun des élèves de la promo. ';
 
@@ -185,19 +186,19 @@ CREATE TABLE IF NOT EXISTS `eleves` (
 -- Contenu de la table `eleves`
 --
 
-INSERT INTO `eleves` (`ID_eleves`, `Nom`, `Prenom`, `UserName`, `Password`, `CV_PDF`, `CV_en_Ligne`) VALUES
-(1, 'toto', 'tito', '', '', '', ''),
-(2, 'lennon', 'bob', '', '', '', ''),
-(3, 'einz', 'albert', '', '', '', ''),
-(4, 'lamare', 'andy', '', '', '', ''),
-(5, 'maate', 'soufian', '', '', '', ''),
-(6, 'abel', 'antoine', '', '', '', ''),
-(7, 'got', 'bruno', '', '', '', ''),
-(8, 'marilly', 'mathieu', '', '', '', ''),
-(9, 'nong', 'william', '', '', '', ''),
-(10, 'petit', 'quentin', '', '', '', ''),
-(11, 'sio', 'fanta', '', '', '', ''),
-(12, 'inshape', 'tibo', '', '', '', '');
+INSERT INTO `eleves` (`ID_eleves`, `Nom`, `Prenom`, `UserName`, `Password`, `CV_visibility`, `CV_PDF`, `CV_en_Ligne`) VALUES
+(1, 'toto', 'tito', '', '', 1, '', 'https://en.wikipedia.org/wiki/Elizabeth_II'),
+(2, 'lennon', 'bob', '', '', 0, '', 'https://twitter.com/roilennon'),
+(3, 'einz', 'albert', '', '', 1, '', 'https://fr.wikipedia.org/wiki/Albert_Einstein'),
+(4, 'lamare', 'andy', '', '', 1, '', 'https://www.strava.com/athletes/176731'),
+(5, 'maate', 'soufian', '', '', 1, '', 'http://www.plaine-images.fr/candidature/soufian-maate/'),
+(6, 'abel', 'antoine', '', '', 1, '', 'https://plus.google.com/u/0/108275422487551209371/posts'),
+(7, 'got', 'bruno', '', '', 1, '', 'https://fr.linkedin.com/in/got-bruno-a22586a3'),
+(8, 'marilly', 'mathieu', '', '', 1, '', 'https://www.facebook.com/public/Mathieu-Marilly'),
+(9, 'nong', 'william', '', '', 1, '', 'https://fr.linkedin.com/in/william-nong-2b2b84a4'),
+(10, 'petit', 'quentin', '', '', 1, '', 'https://fr.linkedin.com/in/quentin-petit-72887ba7?trk=pub-pbmap'),
+(11, 'sio', 'fanta', '', '', 1, '', 'https://twitter.com/thefantasio974'),
+(12, 'inshape', 'tibo', '', '', 1, '', 'https://tiboinshape.com/shop/');
 
 -- --------------------------------------------------------
 
@@ -487,7 +488,7 @@ INSERT INTO `reseausociaux` (`ID_reseausociaux`, `Lien`, `NomReseau`, `ID_parcou
 DROP TABLE IF EXISTS `type`;
 CREATE TABLE IF NOT EXISTS `type` (
   `ID_type` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `type` varchar(20) NOT NULL,
+  `Type` tinytext NOT NULL,
   PRIMARY KEY (`ID_type`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
@@ -495,7 +496,7 @@ CREATE TABLE IF NOT EXISTS `type` (
 -- Contenu de la table `type`
 --
 
-INSERT INTO `type` (`ID_type`, `type`) VALUES
+INSERT INTO `type` (`ID_type`, `Type`) VALUES
 (1, 'Image'),
 (2, 'Vidéo MP4'),
 (3, 'Vidéo Youtube'),

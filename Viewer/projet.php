@@ -75,7 +75,7 @@
 							<div class='col-xs-12 well'>
 								<h2>Participants</h2>
 								";
-								$sqleleves="SELECT eleves.Nom, eleves.Prenom FROM eleves, projets, elevestoprojet 
+								$sqleleves="SELECT eleves.Nom, eleves.Prenom, eleves.CV_visibility, eleves.CV_en_ligne FROM eleves, projets, elevestoprojet 
 								WHERE projets.ID_projets = elevestoprojet.ID_projets 
 								AND eleves.ID_eleves = elevestoprojet.ID_eleves 
 								AND projets.ID_projets =".$projetID;
@@ -83,7 +83,13 @@
 								if($resulteeleves->num_rows >0)
 								{
 									while ($roweleves = $resulteeleves->fetch_assoc()) {
-										echo utf8_encode($roweleves["Nom"])." ".utf8_encode($roweleves["Prenom"]).",";
+										if ($roweleves["CV_visibility"] == 1) {
+											echo"<a href='".utf8_encode($roweleves["CV_en_ligne"])."' target='_blank'>".utf8_encode($roweleves["Nom"])." ".utf8_encode($roweleves["Prenom"]).", </a>";
+										} else {
+											echo utf8_encode($roweleves["Nom"])." ".utf8_encode($roweleves["Prenom"]).", ";
+										}
+										
+										
 									}
 								}
 								echo "
