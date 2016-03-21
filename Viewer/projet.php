@@ -4,9 +4,13 @@
 		<title>Licence Professionnelle Image & Son</title>
 		<meta charset="UTF-8"/>
 		<link type="text/css" rel="stylesheet" href="../CSS/style.css">
+		<link rel="stylesheet" type="text/css" href="../Ressources/owl-carousel/owl.carousel.css">
+		<link rel="stylesheet" type="text/css" href="../Ressources/owl-carousel/owl.theme.css">
 		<link rel="stylesheet" type="text/css" href="../Ressources/bootstrap-3.3.6-dist/css/bootstrap.min.css">
 		<script type="text/javascript" src="../Ressources/owl-carousel/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="../Ressources/owl-carousel/owl.carousel.js"></script>
 		<script type="text/javascript" src="../Ressources/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../JS/customCaroussel.js"></script>
 	</head>
 	<header>
 		<?php include('../PHP/header.php') ?>
@@ -35,21 +39,32 @@
 							AND projets.ID_projets = '".$projetID."'ORDER BY type.Type DESC";
 							$resultdata = $conn->query($sqldata);
 							if ($resultdata->num_rows > 0) {
+								echo"<div id='owl-projet' class='owl-carousel owl-theme'>";
 								while ($rowdata = $resultdata->fetch_assoc()) {
 									switch (utf8_encode($rowdata["Type"])) {
 										case 'Image':
-											echo "<img src='".utf8_encode($rowdata["Lien"])."'/>";
+											echo "<div class='item'>
+													<div class='centerAlign'>
+														<img src='".utf8_encode($rowdata["Lien"])."'/>
+													</div>
+												</div>";
 											break;
 
 										case 'Vidéo MP4':
-											echo "<div align='center' class='embed-responsive embed-responsive-16by9 videoplayer'>
-													<video class='embed-responsive-item' controls>
-														<source src='".utf8_encode($rowdata["Lien"])."' type = 'video/mp4'>
-													</video>
+											echo "<div class='item'>
+													<div align='center' class='embed-responsive embed-responsive-16by9' >
+														<video class='embed-responsive-item' controls>
+															<source src='".utf8_encode($rowdata["Lien"])."' type = 'video/mp4'>
+														</video>
+													</div>
 												</div>";
 											break;
 										case 'Vidéo Youtube':
-											echo "<iframe width='560' height='315' src='".utf8_encode($rowdata["Lien"])."' frameborder='0' allowfullscreen></iframe>";
+											echo "<div class='item'>
+													<div class='video-container'>
+														<iframe width='560' height='315' src='".utf8_encode($rowdata["Lien"])."' frameborder='0' allowfullscreen></iframe>
+													</div>
+												</div>";
 											break;
 										
 										default:
@@ -57,6 +72,7 @@
 											break;
 									}
 								}
+								echo "</div>";
 							} else {
 								echo "0 data";
 							}

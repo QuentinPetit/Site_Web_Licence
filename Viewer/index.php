@@ -45,7 +45,7 @@
 			</div>
 			<div class="actu col-xs-12 col-sm-4">
 				
-				<div id="owl-example" class="owl-carousel owl-theme">
+				<div id="owl-index" class="owl-carousel owl-theme">
 					<?php
 							
 						include('../PHP/connexion.php');
