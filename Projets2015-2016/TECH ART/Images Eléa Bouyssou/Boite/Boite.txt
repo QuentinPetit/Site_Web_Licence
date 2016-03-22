@@ -1,3 +1,0 @@
-Création d'une texture de boite métalisée sur les bords/Rendu.
-But : Donner du reliefs aux bords et aux planches en diagonale en utilisant seulement les textures créées (Displacement textures).
-Softs utilisés: Photoshop, 3ds Max.
