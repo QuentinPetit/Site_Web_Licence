@@ -1,5 +1,5 @@
 <div>
-	<img src="../Pictures/logo.png"/>
+	<img src="./Images/logoIUT.jpeg"/>
 	<?php
 
 		include('./PHP/connexion.php');
