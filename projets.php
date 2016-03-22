@@ -4,16 +4,16 @@
 		<title>Licence Professionnelle Image & Son</title>
 		<meta charset="UTF-8"/>
 		
-		<link rel="stylesheet" type="text/css" href="../Ressources/bootstrap-3.3.6-dist/css/bootstrap.min.css">
-		<link rel="stylesheet" href="../Ressources/font-awesome-4.5.0/css/font-awesome.min.css">
-		<link rel="stylesheet" href="../Ressources/bootstrap-rating-master/bootstrap-rating.css">
-		<link type="text/css" rel="stylesheet" href="../CSS/style.css">
-		<script type="text/javascript" src="../Ressources/owl-carousel/jquery-1.9.1.min.js"></script>
-		<script type="text/javascript" src="../Ressources/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="../Ressources/bootstrap-rating-master/bootstrap-rating.js"></script>
+		<link rel="stylesheet" type="text/css" href="./Ressources/bootstrap-3.3.6-dist/css/bootstrap.min.css">
+		<link rel="stylesheet" href="./Ressources/font-awesome-4.5.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="./Ressources/bootstrap-rating-master/bootstrap-rating.css">
+		<link type="text/css" rel="stylesheet" href="./CSS/style.css">
+		<script type="text/javascript" src="./Ressources/owl-carousel/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="./Ressources/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="./Ressources/bootstrap-rating-master/bootstrap-rating.js"></script>
 	</head>
 	<header>
-		<?php include('../PHP/header.php') ?>
+		<?php include('./PHP/header.php') ?>
 	</header>
 	<body>
 		<div class="row">
@@ -24,7 +24,7 @@
 					$years; 
 					$matiere;
 					$init=false;
-					include('../PHP/connexion.php');
+					include('./PHP/connexion.php');
 
 					$sql="SELECT projets.Nom AS NomProjet, matieres.Nom AS NomMatiere, anneescolaire.DateFin, anneescolaire.DateDebut, projets.Miniature, projets.Poids, projets.ID_projets FROM projets, matierestoprojet, matieres, anneescolaire, projetstoparcours, parcours WHERE projets.ID_Annee = anneescolaire.ID_Annee 
 						AND projets.ID_projets = matierestoprojet.ID_projets
@@ -82,7 +82,7 @@
 					}
 					
 
-					include('../PHP/deconnexion.php');
+					include('./PHP/deconnexion.php');
 				?>
 			</div>
 		</div>

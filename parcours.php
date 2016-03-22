@@ -4,17 +4,17 @@
 <head>
 		<title>Licence Professionnelle Image & Son</title>
 		<meta charset="UTF-8"/>
-		<link type="text/css" rel="stylesheet" href="../CSS/style.css">
-		<script type="text/javascript" src="../Ressources/owl-carousel/jquery-1.9.1.min.js"></script>
-		<link rel="stylesheet" href="../Ressources/font-awesome-4.5.0/css/font-awesome.min.css">
-		<link rel="stylesheet" type="text/css" href="../Ressources/bootstrap-3.3.6-dist/css/bootstrap.min.css">
-		<link rel="stylesheet" href="../Ressources/bootstrap-social-gh-pages/assets/css/docs.css">
-		<link rel="stylesheet" href="../Ressources/bootstrap-social-gh-pages/bootstrap-social.css">
-		<script type="text/javascript" src="../Ressources/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+		<link type="text/css" rel="stylesheet" href="./CSS/style.css">
+		<script type="text/javascript" src="./Ressources/owl-carousel/jquery-1.9.1.min.js"></script>
+		<link rel="stylesheet" href="./Ressources/font-awesome-4.5.0/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="./Ressources/bootstrap-3.3.6-dist/css/bootstrap.min.css">
+		<link rel="stylesheet" href="./Ressources/bootstrap-social-gh-pages/assets/css/docs.css">
+		<link rel="stylesheet" href="./Ressources/bootstrap-social-gh-pages/bootstrap-social.css">
+		<script type="text/javascript" src="./Ressources/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
 	</head>
 
 	<header>
-		<?php include('../PHP/header.php') ?>
+		<?php include('./PHP/header.php') ?>
 	</header>
 	
 	<body>
@@ -22,7 +22,7 @@
 			<div class="col-xs-12" id="Parcours">
 				<h2>Parcours</h2>
 				<?php 	
-					include('../PHP/connexion.php');
+					include('./PHP/connexion.php');
 
 					$sql = "SELECT * FROM parcours";
 					$result = $conn->query($sql);
@@ -48,14 +48,14 @@
 						echo "0 results";
 					}
 
-					include('../PHP/deconnexion.php');
+					include('./PHP/deconnexion.php');
 				?>
 			</div>
 			<div class="col-xs-12" id="Entreprises">
 				<h2>Entreprises</h2>
 				<?php
 
-					include('../PHP/connexion.php');
+					include('./PHP/connexion.php');
 					$sql = "SELECT * FROM entreprises ORDER BY Nom";
 					$result = $conn->query($sql);
 
@@ -75,7 +75,7 @@
 					}
 					
 
-					include('../PHP/deconnexion.php');
+					include('./PHP/deconnexion.php');
 
 				?>
 			</div>

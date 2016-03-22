@@ -2,7 +2,7 @@
 	<img src="../Pictures/logo.png"/>
 	<?php
 
-		include('../PHP/connexion.php');
+		include('./PHP/connexion.php');
 
 		$sql = "SELECT * FROM promotions, anneescolaire WHERE promotions.ID_Annee = anneescolaire.ID_Annee ORDER BY anneescolaire.DateDebut DESC LIMIT 1";
 		$result = $conn->query($sql);
@@ -16,7 +16,7 @@
 			 echo "0 results";
 		}
 		
-		include('../PHP/deconnexion.php');
+		include('./PHP/deconnexion.php');
 
 	?>
 	
@@ -31,7 +31,7 @@
 				<ul class="dropdown-menu">
 					<?php
 
-						include('../PHP/connexion.php');
+						include('./PHP/connexion.php');
 
 						$sql = "SELECT * FROM parcours";
 						$result = $conn->query($sql);
@@ -45,7 +45,7 @@
 							 echo "0 results";
 						}
 						
-						include('../PHP/deconnexion.php');
+						include('./PHP/deconnexion.php');
 
 					?>  
 				</ul>
@@ -55,7 +55,7 @@
 				<ul class="dropdown-menu">
 					<?php
 						
-						include('../PHP/connexion.php');
+						include('./PHP/connexion.php');
 
 						$sql = "SELECT * FROM parcours";
 						$result = $conn->query($sql);
@@ -69,7 +69,7 @@
 							 echo "0 results";
 						}
 
-						include('../PHP/deconnexion.php');
+						include('./PHP/deconnexion.php');
 
 					?>  
 				</ul>
