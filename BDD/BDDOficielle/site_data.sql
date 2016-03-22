@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 21 Mars 2016 à 13:15
+-- Généré le :  Mar 22 Mars 2016 à 11:27
 -- Version du serveur :  5.7.9
 -- Version de PHP :  5.6.16
 
@@ -35,7 +35,15 @@ CREATE TABLE IF NOT EXISTS `actualites` (
   `Titre` varchar(80) NOT NULL,
   `Article` varchar(140) NOT NULL,
   PRIMARY KEY (`ID_actualites`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `actualites`
+--
+
+INSERT INTO `actualites` (`ID_actualites`, `DateCreation`, `Titre`, `Article`) VALUES
+(1, '2016-02-12', 'Journée Portes Ouvertes', 'Venez participer aux journées portes ouvertes le 12 Mars, de 9h à 17h sur le site du Puy En Velay.'),
+(2, '2016-02-19', 'Inscriptions', 'Inscription du 1er mars au 31 mars 2016 :\r\nhttps://candidature.u-clermont1.fr/WebCiell2');
 
 -- --------------------------------------------------------
 
@@ -65,7 +73,14 @@ CREATE TABLE IF NOT EXISTS `anneescolaire` (
   `DateDebut` date NOT NULL,
   `DateFin` date NOT NULL,
   PRIMARY KEY (`ID_Annee`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `anneescolaire`
+--
+
+INSERT INTO `anneescolaire` (`ID_Annee`, `DateDebut`, `DateFin`) VALUES
+(5, '2015-09-14', '2016-06-30');
 
 -- --------------------------------------------------------
 
@@ -80,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `data` (
   `Lien` varchar(200) NOT NULL,
   PRIMARY KEY (`ID_data`),
   KEY `ID_type` (`ID_type`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -96,7 +111,7 @@ CREATE TABLE IF NOT EXISTS `datatoprojets` (
   PRIMARY KEY (`ID_datatoprojets`),
   KEY `ID_data` (`ID_data`),
   KEY `ID_projets` (`ID_projets`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -115,7 +130,29 @@ CREATE TABLE IF NOT EXISTS `eleves` (
   `CV_PDF` tinytext NOT NULL,
   `CV_en_Ligne` tinytext NOT NULL,
   PRIMARY KEY (`ID_eleves`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1 COMMENT='Cette table représente chacun des élèves de la promo. ';
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1 COMMENT='Cette table représente chacun des élèves de la promo. ';
+
+--
+-- Contenu de la table `eleves`
+--
+
+INSERT INTO `eleves` (`ID_eleves`, `Nom`, `Prenom`, `UserName`, `Password`, `CV_visibility`, `CV_PDF`, `CV_en_Ligne`) VALUES
+(13, 'PETIT', 'Quentin', '', '', 1, '', 'http://quentinpetit.alwaysdata.net/'),
+(14, 'NONG', 'William', '', '', 1, '', 'https://fr.linkedin.com/in/william-nong-2b2b84a4'),
+(15, 'GOT', 'Bruno', '', '', 1, '', 'http://www.bruno-got.net/'),
+(16, 'ABEL', 'Antoine', '', '', 1, '', 'http://antoien.wix.com/antoineabelcv'),
+(17, 'COUTURIER', 'Étienne', '', '', 1, '', 'http://www.couturieretienne.fr/'),
+(18, 'MARILLY', 'Mathieu', '', '', 0, '', ''),
+(19, 'MAATE', 'Soufian', '', '', 1, '', 'http://soufianmaate.wix.com/moncv'),
+(20, 'BOUYSSOU', 'Eléa', '', '', 1, '', 'bouyssouelea.fr'),
+(21, 'LANET', 'Florian', '', '', 0, '', ''),
+(22, 'BRASSECASSE', 'Gabriel', '', '', 0, '', ''),
+(23, 'CAMPS', 'Juline', '', '', 0, '', ''),
+(24, 'GARRIGUE', 'Fabien', '', '', 0, '', ''),
+(25, 'MOGEOT', 'Bastien', '', '', 0, '', ''),
+(26, 'HUANG', 'Yao Feng', '', '', 1, '', 'http://841163555.wix.com/minimal-designer-por'),
+(27, 'GOUNON', 'Grégory', '', '', 1, '', 'http://gounongregory.wix.com/porfolio'),
+(28, 'COUDERT', 'Florian', '', '', 0, '', '');
 
 -- --------------------------------------------------------
 
@@ -131,7 +168,7 @@ CREATE TABLE IF NOT EXISTS `elevestoprojet` (
   PRIMARY KEY (`ID_elevestoprojet`),
   KEY `ID_eleves` (`ID_eleves`),
   KEY `ID_projets` (`ID_projets`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -146,7 +183,7 @@ CREATE TABLE IF NOT EXISTS `entreprises` (
   `Lien` varchar(200) NOT NULL,
   `Logo` varchar(80) NOT NULL,
   PRIMARY KEY (`ID_entreprises`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -159,7 +196,45 @@ CREATE TABLE IF NOT EXISTS `matieres` (
   `ID_matieres` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `Nom` varchar(200) NOT NULL,
   PRIMARY KEY (`ID_matieres`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `matieres`
+--
+
+INSERT INTO `matieres` (`ID_matieres`, `Nom`) VALUES
+(1, 'Remise à niveau en C++'),
+(2, 'Unity 3D'),
+(3, 'Modélisation Temps Réel'),
+(4, 'Interface Utilisateur'),
+(5, 'Gestion de Projets'),
+(6, 'Méthodologie de développement'),
+(7, 'Intelligence Artificielle'),
+(8, 'Réalité Virtuelle'),
+(9, 'Anglais'),
+(10, 'Projets Tuteurés'),
+(11, 'Algorithmes de Synthèse d''Images Avancés'),
+(12, 'Développement de jeu'),
+(13, 'Texturing'),
+(14, 'Mise à niveau 3DSMax'),
+(15, 'Initiation 3DSMax'),
+(16, 'Synthèse d''Images'),
+(17, 'Initiation Photoshop'),
+(18, 'Autocad'),
+(19, 'Modé Pré-calculée'),
+(20, 'Architecture'),
+(21, 'Artistique'),
+(22, 'Montage Vidéo Post-Production'),
+(23, 'Photoshop'),
+(24, 'Photographie'),
+(25, 'Préparation d''animations'),
+(26, 'Texturing sous ZBrush'),
+(27, 'Texturing avec Shaders'),
+(28, 'Synthèse d''Images sous Lumion'),
+(29, 'Animation Pré-calculée'),
+(30, 'Pipeline'),
+(31, 'Modélisation Grande Échelle'),
+(32, 'Pipeline');
 
 -- --------------------------------------------------------
 
@@ -175,7 +250,7 @@ CREATE TABLE IF NOT EXISTS `matierestoprojet` (
   PRIMARY KEY (`ID_matierestoprojet`),
   KEY `ID_projets` (`ID_projets`),
   KEY `ID_matieres` (`ID_matieres`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -196,6 +271,15 @@ CREATE TABLE IF NOT EXISTS `parcours` (
   `Couleur` varchar(10) NOT NULL,
   PRIMARY KEY (`ID_parcours`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `parcours`
+--
+
+INSERT INTO `parcours` (`ID_parcours`, `Nom`, `Description`, `Objectifs`, `Competences`, `Logiciels`, `Admission`, `Plaquette`, `Couleur`) VALUES
+(1, 'Infographie pour l''Architecture', 'Thèmes abordés : illustrations, architecture intérieure 3D, architecture extérieure 3D, mise en situation photo-réaliste, animations 3D en architecture – visites virtuelles, initiation à la maquette numérique 3D – BIM (Building Information Model)', 'Former des infographistes 3D pour l''Architecture.\n2 domaines principaux :\n<li>archi intérieure/archi extérieure ; thèmes abordés : illustrations, architecture intérieure 3D, architecture extérieure 3D, mise en situation photo-réaliste, animations 3D en architecture – visites virtuelles,</li><li>\ninitiation à la maquette numérique 3D, initiation au BIM (Building Information Model).</li>', 'Acquisition des notions d''infographie pour l''architecture (plans de masse, élévations, architecture intérieure/extérieure…), de la modélisation au rendu, de la réalisation d''animation et de vidéo architecturale, de la prise en compte de l''éclairage, de maquette numérique - BIM (partie visualisation 3D)', '3DSMax, AutoCAD, ArchiCAD, Photoshop, After Effects, VRay, Lumion<br>\n[Prévision 2016 : BIM (Archicad, Revit), Sketchup]', 'Le parcours <b>Infographie pour l''architecture</b> est accessible aux titulaires d''un BAC+2, principalement :\n<li>BTS AEA Agencement Environnement Architectural/BTS ERA Etude et Réalisation d''Agencements,</li><li>\nBTS Design d''Espace,</li><li>\nDUT Informatique (Imagerie Numérique)/ DUT MMI (avec connaissances de modélisation). </li>\nLe recrutement se fait sur dossier, examiné par un jury ; CV (description des logiciels connus/utilisés), portfolio en ligne et lettre de motivation sont exigés.', '', '#ffad38'),
+(2, 'Technical Artist', 'Étude de la chaîne complète : dessin main levée, modélisation, texturing, animation [rigging, skinning] ; initiation à la modélisation et l''animation procédurales.', 'Former des infographistes 3D pour l''Animation.\n2 domaines principaux :\n<li>* modélisation et animation traditionnelles ; étude de la chaîne complète : dessin main levée, modélisation, texturing, animation [rigging,skinning]</li><li>\n* [2016] modélisation et animation procédurales</li>', 'Maîtrise de la chaîne de production (dessin main levée, modélisation, texturing, animation [rigging,skinng]) selon les approches modélisation et animation traditionnelles et procédurales.', '3DSMax, Photoshop, After Effects, Substance Designer', 'Le parcours <b>Technical Artist</b> est accessible aux titulaires d''un BAC+2, ayant des connaissances  d''un modeleur 3D (par ex. : 3dsMAX, Maya ou Blender) et en programmation, principalement :\n<li>DUT Informatique (Imagerie Numérique),</li><li>\nDUT MMI,</li><li>\nDiplôme des Métiers d''Arts (DMA) cinéma d''animation,</li><li>\nBTS Design Graphique option communication et médias numériques [+ connaissances de modélisation et programmation],</li><li>\nBTS Métiers de l''Audiovisuel option métiers de l''image,</li><li>\nautres formations titulaires d''une Mise à niveau en arts appliqués (MANAA) … </li>\n \nLe recrutement se fait sur dossier, examiné par un jury ; CV (description des logiciels connus/utilisés), portfolio en ligne et lettre de motivation sont exigés.\n<b>ATTENTION : à partir de 2016,</b> il sera demandé aux candidats de <b>connaître un langage de programmation</b>, afin de faire l''acquisition des modélisation et animation procédurales.', '', '#d43ef4'),
+(3, '3D Temps Réel et Réalité Virtuelle', 'Thèmes abordés : développement de projet informatique, concepts avancés liés aux jeux vidéos (Game/Level Design, Intelligence Artificielle, algorithmes de synthèse/traitement d''images, shaders), développement d''applications utilisant différents périphériques de Réalité Virtuelle (LeapMotion, Oculus Rift …).', 'Former des programmeurs pour le jeu vidéo ou pour la Réalité Virtuelle.\n2 domaines principaux :\n<li>3D Temps Réel : développement d''un jeu vidéo (Unity 3D, shaders, intelligence artificielle ...)</li><li>\nRéalité Virtuelle : découverte de différents périphériques (Oculus Rift ...)</li>', 'Développement de projet informatique en groupe (analyse, conception, organisation, planification)\r\net prise de responsabilités associées (chef de projet …), maîtrise d''un moteur haut niveau de création\r\nde jeux vidéo (focus intelligence artificielle, développement de shaders), initiation à la réalité virtuelle.', 'Visual Studio, C++, Git, SourceTree, GanttProject, CMake, Unity (ShaderLab), Unreal Engine 4<br>\n[Prévision 2016 : Unreal Engine 4]', 'Le parcours <b>3D Temps Réel et Réalité Virtuelle</b> est accessible aux titulaires d''un BAC+2, ayant un très bon niveau en langage de programmation orienté objet (C++ ou C#) ainsi que des connaissances en modélisation (3dsMax ou Blender), principalement :\n<li>DUT Informatique (Imagerie Numérique)\n</li><li>DUT MMI,\n</li><li>BTS Services Informatiques aux Organisations (SIO), option SLAM (Solutions Logicielles et Applications Métiers),\n</li><li>BTS Systèmes Numériques, Option Informatique et Réseaux.</li>\nLe recrutement se fait sur dossier, examiné par un jury ; CV (description des logiciels connus/utilisés), portfolio en ligne et lettre de motivation sont exigés.', '', '#14a4ff');
 
 -- --------------------------------------------------------
 
@@ -222,7 +306,7 @@ CREATE TABLE IF NOT EXISTS `projets` (
   `Mode` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`ID_projets`),
   KEY `ID_Annee` (`ID_Annee`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -238,7 +322,7 @@ CREATE TABLE IF NOT EXISTS `projetstoparcours` (
   PRIMARY KEY (`ID_projetstoparcours`),
   KEY `ID_projets` (`ID_projets`),
   KEY `ID_parcours` (`ID_parcours`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -253,7 +337,14 @@ CREATE TABLE IF NOT EXISTS `promotions` (
   `ID_Annee` int(10) UNSIGNED NOT NULL,
   PRIMARY KEY (`ID_Promo`),
   KEY `ID_Annee` (`ID_Annee`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `promotions`
+--
+
+INSERT INTO `promotions` (`ID_Promo`, `Lien`, `ID_Annee`) VALUES
+(1, './Images/Promotion/promotion2015-2016.jpg', 5);
 
 -- --------------------------------------------------------
 
@@ -269,7 +360,19 @@ CREATE TABLE IF NOT EXISTS `reseausociaux` (
   `ID_parcours` int(11) UNSIGNED NOT NULL,
   PRIMARY KEY (`ID_reseausociaux`),
   KEY `ID_parcours` (`ID_parcours`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `reseausociaux`
+--
+
+INSERT INTO `reseausociaux` (`ID_reseausociaux`, `Lien`, `NomReseau`, `ID_parcours`) VALUES
+(1, 'https://twitter.com/LicenceMIND3DTR', 'twitter', 3),
+(2, 'https://twitter.com/LicenceMINDArch', 'twitter', 1),
+(3, 'https://twitter.com/LicenceMINDTA', 'twitter', 2),
+(4, 'https://plus.google.com/108769605229460730961/posts', 'google-plus', 2),
+(5, 'https://plus.google.com/116795798420491985205/posts', 'google-plus', 1),
+(6, 'https://plus.google.com/114066764502272808569/posts', 'google-plus', 3);
 
 -- --------------------------------------------------------
 
@@ -282,7 +385,7 @@ CREATE TABLE IF NOT EXISTS `type` (
   `ID_type` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `Type` tinytext NOT NULL,
   PRIMARY KEY (`ID_type`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Contraintes pour les tables exportées
