@@ -17,7 +17,7 @@
 	</header>
 	<body>
 		<div class="row">
-			<div class="col-xs-12 well">
+			
 				<?php
 
 					$parcoursId=$_GET['parcoursId'];
@@ -26,15 +26,19 @@
 					$init=false;
 					include('./PHP/connexion.php');
 
-					$sql="SELECT projets.Nom AS NomProjet, matieres.Nom AS NomMatiere, anneescolaire.DateFin, anneescolaire.DateDebut, projets.Miniature, projets.Poids, projets.ID_projets FROM projets, matierestoprojet, matieres, anneescolaire, projetstoparcours, parcours WHERE projets.ID_Annee = anneescolaire.ID_Annee 
+					$sql="SELECT projets.Nom AS NomProjet, matieres.Nom AS NomMatiere, anneescolaire.DateFin, anneescolaire.DateDebut, projets.Miniature, projets.Poids, projets.ID_projets, Couleur FROM projets, matierestoprojet, matieres, anneescolaire, projetstoparcours, parcours WHERE projets.ID_Annee = anneescolaire.ID_Annee 
 						AND projets.ID_projets = matierestoprojet.ID_projets
 						AND matieres.ID_matieres = matierestoprojet.ID_matieres
 						AND projets.ID_projets = projetstoparcours.ID_projets
 						AND parcours.ID_parcours = projetstoparcours.ID_parcours
 						AND parcours.ID_parcours='".$parcoursId."'ORDER BY DateFin DESC, NomMatiere, Poids DESC";
+
 					$result = $conn->query($sql);
 					if ($result->num_rows > 0) {
-						echo"<section class='col-xs-12 well'>";
+						$firstrow = $result->fetch_assoc();
+						$result->data_seek(0);
+					echo"<div class='col-xs-12'>";						
+						echo"<section class='col-xs-12 well' style='background:".utf8_encode($firstrow["Couleur"])."'>";
 						while ($row = $result->fetch_assoc()) {
 							if ($init==false) {
 								$EndYears = date("Y", strtotime($row["DateFin"]));
@@ -51,7 +55,7 @@
 								$EndYears = date("Y", strtotime($row["DateFin"]));
 								echo "</section>";
 								echo "</section>";
-								echo"<section class='col-xs-12 well'>";
+								echo"<section class='col-xs-12 well' style='background:".utf8_encode($row["Couleur"])."'>";
 								echo "<h1>".$StartYears."-".$EndYears."</h1>";
 								echo "<section class='col-xs-12'>";
 								echo "<h2>".utf8_encode($row["NomMatiere"])."</h2>";
