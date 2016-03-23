@@ -3,7 +3,7 @@
 	<head>
 		<title>Licence Professionnelle Image & Son</title>
 		<meta charset="UTF-8"/>
-		
+		<link href='https://fonts.googleapis.com/css?family=Asap' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" type="text/css" href="./Ressources/bootstrap-3.3.6-dist/css/bootstrap.min.css">
 		<link rel="stylesheet" href="./Ressources/font-awesome-4.5.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="./Ressources/bootstrap-rating-master/bootstrap-rating.css">

@@ -4,10 +4,11 @@
 <head>
 		<title>Licence Professionnelle Image & Son</title>
 		<meta charset="UTF-8"/>
-		<link type="text/css" rel="stylesheet" href="./CSS/style.css">
 		<script type="text/javascript" src="./Ressources/owl-carousel/jquery-1.9.1.min.js"></script>
+		<link href='https://fonts.googleapis.com/css?family=Asap' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="./Ressources/font-awesome-4.5.0/css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="./Ressources/bootstrap-3.3.6-dist/css/bootstrap.min.css">
+		<link type="text/css" rel="stylesheet" href="./CSS/style.css">
 		<link rel="stylesheet" href="./Ressources/bootstrap-social-gh-pages/bootstrap-social.css">
 		<script type="text/javascript" src="./Ressources/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
 	</head>
