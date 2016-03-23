@@ -69,13 +69,14 @@
 								echo "<section class='col-xs-12'>";
 								echo "<h2>".utf8_encode($row["NomMatiere"])."</h2>";
 							}
+							$poids = ($row["Poids"]/100)*5;
 							echo "
 							<div class='picholder col-xs-4 col-sm-3 col-md-2'>
 									<img class='fancypics' src='".utf8_encode($row["Miniature"])."'>
 									<a href='projet.php?projetID=".utf8_encode($row["ID_projets"])."'>
 										<div class='overlay'>
 											<p class='text_box'>".utf8_encode($row["NomProjet"])."</p>
-											<div class='star-rating'><input id='inner-rating' type='hidden' class='rating' data-readonly value='".$row["Poids"]."'></div>
+											<div class='star-rating'><input id='inner-rating' type='hidden' class='rating' data-readonly value='".$poids."'></div>
 										</div>
 									</a>
 							</div>";							
