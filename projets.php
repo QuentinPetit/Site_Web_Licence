@@ -45,7 +45,7 @@
 								$StartYears = date("Y", strtotime($row["DateDebut"]));
 								$matiere=utf8_encode($row["NomMatiere"]);
 								echo "<h1>".$StartYears."-".$EndYears."</h1>";
-								echo "<section class='col-xs-12'>";
+								echo "<section class='col-xs-12 container-fluid'>";
 								echo "<h2>".utf8_encode($row["NomMatiere"])."</h2>";
 								$init=true;
 							}
@@ -57,7 +57,7 @@
 								echo "</section>";
 								echo"<section class='col-xs-12 well' style='background:".utf8_encode($row["Couleur"])."'>";
 								echo "<h1>".$StartYears."-".$EndYears."</h1>";
-								echo "<section class='col-xs-12'>";
+								echo "<section class='col-xs-12 container-fluid'>";
 								echo "<h2>".utf8_encode($row["NomMatiere"])."</h2>";
 								$matiere=utf8_encode($row["NomMatiere"]);
 							}
@@ -66,7 +66,7 @@
 							{
 								$matiere=utf8_encode($row["NomMatiere"]);
 								echo "</section>";
-								echo "<section class='col-xs-12'>";
+								echo "<section class='col-xs-12 container-fluid'>";
 								echo "<h2>".utf8_encode($row["NomMatiere"])."</h2>";
 							}
 							$poids = ($row["Poids"]/100)*5;

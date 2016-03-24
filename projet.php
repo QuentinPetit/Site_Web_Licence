@@ -26,7 +26,7 @@
 
 					$projetID = $_GET['projetID'];
 					
-					$sql = "SELECT * FROM projets WHERE projets.ID_projets =".$projetID; //
+					$sql = "SELECT * FROM projets WHERE projets.ID_projets =".$projetID; 
 					$result = $conn->query($sql);
 
 					if ($result->num_rows > 0) {
