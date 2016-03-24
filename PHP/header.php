@@ -1,5 +1,6 @@
 <div>
-	<img src="./Images/logoIUT.jpeg"/>
+	<h1 class="banner">Licence Professionelle Image & Son</h1>
+	<img class= "bannerlogo"src="./Images/logoIUT.jpeg"/>
 	<?php
 
 		include('./PHP/connexion.php');
@@ -7,10 +8,14 @@
 		$sql = "SELECT * FROM promotions, anneescolaire WHERE promotions.ID_Annee = anneescolaire.ID_Annee ORDER BY anneescolaire.DateDebut DESC LIMIT 1";
 		$result = $conn->query($sql);
 
+		$imagesize = getimagesize("./Images/logoIUT.jpeg");
+		$height = $imagesize[1];
+
+		//var_dump($height);
 		if ($result->num_rows > 0) {
 			// output data of each row
 			while($row = $result->fetch_assoc()) {
-			echo "<img src='".utf8_encode($row["Lien"])."'/>";
+			echo "<img class= 'bannerpic' src='".utf8_encode($row["Lien"])."'/>";
 			}
 		} else {
 			 echo "0 results";

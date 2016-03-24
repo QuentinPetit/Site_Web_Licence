@@ -1,6 +1,6 @@
 html *
 {
-  font-family: 'Asap', sans-serif ;
+  font-family: 'Montserrat', sans-serif;
 }
 
 #menu, #menu ul{
@@ -170,6 +170,20 @@ color:#000;
   overflow:hidden
 }
 
+.bannerlogo {
+
+}
+
+.bannerpic {
+  position: absolute;
+  right: 0px;
+  width: auto;
+  height:154px;
+}
+
+.banner{
+  text-align: center;
+}
 .dropdown:hover .dropdown-menu {
     display: block;
     margin-top: 0; // remove the gap so it doesn't close
@@ -236,3 +250,4 @@ color:#000;
 .break{
   float: left;
 }
+

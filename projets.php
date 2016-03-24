@@ -3,7 +3,7 @@
 	<head>
 		<title>Licence Professionnelle Image & Son</title>
 		<meta charset="UTF-8"/>
-		<link href='https://fonts.googleapis.com/css?family=Asap' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" type="text/css" href="./Ressources/bootstrap-3.3.6-dist/css/bootstrap.min.css">
 		<link rel="stylesheet" href="./Ressources/font-awesome-4.5.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="./Ressources/bootstrap-rating-master/bootstrap-rating.css">
@@ -72,7 +72,7 @@
 							$poids = ($row["Poids"]/100)*5;
 							echo "
 							<div class='picholder col-xs-4 col-sm-3 col-md-2'>
-									<img class='fancypics' src='".utf8_encode($row["Miniature"])."'>
+									<img class='thumbnail' src='".utf8_encode($row["Miniature"])."'>
 									<a href='projet.php?projetID=".utf8_encode($row["ID_projets"])."'>
 										<div class='overlay'>
 											<p class='text_box'>".utf8_encode($row["NomProjet"])."</p>
