@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 23 Mars 2016 à 16:55
+-- Généré le :  Jeu 24 Mars 2016 à 14:06
 -- Version du serveur :  5.7.9
 -- Version de PHP :  5.6.16
 
@@ -95,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `data` (
   `Lien` varchar(200) NOT NULL,
   PRIMARY KEY (`ID_data`),
   KEY `ID_type` (`ID_type`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `data`
@@ -123,7 +123,35 @@ INSERT INTO `data` (`ID_data`, `ID_type`, `Lien`) VALUES
 (19, 1, './Projets/2015-2016/3DTR/COUTURIER_ETienne_RV/MiniatureJeu1.png'),
 (20, 1, './Projets/2015-2016/3DTR/COUTURIER_ETienne_RV/MiniatureJeu2.png'),
 (21, 1, './Projets/2015-2016/3DTR/COUTURIER_ETienne_RV/MiniatureJeu3.png'),
-(22, 1, './Projets/2015-2016/3DTR/COUTURIER_ETienne_RV/MiniatureLeapMotion.png');
+(22, 1, './Projets/2015-2016/3DTR/COUTURIER_ETienne_RV/MiniatureLeapMotion.png'),
+(23, 1, './Projets/2015-2016/3DTR/Matthieu_Marilly_RV/disque.png'),
+(24, 1, './Projets/2015-2016/3DTR/Matthieu_Marilly_RV/imgvideo360.png'),
+(25, 2, './Projets/2015-2016/3DTR/Matthieu_Marilly_RV/tes2t.mp4'),
+(26, 2, './Projets/2015-2016/3DTR/NongWilliam_RV/PalmsInTheWind.mp4'),
+(27, 3, 'https://www.youtube.com/embed/KobjtEguk9g'),
+(28, 1, './Projets/2015-2016/3DTR/NongWilliam_RV/ScreenshotLM.png'),
+(29, 1, './Projets/2015-2016/3DTR/NongWilliam_RV/ScreenshotOS.png'),
+(30, 3, 'https://www.youtube.com/embed/hiQ4ek3O534'),
+(31, 2, './Projets/2015-2016/3DTR/QuentinPETIT_RV/export_360_youtube.mp4'),
+(32, 1, './Projets/2015-2016/3DTR/QuentinPETIT_RV/GameView.png'),
+(33, 3, 'https://www.youtube.com/embed/im3E86WHUKM'),
+(34, 1, './Projets/2015-2016/3DTR/UniversalTournament/MiniatureVer0.png'),
+(35, 1, './Projets/2015-2016/3DTR/UniversalTournament/ChasseurLourdHumain.png'),
+(36, 1, './Projets/2015-2016/3DTR/UniversalTournament/EncadrementEcran.png'),
+(37, 1, './Projets/2015-2016/3DTR/UniversalTournament/Portaill.png'),
+(38, 1, './Projets/2015-2016/3DTR/UniversalTournament/Station.png'),
+(39, 1, './Projets/2015-2016/3DTR/UniversalTournament/StationPublicitaire.png'),
+(40, 1, './Projets/2015-2016/3DTR/UniversalTournament/Tourelle.png'),
+(41, 1, './Projets/2015-2016/3DTR/UniversalTournament/VaisseauLegerAlien.png'),
+(42, 1, './Projets/2015-2016/3DTR/UniversalTournament/VaisseaulegerrMecansSansTex.png'),
+(43, 1, './Projets/2015-2016/3DTR/UniversalTournament/VaisseauLourdMecan.png'),
+(44, 1, './Projets/2015-2016/3DTR/UniversalTournament/VaisseauMecanLeger.png'),
+(45, 1, './Projets/2015-2016/3DTR/UniversalTournament/VaisseauMereAlien.png'),
+(46, 1, './Projets/2015-2016/3DTR/UniversalTournament/VaisseauMereHumain.png'),
+(47, 1, './Projets/2015-2016/3DTR/UniversalTournament/VaisseauMereMecans.png'),
+(48, 1, './Projets/2015-2016/3DTR/UniversalTournament/VaisseauReparateurAlien.png'),
+(49, 1, './Projets/2015-2016/3DTR/UniversalTournament/VaisseauReparateurHumain.png'),
+(50, 1, './Projets/2015-2016/3DTR/UniversalTournament/VaisseauReparateurMecan.png');
 
 -- --------------------------------------------------------
 
@@ -139,7 +167,7 @@ CREATE TABLE IF NOT EXISTS `datatoprojets` (
   PRIMARY KEY (`ID_datatoprojets`),
   KEY `ID_data` (`ID_data`),
   KEY `ID_projets` (`ID_projets`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `datatoprojets`
@@ -167,7 +195,35 @@ INSERT INTO `datatoprojets` (`ID_datatoprojets`, `ID_data`, `ID_projets`) VALUES
 (19, 19, 11),
 (20, 20, 11),
 (21, 21, 11),
-(22, 22, 12);
+(22, 22, 12),
+(23, 23, 14),
+(24, 24, 15),
+(25, 25, 15),
+(26, 26, 16),
+(27, 27, 16),
+(28, 28, 17),
+(29, 29, 18),
+(30, 30, 19),
+(31, 31, 19),
+(32, 32, 20),
+(33, 33, 21),
+(34, 34, 21),
+(35, 35, 21),
+(36, 36, 21),
+(37, 37, 21),
+(38, 38, 21),
+(39, 39, 21),
+(40, 40, 21),
+(41, 41, 21),
+(42, 42, 21),
+(43, 43, 21),
+(44, 44, 21),
+(45, 45, 21),
+(46, 46, 21),
+(47, 47, 21),
+(48, 48, 21),
+(49, 49, 21),
+(50, 50, 21);
 
 -- --------------------------------------------------------
 
@@ -186,7 +242,7 @@ CREATE TABLE IF NOT EXISTS `eleves` (
   `CV_PDF` tinytext NOT NULL,
   `CV_en_Ligne` tinytext NOT NULL,
   PRIMARY KEY (`ID_eleves`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1 COMMENT='Cette table représente chacun des élèves de la promo. ';
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1 COMMENT='Cette table représente chacun des élèves de la promo. ';
 
 --
 -- Contenu de la table `eleves`
@@ -208,7 +264,8 @@ INSERT INTO `eleves` (`ID_eleves`, `Nom`, `Prenom`, `UserName`, `Password`, `CV_
 (25, 'MOGEOT', 'Bastien', '', '', 0, '', ''),
 (26, 'HUANG', 'Yao Feng', '', '', 1, '', 'http://841163555.wix.com/minimal-designer-por'),
 (27, 'GOUNON', 'Grégory', '', '', 1, '', 'http://gounongregory.wix.com/porfolio'),
-(28, 'COUDERT', 'Florian', '', '', 0, '', '');
+(28, 'COUDERT', 'Florian', '', '', 0, '', ''),
+(29, 'PHILIPPE', 'Benjamin', '', '', 0, '', '');
 
 -- --------------------------------------------------------
 
@@ -224,7 +281,7 @@ CREATE TABLE IF NOT EXISTS `elevestoprojet` (
   PRIMARY KEY (`ID_elevestoprojet`),
   KEY `ID_eleves` (`ID_eleves`),
   KEY `ID_projets` (`ID_projets`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `elevestoprojet`
@@ -242,7 +299,23 @@ INSERT INTO `elevestoprojet` (`ID_elevestoprojet`, `ID_eleves`, `ID_projets`) VA
 (9, 17, 9),
 (10, 17, 10),
 (11, 17, 11),
-(12, 17, 12);
+(12, 17, 12),
+(13, 18, 13),
+(14, 18, 14),
+(15, 18, 15),
+(16, 14, 16),
+(17, 14, 17),
+(18, 14, 18),
+(19, 13, 19),
+(20, 13, 20),
+(21, 13, 21),
+(22, 14, 21),
+(23, 15, 21),
+(24, 16, 21),
+(25, 17, 21),
+(26, 18, 21),
+(27, 19, 21),
+(28, 29, 21);
 
 -- --------------------------------------------------------
 
@@ -324,7 +397,7 @@ CREATE TABLE IF NOT EXISTS `matierestoprojet` (
   PRIMARY KEY (`ID_matierestoprojet`),
   KEY `ID_projets` (`ID_projets`),
   KEY `ID_matieres` (`ID_matieres`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `matierestoprojet`
@@ -342,7 +415,16 @@ INSERT INTO `matierestoprojet` (`ID_matierestoprojet`, `ID_projets`, `ID_matiere
 (9, 9, 8),
 (10, 10, 8),
 (11, 11, 8),
-(12, 12, 8);
+(12, 12, 8),
+(13, 13, 8),
+(14, 14, 8),
+(15, 15, 8),
+(16, 16, 8),
+(17, 17, 8),
+(18, 18, 8),
+(19, 19, 8),
+(20, 20, 8),
+(21, 21, 2);
 
 -- --------------------------------------------------------
 
@@ -395,7 +477,7 @@ CREATE TABLE IF NOT EXISTS `projets` (
   `Lien` varchar(200) NOT NULL,
   PRIMARY KEY (`ID_projets`),
   KEY `ID_Annee` (`ID_Annee`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `projets`
@@ -403,18 +485,26 @@ CREATE TABLE IF NOT EXISTS `projets` (
 
 INSERT INTO `projets` (`ID_projets`, `ID_Annee`, `Nom`, `Date`, `Description`, `Caracteristique`, `Logiciel`, `Materiel`, `Poids`, `Miniature`, `Fichier_Projet`, `Lien`) VALUES
 (1, 5, 'Oculus Curseur', '2016-03-23', 'Ceci est un mini-jeu de destruction de cibles où l''utilisateur utilise son regard via un Oculus Rift pour détruire une cible.', 'Lancé de rayons, Sauvegarde dans le registre,Réalité Virtuelle', '<li>Unity</li>\r\n<li>Oculus SDK</li>', '<li>Oculus Rift</li>\r\n<li>GeForce GTX 670</li>\r\n<li>Intel Xeon CPU E5-1620</li>\r\n<li>8 Go de RAM</li>', 20, './Projets/2015-2016/3DTR/MAATE_Soufian_RV/oculuscurseur.png', './Projets/2015-2016/3DTR/MAATE_Soufian_RV/OculusCurseur.zip', ''),
-(2, 5, 'Pokémon Simulator', '2016-03-23', 'Revivez la saga Pokémon grâce à un mini-jeu dans lequel vous pourrez capturer vos propres Pokémon et les utiliser. Reproduisez les mouvements d''un dresseur Pokémon pour lancer vos pokéballs.', 'Réalité Virtuelle, Gestion des mouvement avec un Leap Motion', '<li>Unity</li>\r\n<li>Leap Motion SDK</li>', '<li>Leap Motion/li>\r\n<li>GeForce GTX 670</li>\r\n<li>Intel Xeon CPU E5-1620</li>\r\n<li>8 Go de RAM</li>', 30, './Projets/2015-2016/3DTR/MAATE_Soufian_RV/Pokeball.png', './Projets/2015-2016/3DTR/MAATE_Soufian_RV/Pokemon Simulator.zip', ''),
+(2, 5, 'Pokémon Simulator', '2016-03-23', 'Revivez la saga Pokémon grâce à un mini-jeu dans lequel vous pourrez capturer vos propres Pokémon et les utiliser. Reproduisez les mouvements d''un dresseur Pokémon pour lancer vos pokéballs.', 'Réalité Virtuelle, Gestion des mouvement avec un Leap Motion', '<li>Unity</li>\r\n<li>Leap Motion SDK</li>', '<li>Leap Motion</li>\r\n<li>GeForce GTX 670</li>\r\n<li>Intel Xeon CPU E5-1620</li>\r\n<li>8 Go de RAM</li>', 30, './Projets/2015-2016/3DTR/MAATE_Soufian_RV/Pokeball.png', './Projets/2015-2016/3DTR/MAATE_Soufian_RV/Pokemon Simulator.zip', ''),
 (3, 5, 'Jeu 360', '2016-03-23', 'Ceci est un jeu de quête dans lequel l''utilisateur doit retrouver 3 objets afin de terminer le niveau. Durant sa partie, le joueur peut effectuer un enregistrement d''une vidéo à 360°.', 'Réalité virtuelle, Enregistrement de vidéos 360°', '<li>Unity</li>\r\n<li>360 Panorama Capture</li>', '<li>GeForce GTX 670</li>\r\n<li>Intel Xeon CPU E5-1620</li>\r\n<li>8 Go de RAM</li>', 40, './Projets/2015-2016/3DTR/MAATE_Soufian_RV/ProjetJEU360.png', './Projets/2015-2016/3DTR/MAATE_Soufian_RV/ProjetJEU360.zip', ''),
 (4, 5, '360 Blaze This', '2016-03-23', 'Ce projet avait pour but de réaliser une vidéo 360°. La scène représentée est une vue à 360° d''un banc de sardines.', 'Réalité virtuelle, Enregistrement de vidéos 360°', '<li>Unity</li>\r\n<li>360 Panorama Capture</li>\r\n', '<li>GeForce GTX 670</li>\r\n<li>Intel Xeon CPU E5-1620</li>\r\n<li>8 Go de RAM</li>\r\n', 35, './Projets/2015-2016/3DTR/Abel_Antoine_RV/360Sardines.png', './Projets/2015-2016/3DTR/Abel_Antoine_RV/360BlazeThis.zip', ''),
-(5, 5, 'Leap Motion Test', '2016-03-23', 'Non renseigné', 'Réalité Virtuelle, Gestion des mouvement avec un Leap Motion', '<li>Unity</li>\r\n<li>Leap Motion SDK</li>\r\n', '<li>Leap Motion/li>\r\n<li>GeForce GTX 670</li>\r\n<li>Intel Xeon CPU E5-1620</li>\r\n<li>8 Go de RAM</li>\r\n', 10, './Projets/2015-2016/3DTR/Abel_Antoine_RV/leap.png', './Projets/2015-2016/3DTR/Abel_Antoine_RV/leapMotionTest.zip', ''),
+(5, 5, 'Leap Motion Test', '2016-03-23', 'Non renseigné', 'Réalité Virtuelle, Gestion des mouvement avec un Leap Motion', '<li>Unity</li>\r\n<li>Leap Motion SDK</li>\r\n', '<li>Leap Motion</li>\r\n<li>GeForce GTX 670</li>\r\n<li>Intel Xeon CPU E5-1620</li>\r\n<li>8 Go de RAM</li>\r\n', 10, './Projets/2015-2016/3DTR/Abel_Antoine_RV/leap.png', './Projets/2015-2016/3DTR/Abel_Antoine_RV/leapMotionTest.zip', ''),
 (6, 5, 'Target TP', '2016-03-23', 'Non renseigné', 'Lancé de rayons, Sauvegarde dans le registre,Réalité Virtuelle\r\n', '<li>Unity</li>\r\n<li>Oculus SDK</li>\r\n\r\n', '<li>Oculus Rift</li>\r\n<li>GeForce GTX 670</li>\r\n<li>Intel Xeon CPU E5-1620</li>\r\n<li>8 Go de RAM</li>\r\n', 15, './Projets/2015-2016/3DTR/Abel_Antoine_RV/Oculus.png', './Projets/2015-2016/3DTR/Abel_Antoine_RV/TargetTP.zip', ''),
-(7, 5, 'Leap Motion Shaders', '2016-03-23', 'Application de VJing fonctionnant grâce au Leap Motion et au logiciel ', 'Réalité Virtuelle, Gestion des mouvement avec un Leap Motion', '<li>Unity</li>\r\n<li>Leap Motion SDK</li>\r\n<li>Résolum</li>', '<li>Leap Motion/li>\r\n<li>Contrôleur Midi Korg</li>\r\n<li>GeForce GTX 670</li>\r\n<li>Intel Xeon CPU E5-1620</li>\r\n<li>8 Go de RAM</li>', 50, './Projets/2015-2016/3DTR/Got_Bruno_RV/LeapMotionShaders.jpg', './Projets/2015-2016/3DTR/Got_Bruno_RV/LeapMotionShaders.zip', ''),
-(8, 5, 'VR360', '2016-03-23', 'Non Renseigné', 'Non Renseigné', '<li>Unity</li>\r\n<li>Oculus SDK</li>\r\n<li>360 Panorama Capture</li>', '<li>Oculus Rift/li>\r\n<li>GeForce GTX 670</li>\r\n<li>Intel Xeon CPU E5-1620</li>\r\n<li>8 Go de RAM</li>', 39, './Projets/2015-2016/3DTR/Got_Bruno_RV/LeapMotionShaders.jpg', './Projets/2015-2016/3DTR/Got_Bruno_RV/VR360.zip', ''),
+(7, 5, 'Leap Motion Shaders', '2016-03-23', 'Application de VJing fonctionnant grâce au Leap Motion et au logiciel ', 'Réalité Virtuelle, Gestion des mouvement avec un Leap Motion', '<li>Unity</li>\r\n<li>Leap Motion SDK</li>\r\n<li>Résolum</li>', '<li>Leap Motion</li>\r\n<li>Contrôleur Midi Korg</li>\r\n<li>GeForce GTX 670</li>\r\n<li>Intel Xeon CPU E5-1620</li>\r\n<li>8 Go de RAM</li>', 50, './Projets/2015-2016/3DTR/Got_Bruno_RV/LeapMotionShaders.jpg', './Projets/2015-2016/3DTR/Got_Bruno_RV/LeapMotionShaders.zip', ''),
+(8, 5, 'VR360', '2016-03-23', 'Non Renseigné', 'Non Renseigné', '<li>Unity</li>\r\n<li>Oculus SDK</li>\r\n<li>360 Panorama Capture</li>', '<li>Oculus Rift</li>\r\n<li>GeForce GTX 670</li>\r\n<li>Intel Xeon CPU E5-1620</li>\r\n<li>8 Go de RAM</li>', 39, './Projets/2015-2016/3DTR/Got_Bruno_RV/LeapMotionShaders.jpg', './Projets/2015-2016/3DTR/Got_Bruno_RV/VR360.zip', ''),
 (9, 5, '360Enregistrement', '2016-03-23', 'Enregistrement d''une vidéo 360°', 'Enregistrement d''une vidéo 360°, Réalité virtuel', '<li>Unity</li>\r\n<li>360 Panorama Capture</li>\r\n\r\n', '<li>GeForce GTX 670</li>\r\n<li>Intel Xeon CPU E5-1620</li>\r\n<li>8 Go de RAM</li>\r\n\r\n', 15, './Projets/2015-2016/3DTR/COUTURIER_ETienne_RV/MiniatureEnregistrement.png', './Projets/2015-2016/3DTR/COUTURIER_ETienne_RV/360Enregistrement.zip', ''),
 (10, 5, '360LectureVideo', '2016-03-23', 'Lecteur de vidéo 360*', 'Non renseigner', '<li>Unity</li>', '<li>GeForce GTX 670</li>\r\n<li>Intel Xeon CPU E5-1620</li>\r\n<li>8 Go de RAM</li>', 15, './Projets/2015-2016/3DTR/COUTURIER_ETienne_RV/MiniatureLecture2.png', './Projets/2015-2016/3DTR/COUTURIER_ETienne_RV/360LectureVideo.zip', ''),
 (11, 5, 'Jeu360', '2016-03-23', 'Non renseigner', 'Non renseigner', '<li>Unity</li>', '<li>GeForce GTX 670</li>\r\n<li>Intel Xeon CPU E5-1620</li>\r\n<li>8 Go de RAM</li>', 15, './Projets/2015-2016/3DTR/COUTURIER_ETienne_RV/MiniatureJeu1.png', './Projets/2015-2016/3DTR/COUTURIER_ETienne_RV/Jeu360.zip', ''),
-(12, 5, 'JeuLeapMotion', '2016-03-23', 'Non renseigner', 'Réalité Virtuelle, Gestion des mouvement avec un Leap Motion', '<li>Unity</li>\r\n<li>Leap Motion SDK</li>\r\n\r\n', '<li>Leap Motion/li>\n<li>GeForce GTX 670</li>\n<li>Intel Xeon CPU E5-1620</li>\n<li>8 Go de RAM</li>\n\n', 15, './Projets/2015-2016/3DTR/COUTURIER_ETienne_RV/MiniatureLeapMotion.png', './Projets/2015-2016/3DTR/COUTURIER_ETienne_RV/JeuLeapMotion.zip', ''),
-(13, 5, 'Projet Leap Motion', '2016-03-23', 'Non renseigner', 'Réalité Virtuelle, Gestion des mouvement avec un Leap Motion', '<li>Unity</li>\r\n<li>Leap Motion SDK</li>\r\n', '<li>Leap Motion/li>\r\n<li>GeForce GTX 670</li>\r\n<li>Intel Xeon CPU E5-1620</li>\r\n<li>8 Go de RAM</li>\r\n', 20, './Images/placeholder.png', './Projets/2015-2016/3DTR/Mathieu_Marilly_RV/Projet Leap Motion.zip', '');
+(12, 5, 'JeuLeapMotion', '2016-03-23', 'Non renseigner', 'Réalité Virtuelle, Gestion des mouvement avec un Leap Motion', '<li>Unity</li>\r\n<li>Leap Motion SDK</li>\r\n\r\n', '<li>Leap Motion</li>\r\n<li>GeForce GTX 670</li>\r\n<li>Intel Xeon CPU E5-1620</li>\r\n<li>8 Go de RAM</li>\r\n\r\n', 15, './Projets/2015-2016/3DTR/COUTURIER_ETienne_RV/MiniatureLeapMotion.png', './Projets/2015-2016/3DTR/COUTURIER_ETienne_RV/JeuLeapMotion.zip', ''),
+(13, 5, 'Projet Leap Motion', '2016-03-23', 'Non renseigner', 'Réalité Virtuelle, Gestion des mouvement avec un Leap Motion', '<li>Unity</li>\r\n<li>Leap Motion SDK</li>\r\n', '<li>Leap Motion</li>\r\n<li>GeForce GTX 670</li>\r\n<li>Intel Xeon CPU E5-1620</li>\r\n<li>8 Go de RAM</li>\r\n', 20, './Images/placeholder.png', './Projets/2015-2016/3DTR/Mathieu_Marilly_RV/Projet Leap Motion.zip', ''),
+(14, 5, 'Projet Oculus Disque', '2016-03-24', 'Non renseigné', 'Lancé de rayons, Sauvegarde dans le registre,Réalité Virtuelle', '<li>Unity</li>\r\n<li>Oculus SDK</li>', '<li>Oculus Rift</li>\r\n<li>GeForce GTX 670</li>\r\n<li>Intel Xeon CPU E5-1620</li>\r\n<li>8 Go de RAM</li>\r\n', 15, './Projets/2015-2016/3DTR/Matthieu_Marilly_RV/disque.png', './Projets/2015-2016/3DTR/Matthieu_Marilly_RV/Projet Oculus disque.zip', ''),
+(15, 5, 'Projet Vidéo 360', '2016-03-24', 'Non Renseigner', 'Réalité virtuelle, Enregistrement de vidéos 360°', '<li>Unity</li>\r\n<li>360 Panorama Capture</li>', '<li>GeForce GTX 670</li>\r\n<li>Intel Xeon CPU E5-1620</li>\r\n<li>8 Go de RAM</li>', 20, './Projets/2015-2016/3DTR/Matthieu_Marilly_RV/imgvideo360.png', './Projets/2015-2016/3DTR/Matthieu_Marilly_RV/Projet Video 360.zip', ''),
+(16, 5, '360Video', '2016-03-24', 'Ce projet consiste en deux scènes Unity, l''une étant une visionneuse de vidéos 360° et l''autre étant un terrain avec un lac et des palmiers. Dans cette dernière, il est possible d''enregistrer des vidéàs 360°.', 'Réalité virtuelle, Enregistrement de vidéos 360°', '<li>Unity</li>\r\n<li>360 Panorama Capture</li>', '<li>GeForce GTX 670</li>\r\n<li>Intel Xeon CPU E5-1620</li>\r\n<li>8 Go de RAM</li>', 20, './Images/placeholder.png', './Projets/2015-2016/3DTR/NongWilliam_RV/360Video.zip', ''),
+(17, 5, 'LeapMotion', '2016-03-24', 'Ce projet est un jeu de pong en 3D dans lequel la raquette du joueur suit les mouvements de la main captée par une Leap Motion.', 'Réalité Virtuelle, Gestion des mouvement avec un Leap Motion', '<li>Unity</li>\r\n<li>Leap Motion SDK</li>', '<li>Leap Motion</li>\r\n<li>GeForce GTX 670</li>\r\n<li>Intel Xeon CPU E5-1620</li>\r\n<li>8 Go de RAM</li>\r\n', 20, './Projets/2015-2016/3DTR/NongWilliam_RV/ScreenshotLM.png', './Projets/2015-2016/3DTR/NongWilliam_RV/LeapMotion.zip', ''),
+(18, 5, 'OculusShooter', '2016-03-24', 'Ce projet consiste d''une scène dans laquelle l''utilisateur doit détruire des cibles, pour ce faire, il devra les regarder au travers d''un Oculus Rift.', 'Lancé de rayons, Sauvegarde dans le registre,Réalité Virtuelle', '<li>Unity</li>\r\n<li>Oculus SDK</li>', '<li>Oculus Rift</li>\r\n<li>GeForce GTX 670</li>\r\n<li>Intel Xeon CPU E5-1620</li>\r\n<li>8 Go de RAM</li>\r\n', 20, './Projets/2015-2016/3DTR/NongWilliam_RV/ScreenshotOS.png', './Projets/2015-2016/3DTR/NongWilliam_RV/OculusShooter.zip', ''),
+(19, 5, '360Video', '2016-03-24', 'Ce projet est composé de deux scène Unity : le "viewer" et "l''exporter". <li>Le "viewer" est un utilitaire permettant de visionner une vidéo réalisée à 360°. Cet utilitaire permet de jouer ou de mettre en pause la vidéo avec le clique gauche de la souris, le clique droit, quant à lui, permet de recommencer la vidéo.</li>\r\n<li>"L''exporter" est un utilitaire permettant de céer une vidéo à 360° ou simplement un panorama à 360°. </li>', 'Réalité virtuelle, Enregistrement de vidéos 360°', '<li>Unity</li>\r\n<li>360 Panorama Capture</li>', '<li>GeForce GTX 670</li>\r\n<li>Intel Xeon CPU E5-1620</li>\r\n<li>8 Go de RAM</li>', 25, './Images/placeholder.png', './Projets/2015-2016/3DTR/QuentinPETIT_RV/360Video.zip', ''),
+(20, 5, 'Oculus', '2016-03-24', 'Ce projet est composé d''une scène dans laquelle l''utilisateur doit détruire des cibles, pour ce faire, il devra les regarder au travers d''un Oculus Rift.', 'Lancé de rayons, Sauvegarde dans le registre,Réalité Virtuelle', '<li>Unity</li>\r\n<li>Oculus SDK</li>', '<li>Oculus Rift</li>\r\n<li>GeForce GTX 670</li>\r\n<li>Intel Xeon CPU E5-1620</li>\r\n<li>8 Go de RAM</li>', 25, './Projets/2015-2016/3DTR/QuentinPETIT_RV/GameView.png', './Projets/2015-2016/3DTR/QuentinPETIT_RV/Oculus.zip', ''),
+(21, 5, 'Universal Tournament', '2016-03-24', 'Notre jeu reprend un contexte proche du jeu League of Legend, suite aux Guerres Exarques qui ont ravagés la galaxie, les principales factions encore présente ont décidé de mettre en place un moyen d’éviter les guerres à l’avenir en mettant en place l’Universal Tournament, où chaque belligérant pourra engager des pilotes confirmés pour défendre sa cause. Avec les avancés technologiques qui ont pu être effectué grâce aux conflits, les pilotes peuvent piloter leurs vaisseaux à distance, réduisant ainsi drastiquement les risques corporelles et permettant à l’Universal Tournament d’être reconnu comme sport le plus populaire de la galaxie.', 'Développement en équipe, Intéligence Atrificielle, Shader, Lancer de rayon, Modélisations Low Poly, Réseau, C#, Texturing, UV Mapping, Gestion de projet, Diagramme de Gantt', '<li>Unity</li>\r\n<li>Visual Studio 2015</li>\r\n<li>Blender</li>\r\n<li>3DS Max</li>\r\n<li>Cinema 4D</li>\r\n<li>Photoshop</li>', '<li>Intel Core i7-48000MQ ou équivalent</li>\r\n<li>8Go de RAM</li>\r\n<li>AMD Radeon HD 8790M</li>\r\n<li>Nvidia GTX 760M</li>', 90, './Projets/2015-2016/3DTR/UniversalTournament/Miniature.png', './Projets/UniversalTournament/UniversalTournament.zip', 'http://iutweb-lepuy.u-clermont1.fr/3dtr2016/');
 
 -- --------------------------------------------------------
 
@@ -430,7 +520,7 @@ CREATE TABLE IF NOT EXISTS `projetstoparcours` (
   PRIMARY KEY (`ID_projetstoparcours`),
   KEY `ID_projets` (`ID_projets`),
   KEY `ID_parcours` (`ID_parcours`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `projetstoparcours`
@@ -448,7 +538,16 @@ INSERT INTO `projetstoparcours` (`ID_projetstoparcours`, `ID_projets`, `ID_parco
 (9, 9, 3),
 (10, 10, 3),
 (11, 11, 3),
-(12, 12, 3);
+(12, 12, 3),
+(13, 13, 3),
+(14, 14, 3),
+(15, 15, 3),
+(16, 16, 3),
+(17, 17, 3),
+(18, 18, 3),
+(19, 19, 3),
+(20, 20, 3),
+(21, 21, 3);
 
 -- --------------------------------------------------------
 
