@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.2
+-- version 4.1.14
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 24 Mars 2016 à 14:06
--- Version du serveur :  5.7.9
--- Version de PHP :  5.6.16
+-- Généré le :  Jeu 24 Mars 2016 à 20:40
+-- Version du serveur :  5.6.17
+-- Version de PHP :  5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Base de données :  `site_data`
@@ -30,12 +30,12 @@ USE `site_data`;
 
 DROP TABLE IF EXISTS `actualites`;
 CREATE TABLE IF NOT EXISTS `actualites` (
-  `ID_actualites` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `ID_actualites` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `DateCreation` date NOT NULL,
   `Titre` varchar(80) NOT NULL,
   `Article` varchar(140) NOT NULL,
   PRIMARY KEY (`ID_actualites`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Contenu de la table `actualites`
@@ -53,13 +53,13 @@ INSERT INTO `actualites` (`ID_actualites`, `DateCreation`, `Titre`, `Article`) V
 
 DROP TABLE IF EXISTS `administrateur`;
 CREATE TABLE IF NOT EXISTS `administrateur` (
-  `ID_administrateur` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `ID_administrateur` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `Nom` varchar(20) NOT NULL,
   `Prenom` varchar(20) NOT NULL,
   `UserName` varchar(20) NOT NULL,
   `Password` varchar(10) NOT NULL,
   PRIMARY KEY (`ID_administrateur`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Cette table représente chacun des administrateurs ';
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Cette table représente chacun des administrateurs ' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -69,11 +69,11 @@ CREATE TABLE IF NOT EXISTS `administrateur` (
 
 DROP TABLE IF EXISTS `anneescolaire`;
 CREATE TABLE IF NOT EXISTS `anneescolaire` (
-  `ID_Annee` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `ID_Annee` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `DateDebut` date NOT NULL,
   `DateFin` date NOT NULL,
   PRIMARY KEY (`ID_Annee`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Contenu de la table `anneescolaire`
@@ -90,12 +90,12 @@ INSERT INTO `anneescolaire` (`ID_Annee`, `DateDebut`, `DateFin`) VALUES
 
 DROP TABLE IF EXISTS `data`;
 CREATE TABLE IF NOT EXISTS `data` (
-  `ID_data` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `ID_type` int(11) UNSIGNED NOT NULL,
+  `ID_data` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `ID_type` int(11) unsigned NOT NULL,
   `Lien` varchar(200) NOT NULL,
   PRIMARY KEY (`ID_data`),
   KEY `ID_type` (`ID_type`)
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=66 ;
 
 --
 -- Contenu de la table `data`
@@ -151,7 +151,22 @@ INSERT INTO `data` (`ID_data`, `ID_type`, `Lien`) VALUES
 (47, 1, './Projets/2015-2016/3DTR/UniversalTournament/VaisseauMereMecans.png'),
 (48, 1, './Projets/2015-2016/3DTR/UniversalTournament/VaisseauReparateurAlien.png'),
 (49, 1, './Projets/2015-2016/3DTR/UniversalTournament/VaisseauReparateurHumain.png'),
-(50, 1, './Projets/2015-2016/3DTR/UniversalTournament/VaisseauReparateurMecan.png');
+(50, 1, './Projets/2015-2016/3DTR/UniversalTournament/VaisseauReparateurMecan.png'),
+(51, 1, './Projets/2015-2016/TA/Images Eléa Bouyssou/Baril/Rendu1.jpg'),
+(52, 1, './Projets/2015-2016/TA/Images Eléa Bouyssou/Baril/Rendu2.jpg'),
+(53, 1, './Projets/2015-2016/TA/Images Eléa Bouyssou/Baril/Rendu3.jpg'),
+(54, 1, './Projets/2015-2016/TA/Images Eléa Bouyssou/Boite/Boite.jpg'),
+(55, 1, './Projets/2015-2016/TA/Images Eléa Bouyssou/Citerne/Citerne_Rendu_1.png'),
+(56, 1, './Projets/2015-2016/TA/Images Eléa Bouyssou/Citerne/Citerne_Rendu_2.png'),
+(57, 1, './Projets/2015-2016/TA/Images Eléa Bouyssou/Citerne/Citerne_Rendu_3.png'),
+(58, 1, './Projets/2015-2016/TA/Images Eléa Bouyssou/Space/Space.jpg'),
+(59, 1, './Projets/2015-2016/TA/Images Eléa Bouyssou/Voiture/Voiture.png'),
+(60, 2, './Projets/2015-2016/TA/Images Eléa Bouyssou/Feu_dartifice.mp4\n'),
+(61, 1, './Projets/2015-2016/Archi/Camille/Cliché musée de la mine.jpg'),
+(62, 1, './Projets/2015-2016/Archi/Camille/Cliché musée de la mine 2.jpg'),
+(63, 1, './Projets/2015-2016/Archi/Camille/Cliché musée de la mine 3.jpg'),
+(64, 1, './Projets/2015-2016/Archi/Camille/Cliché musée de la mine 4.jpg'),
+(65, 1, './Projets/2015-2016/Archi/Camille/Cliché musée de la mine 5.jpg');
 
 -- --------------------------------------------------------
 
@@ -161,13 +176,13 @@ INSERT INTO `data` (`ID_data`, `ID_type`, `Lien`) VALUES
 
 DROP TABLE IF EXISTS `datatoprojets`;
 CREATE TABLE IF NOT EXISTS `datatoprojets` (
-  `ID_datatoprojets` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `ID_data` int(11) UNSIGNED NOT NULL,
-  `ID_projets` int(11) UNSIGNED NOT NULL,
+  `ID_datatoprojets` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `ID_data` int(11) unsigned NOT NULL,
+  `ID_projets` int(11) unsigned NOT NULL,
   PRIMARY KEY (`ID_datatoprojets`),
   KEY `ID_data` (`ID_data`),
   KEY `ID_projets` (`ID_projets`)
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=66 ;
 
 --
 -- Contenu de la table `datatoprojets`
@@ -223,7 +238,22 @@ INSERT INTO `datatoprojets` (`ID_datatoprojets`, `ID_data`, `ID_projets`) VALUES
 (47, 47, 21),
 (48, 48, 21),
 (49, 49, 21),
-(50, 50, 21);
+(50, 50, 21),
+(51, 51, 22),
+(52, 52, 22),
+(53, 53, 22),
+(54, 54, 23),
+(55, 55, 24),
+(56, 56, 24),
+(57, 57, 24),
+(58, 58, 25),
+(59, 59, 26),
+(60, 60, 27),
+(61, 61, 29),
+(62, 62, 29),
+(63, 63, 29),
+(64, 64, 29),
+(65, 65, 29);
 
 -- --------------------------------------------------------
 
@@ -233,7 +263,7 @@ INSERT INTO `datatoprojets` (`ID_datatoprojets`, `ID_data`, `ID_projets`) VALUES
 
 DROP TABLE IF EXISTS `eleves`;
 CREATE TABLE IF NOT EXISTS `eleves` (
-  `ID_eleves` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `ID_eleves` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `Nom` varchar(20) NOT NULL,
   `Prenom` varchar(20) NOT NULL,
   `UserName` varchar(20) NOT NULL,
@@ -242,7 +272,7 @@ CREATE TABLE IF NOT EXISTS `eleves` (
   `CV_PDF` tinytext NOT NULL,
   `CV_en_Ligne` tinytext NOT NULL,
   PRIMARY KEY (`ID_eleves`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1 COMMENT='Cette table représente chacun des élèves de la promo. ';
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='Cette table représente chacun des élèves de la promo. ' AUTO_INCREMENT=44 ;
 
 --
 -- Contenu de la table `eleves`
@@ -265,7 +295,20 @@ INSERT INTO `eleves` (`ID_eleves`, `Nom`, `Prenom`, `UserName`, `Password`, `CV_
 (26, 'HUANG', 'Yao Feng', '', '', 1, '', 'http://841163555.wix.com/minimal-designer-por'),
 (27, 'GOUNON', 'Grégory', '', '', 1, '', 'http://gounongregory.wix.com/porfolio'),
 (28, 'COUDERT', 'Florian', '', '', 0, '', ''),
-(29, 'PHILIPPE', 'Benjamin', '', '', 0, '', '');
+(29, 'PHILIPPE', 'Benjamin', '', '', 0, '', ''),
+(30, 'BEAUNE', 'Elodie', '', '', 1, '', 'http://elodie-beaune.wix.com/beaune-elodie'),
+(31, 'ARGAUD', 'Nicolas', '', '', 1, '', 'http://nicolasargaud.wix.com/portfolio'),
+(32, 'WERNERT', 'Romain', '', '', 1, '', 'http://romainwernert.wix.com/romain-wernert'),
+(33, 'MERIGOT', 'Léa', '', '', 1, '', 'leamerigot.wix.com/portfolio'),
+(34, 'DUBOURGNON', 'Alexis', '', '', 0, '', ''),
+(35, 'MORICO', 'Jessica', '', '', 0, '', ''),
+(36, 'CHARRIER', 'Camille', '', '', 0, '', ''),
+(37, 'BERNAUD', 'Jordy', '', '', 0, '', ''),
+(38, 'PRIVAT', 'Gauthier', '', '', 0, '', ''),
+(39, 'DAUSSY', 'Johann', '', '', 0, '', ''),
+(40, 'BITTANTE', 'Roseline', '', '', 0, '', ''),
+(41, 'NOUEL', 'Paul', '', '', 0, '', ''),
+(43, 'CORAL', 'Céline', '', '', 0, '', '');
 
 -- --------------------------------------------------------
 
@@ -275,13 +318,13 @@ INSERT INTO `eleves` (`ID_eleves`, `Nom`, `Prenom`, `UserName`, `Password`, `CV_
 
 DROP TABLE IF EXISTS `elevestoprojet`;
 CREATE TABLE IF NOT EXISTS `elevestoprojet` (
-  `ID_elevestoprojet` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `ID_eleves` int(11) UNSIGNED NOT NULL,
-  `ID_projets` int(11) UNSIGNED NOT NULL,
+  `ID_elevestoprojet` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `ID_eleves` int(11) unsigned NOT NULL,
+  `ID_projets` int(11) unsigned NOT NULL,
   PRIMARY KEY (`ID_elevestoprojet`),
   KEY `ID_eleves` (`ID_eleves`),
   KEY `ID_projets` (`ID_projets`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=36 ;
 
 --
 -- Contenu de la table `elevestoprojet`
@@ -315,7 +358,14 @@ INSERT INTO `elevestoprojet` (`ID_elevestoprojet`, `ID_eleves`, `ID_projets`) VA
 (25, 17, 21),
 (26, 18, 21),
 (27, 19, 21),
-(28, 29, 21);
+(28, 29, 21),
+(29, 20, 22),
+(30, 20, 23),
+(31, 20, 24),
+(32, 20, 25),
+(33, 20, 26),
+(34, 20, 27),
+(35, 36, 29);
 
 -- --------------------------------------------------------
 
@@ -325,12 +375,12 @@ INSERT INTO `elevestoprojet` (`ID_elevestoprojet`, `ID_eleves`, `ID_projets`) VA
 
 DROP TABLE IF EXISTS `entreprises`;
 CREATE TABLE IF NOT EXISTS `entreprises` (
-  `ID_entreprises` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `ID_entreprises` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `Nom` varchar(40) NOT NULL,
   `Lien` varchar(200) NOT NULL,
   `Logo` varchar(80) NOT NULL,
   PRIMARY KEY (`ID_entreprises`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -340,10 +390,10 @@ CREATE TABLE IF NOT EXISTS `entreprises` (
 
 DROP TABLE IF EXISTS `matieres`;
 CREATE TABLE IF NOT EXISTS `matieres` (
-  `ID_matieres` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `ID_matieres` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `Nom` varchar(200) NOT NULL,
   PRIMARY KEY (`ID_matieres`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=32 ;
 
 --
 -- Contenu de la table `matieres`
@@ -380,8 +430,7 @@ INSERT INTO `matieres` (`ID_matieres`, `Nom`) VALUES
 (28, 'Synthèse d''Images sous Lumion'),
 (29, 'Animation Pré-calculée'),
 (30, 'Pipeline'),
-(31, 'Modélisation Grande Échelle'),
-(32, 'Pipeline');
+(31, 'Modélisation Grande Échelle');
 
 -- --------------------------------------------------------
 
@@ -391,13 +440,13 @@ INSERT INTO `matieres` (`ID_matieres`, `Nom`) VALUES
 
 DROP TABLE IF EXISTS `matierestoprojet`;
 CREATE TABLE IF NOT EXISTS `matierestoprojet` (
-  `ID_matierestoprojet` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `ID_projets` int(11) UNSIGNED NOT NULL,
-  `ID_matieres` int(11) UNSIGNED NOT NULL,
+  `ID_matierestoprojet` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `ID_projets` int(11) unsigned NOT NULL,
+  `ID_matieres` int(11) unsigned NOT NULL,
   PRIMARY KEY (`ID_matierestoprojet`),
   KEY `ID_projets` (`ID_projets`),
   KEY `ID_matieres` (`ID_matieres`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
 
 --
 -- Contenu de la table `matierestoprojet`
@@ -424,7 +473,14 @@ INSERT INTO `matierestoprojet` (`ID_matierestoprojet`, `ID_projets`, `ID_matiere
 (18, 18, 8),
 (19, 19, 8),
 (20, 20, 8),
-(21, 21, 2);
+(21, 21, 2),
+(22, 22, 26),
+(23, 23, 13),
+(24, 24, 13),
+(25, 25, 13),
+(26, 26, 19),
+(27, 27, 14),
+(28, 29, 24);
 
 -- --------------------------------------------------------
 
@@ -434,7 +490,7 @@ INSERT INTO `matierestoprojet` (`ID_matierestoprojet`, `ID_projets`, `ID_matiere
 
 DROP TABLE IF EXISTS `parcours`;
 CREATE TABLE IF NOT EXISTS `parcours` (
-  `ID_parcours` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `ID_parcours` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `Nom` varchar(40) NOT NULL,
   `Description` text NOT NULL,
   `Objectifs` text NOT NULL,
@@ -444,7 +500,7 @@ CREATE TABLE IF NOT EXISTS `parcours` (
   `Plaquette` varchar(100) NOT NULL,
   `Couleur` varchar(10) NOT NULL,
   PRIMARY KEY (`ID_parcours`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Contenu de la table `parcours`
@@ -463,8 +519,8 @@ INSERT INTO `parcours` (`ID_parcours`, `Nom`, `Description`, `Objectifs`, `Compe
 
 DROP TABLE IF EXISTS `projets`;
 CREATE TABLE IF NOT EXISTS `projets` (
-  `ID_projets` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `ID_Annee` int(11) UNSIGNED NOT NULL,
+  `ID_projets` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `ID_Annee` int(11) unsigned NOT NULL,
   `Nom` varchar(50) NOT NULL,
   `Date` date NOT NULL,
   `Description` text NOT NULL,
@@ -477,7 +533,7 @@ CREATE TABLE IF NOT EXISTS `projets` (
   `Lien` varchar(200) NOT NULL,
   PRIMARY KEY (`ID_projets`),
   KEY `ID_Annee` (`ID_Annee`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=30 ;
 
 --
 -- Contenu de la table `projets`
@@ -504,7 +560,14 @@ INSERT INTO `projets` (`ID_projets`, `ID_Annee`, `Nom`, `Date`, `Description`, `
 (18, 5, 'OculusShooter', '2016-03-24', 'Ce projet consiste d''une scène dans laquelle l''utilisateur doit détruire des cibles, pour ce faire, il devra les regarder au travers d''un Oculus Rift.', 'Lancé de rayons, Sauvegarde dans le registre,Réalité Virtuelle', '<li>Unity</li>\r\n<li>Oculus SDK</li>', '<li>Oculus Rift</li>\r\n<li>GeForce GTX 670</li>\r\n<li>Intel Xeon CPU E5-1620</li>\r\n<li>8 Go de RAM</li>\r\n', 20, './Projets/2015-2016/3DTR/NongWilliam_RV/ScreenshotOS.png', './Projets/2015-2016/3DTR/NongWilliam_RV/OculusShooter.zip', ''),
 (19, 5, '360Video', '2016-03-24', 'Ce projet est composé de deux scène Unity : le "viewer" et "l''exporter". <li>Le "viewer" est un utilitaire permettant de visionner une vidéo réalisée à 360°. Cet utilitaire permet de jouer ou de mettre en pause la vidéo avec le clique gauche de la souris, le clique droit, quant à lui, permet de recommencer la vidéo.</li>\r\n<li>"L''exporter" est un utilitaire permettant de céer une vidéo à 360° ou simplement un panorama à 360°. </li>', 'Réalité virtuelle, Enregistrement de vidéos 360°', '<li>Unity</li>\r\n<li>360 Panorama Capture</li>', '<li>GeForce GTX 670</li>\r\n<li>Intel Xeon CPU E5-1620</li>\r\n<li>8 Go de RAM</li>', 25, './Images/placeholder.png', './Projets/2015-2016/3DTR/QuentinPETIT_RV/360Video.zip', ''),
 (20, 5, 'Oculus', '2016-03-24', 'Ce projet est composé d''une scène dans laquelle l''utilisateur doit détruire des cibles, pour ce faire, il devra les regarder au travers d''un Oculus Rift.', 'Lancé de rayons, Sauvegarde dans le registre,Réalité Virtuelle', '<li>Unity</li>\r\n<li>Oculus SDK</li>', '<li>Oculus Rift</li>\r\n<li>GeForce GTX 670</li>\r\n<li>Intel Xeon CPU E5-1620</li>\r\n<li>8 Go de RAM</li>', 25, './Projets/2015-2016/3DTR/QuentinPETIT_RV/GameView.png', './Projets/2015-2016/3DTR/QuentinPETIT_RV/Oculus.zip', ''),
-(21, 5, 'Universal Tournament', '2016-03-24', 'Notre jeu reprend un contexte proche du jeu League of Legend, suite aux Guerres Exarques qui ont ravagés la galaxie, les principales factions encore présente ont décidé de mettre en place un moyen d’éviter les guerres à l’avenir en mettant en place l’Universal Tournament, où chaque belligérant pourra engager des pilotes confirmés pour défendre sa cause. Avec les avancés technologiques qui ont pu être effectué grâce aux conflits, les pilotes peuvent piloter leurs vaisseaux à distance, réduisant ainsi drastiquement les risques corporelles et permettant à l’Universal Tournament d’être reconnu comme sport le plus populaire de la galaxie.', 'Développement en équipe, Intéligence Atrificielle, Shader, Lancer de rayon, Modélisations Low Poly, Réseau, C#, Texturing, UV Mapping, Gestion de projet, Diagramme de Gantt', '<li>Unity</li>\r\n<li>Visual Studio 2015</li>\r\n<li>Blender</li>\r\n<li>3DS Max</li>\r\n<li>Cinema 4D</li>\r\n<li>Photoshop</li>', '<li>Intel Core i7-48000MQ ou équivalent</li>\r\n<li>8Go de RAM</li>\r\n<li>AMD Radeon HD 8790M</li>\r\n<li>Nvidia GTX 760M</li>', 90, './Projets/2015-2016/3DTR/UniversalTournament/Miniature.png', './Projets/UniversalTournament/UniversalTournament.zip', 'http://iutweb-lepuy.u-clermont1.fr/3dtr2016/');
+(21, 5, 'Universal Tournament', '2016-03-24', 'Notre jeu reprend un contexte proche du jeu League of Legend, suite aux Guerres Exarques qui ont ravagés la galaxie, les principales factions encore présente ont décidé de mettre en place un moyen d’éviter les guerres à l’avenir en mettant en place l’Universal Tournament, où chaque belligérant pourra engager des pilotes confirmés pour défendre sa cause. Avec les avancés technologiques qui ont pu être effectué grâce aux conflits, les pilotes peuvent piloter leurs vaisseaux à distance, réduisant ainsi drastiquement les risques corporelles et permettant à l’Universal Tournament d’être reconnu comme sport le plus populaire de la galaxie.', 'Développement en équipe, Intéligence Atrificielle, Shader, Lancer de rayon, Modélisations Low Poly, Réseau, C#, Texturing, UV Mapping, Gestion de projet, Diagramme de Gantt', '<li>Unity</li>\r\n<li>Visual Studio 2015</li>\r\n<li>Blender</li>\r\n<li>3DS Max</li>\r\n<li>Cinema 4D</li>\r\n<li>Photoshop</li>', '<li>Intel Core i7-48000MQ ou équivalent</li>\r\n<li>8Go de RAM</li>\r\n<li>AMD Radeon HD 8790M</li>\r\n<li>Nvidia GTX 760M</li>', 90, './Projets/2015-2016/3DTR/UniversalTournament/Miniature.png', './Projets/UniversalTournament/UniversalTournament.zip', 'http://iutweb-lepuy.u-clermont1.fr/3dtr2016/'),
+(22, 5, 'Texturing/Rendu de baril', '2016-03-24', 'Dépliage des UV d''un modélisation déjà faite d''un baril.\r\nCréation et application de la texture/Rendu.\r\nBut : Obtenir une texture rouillée avec quelques reliefs et détails (logo, noirceur sur les bords).', 'UV Mapping, Texturing,Rendu', '<li>Photoshop</li>\r\n<li>ZBrush</li>\r\n<li>3ds Max</li>', '', 50, './Projets/2015-2016/TA/Images Eléa Bouyssou/Baril/Rendu1.jpg', '', ''),
+(23, 5, 'Texturing/Rendu d''une caisse en Bois', '2016-03-24', 'Création d''une texture de boite métalisée sur les bords/Rendu.\r\nBut : Donner du reliefs aux bords et aux planches en diagonale en utilisant seulement les textures créées (Displacement textures).', 'Texturing, Rendu', '<li>Photoshop</li>\r\n<li>3ds Max</li>', '', 55, './Projets/2015-2016/TA/Images Eléa Bouyssou/Boite/Boite.jpg', '', ''),
+(24, 5, 'Citerne', '2016-03-24', 'Dépliage des UV d''un modélisation déjà faite d''une citerne.\r\nCréation et application de la texture/Rendu.\r\nBut : Obtenir une texture rouillée/usée par le temps avec quelques détails (logo, noirceur sur les bords).', 'UV Mapping, Texturing, Rendu', '<li>3ds Max</li>\r\n<li>Photoshop</li>', '', 75, './Projets/2015-2016/TA/Images Eléa Bouyssou/Citerne/Citerne_Rendu_1.png', '', ''),
+(25, 5, 'Space', '2016-03-24', 'Application texture planète sur 3 sphères/Rendu.', 'Rendu', '3ds Max', '', 40, './Projets/2015-2016/TA/Images Eléa Bouyssou/Space/Space.jpg', '', ''),
+(26, 5, 'Voiture', '2016-03-24', 'Modélisation d''une voiture/Rendu', 'Modélisation, Rendu', '3ds Max', '', 80, './Projets/2015-2016/TA/Images Eléa Bouyssou/Voiture/Voiture.png', '', ''),
+(27, 5, 'Feu D''artifice', '2016-03-24', 'Utilisation du système de particules de 3ds Max pour la création d''un feu d''artifice.', 'Modélisation', '3ds Max', '', 30, './Images/placeholder.png', '', ''),
+(29, 5, 'Visite du musée de la mine', '2016-03-24', 'Non Renseigné', 'Photographie', '', '', 50, './Projets/2015-2016/Archi/Camille/Cliché musée de la mine.jpg', '', '');
 
 -- --------------------------------------------------------
 
@@ -514,13 +577,13 @@ INSERT INTO `projets` (`ID_projets`, `ID_Annee`, `Nom`, `Date`, `Description`, `
 
 DROP TABLE IF EXISTS `projetstoparcours`;
 CREATE TABLE IF NOT EXISTS `projetstoparcours` (
-  `ID_projetstoparcours` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `ID_projets` int(10) UNSIGNED NOT NULL,
-  `ID_parcours` int(10) UNSIGNED NOT NULL,
+  `ID_projetstoparcours` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ID_projets` int(10) unsigned NOT NULL,
+  `ID_parcours` int(10) unsigned NOT NULL,
   PRIMARY KEY (`ID_projetstoparcours`),
   KEY `ID_projets` (`ID_projets`),
   KEY `ID_parcours` (`ID_parcours`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
 
 --
 -- Contenu de la table `projetstoparcours`
@@ -547,7 +610,14 @@ INSERT INTO `projetstoparcours` (`ID_projetstoparcours`, `ID_projets`, `ID_parco
 (18, 18, 3),
 (19, 19, 3),
 (20, 20, 3),
-(21, 21, 3);
+(21, 21, 3),
+(22, 22, 2),
+(23, 23, 2),
+(24, 24, 2),
+(25, 25, 2),
+(26, 26, 2),
+(27, 27, 2),
+(28, 29, 1);
 
 -- --------------------------------------------------------
 
@@ -559,10 +629,10 @@ DROP TABLE IF EXISTS `promotions`;
 CREATE TABLE IF NOT EXISTS `promotions` (
   `ID_Promo` int(11) NOT NULL AUTO_INCREMENT,
   `Lien` varchar(200) NOT NULL,
-  `ID_Annee` int(10) UNSIGNED NOT NULL,
+  `ID_Annee` int(10) unsigned NOT NULL,
   PRIMARY KEY (`ID_Promo`),
   KEY `ID_Annee` (`ID_Annee`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Contenu de la table `promotions`
@@ -579,13 +649,13 @@ INSERT INTO `promotions` (`ID_Promo`, `Lien`, `ID_Annee`) VALUES
 
 DROP TABLE IF EXISTS `reseausociaux`;
 CREATE TABLE IF NOT EXISTS `reseausociaux` (
-  `ID_reseausociaux` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `ID_reseausociaux` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `Lien` varchar(200) NOT NULL,
   `NomReseau` varchar(40) NOT NULL,
-  `ID_parcours` int(11) UNSIGNED NOT NULL,
+  `ID_parcours` int(11) unsigned NOT NULL,
   PRIMARY KEY (`ID_reseausociaux`),
   KEY `ID_parcours` (`ID_parcours`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Contenu de la table `reseausociaux`
@@ -607,10 +677,10 @@ INSERT INTO `reseausociaux` (`ID_reseausociaux`, `Lien`, `NomReseau`, `ID_parcou
 
 DROP TABLE IF EXISTS `type`;
 CREATE TABLE IF NOT EXISTS `type` (
-  `ID_type` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `ID_type` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `Type` tinytext NOT NULL,
   PRIMARY KEY (`ID_type`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Contenu de la table `type`
