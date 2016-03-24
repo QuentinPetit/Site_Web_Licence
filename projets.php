@@ -71,8 +71,8 @@
 							}
 							$poids = ($row["Poids"]/100)*5;
 							echo "
-							<div class='picholder col-xs-4 col-sm-3 col-md-2'>
-									<img class='thumbnail' src='".utf8_encode($row["Miniature"])."'>
+							<div class='col-xs-12 col-sm-6 col-md-3 picholder'>
+									<img class='fancypics' src='".utf8_encode($row["Miniature"])."'>
 									<a href='projet.php?projetID=".utf8_encode($row["ID_projets"])."'>
 										<div class='overlay'>
 											<p class='text_box'>".utf8_encode($row["NomProjet"])."</p>
