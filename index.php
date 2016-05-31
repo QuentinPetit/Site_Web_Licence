@@ -22,7 +22,7 @@
 
 	<body>
 		<div class="row parallax1">
-			<div class="actu col-xs-12 col-sm-8 well">
+			<div class="actu col-xs-12 col-sm-8">
 			<h1>Actualités</h1>
 				<?php
 							
@@ -89,7 +89,7 @@
 			</div>
 
 		</div>
-		<div class="row">
+		<div class="row parallax1">
 			<div class="col-xs-12" id="Parcours">
 				<h2>Parcours</h2>
 				<?php 	
@@ -102,14 +102,14 @@
 						while ($row = $result->fetch_assoc()) {
 							if ($right)
 							{
-								echo "<section class='col-xs-12 well' style='background:".utf8_encode($row["Couleur"]).";text-align: right;'> 
+								echo "<section class='col-xs-12' style='text-align: right;'> 
 								<a name='".utf8_encode($row["Nom"])."' href='parcoursDetail.php?parcoursId=".utf8_encode($row["ID_parcours"])."'><h3>".utf8_encode($row["Nom"])."</h3></a>
 								<p>".utf8_encode($row["Description"])."</p>";
 								$right=FALSE;
 							}
 							elseif (!$right)
 							{
-								echo "<section class='col-xs-12 well' style='background:".utf8_encode($row["Couleur"])."'> 
+								echo "<section class='col-xs-12'> 
 								<a name='".utf8_encode($row["Nom"])."' href='parcoursDetail.php?parcoursId=".utf8_encode($row["ID_parcours"])."'><h3>".utf8_encode($row["Nom"])."</h3></a>
 								<p>".utf8_encode($row["Description"])."</p>";
 								$right=TRUE;
