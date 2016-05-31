@@ -1,5 +1,5 @@
 <div>
-	<h1 class="banner">Licence Professionelle Image & Son</h1>
+	<h1 class="banner">Licence Professionelle Système Informatique & Logiciel - Image & Son</h1>
 	<img class= "bannerlogo"src="./Images/logoIUT.jpeg"/>
 	<?php
 

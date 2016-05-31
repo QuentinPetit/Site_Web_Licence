@@ -1,6 +1,6 @@
 html *
 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Oxygen', sans-serif;
 }
 
 #menu, #menu ul{
@@ -256,3 +256,13 @@ color:#000;
   float: left;
 }
 
+.parallax1 {
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-image: url("../Images/paralaxTestBG.jpg");
+}

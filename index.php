@@ -4,7 +4,8 @@
 	<head>
 		<title>Licence Professionnelle Image & Son</title>
 		<meta charset="UTF-8"/>
-		<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="./Ressources/font-awesome-4.5.0/css/font-awesome.min.css">
 		<link type="text/css" rel="stylesheet" href="./CSS/style.css">
 		<link rel="stylesheet" type="text/css" href="./Ressources/owl-carousel/owl.carousel.css">
 		<link rel="stylesheet" type="text/css" href="./Ressources/owl-carousel/owl.theme.css">
@@ -20,7 +21,7 @@
 	</header>
 
 	<body>
-		<div class="row">
+		<div class="row parallax1">
 			<div class="actu col-xs-12 col-sm-8 well">
 			<h1>Actualités</h1>
 				<?php
@@ -85,6 +86,53 @@
 					?> 
 				</div>
 				
+			</div>
+
+		</div>
+		<div class="row">
+			<div class="col-xs-12" id="Parcours">
+				<h2>Parcours</h2>
+				<?php 	
+					include('./PHP/connexion.php');
+
+					$sql = "SELECT * FROM parcours";
+					$result = $conn->query($sql);
+					$right = TRUE;
+					if ($result->num_rows > 0){
+						while ($row = $result->fetch_assoc()) {
+							if ($right)
+							{
+								echo "<section class='col-xs-12 well' style='background:".utf8_encode($row["Couleur"]).";text-align: right;'> 
+								<a name='".utf8_encode($row["Nom"])."' href='parcoursDetail.php?parcoursId=".utf8_encode($row["ID_parcours"])."'><h3>".utf8_encode($row["Nom"])."</h3></a>
+								<p>".utf8_encode($row["Description"])."</p>";
+								$right=FALSE;
+							}
+							elseif (!$right)
+							{
+								echo "<section class='col-xs-12 well' style='background:".utf8_encode($row["Couleur"])."'> 
+								<a name='".utf8_encode($row["Nom"])."' href='parcoursDetail.php?parcoursId=".utf8_encode($row["ID_parcours"])."'><h3>".utf8_encode($row["Nom"])."</h3></a>
+								<p>".utf8_encode($row["Description"])."</p>";
+								$right=TRUE;
+							}
+
+							
+							$sqlreseausociaux = "SELECT * FROM reseausociaux WHERE ID_parcours = ".utf8_encode($row["ID_parcours"]);
+							$resultreseausociaux = $conn->query($sqlreseausociaux);
+							if ($resultreseausociaux->num_rows>0){
+								while ($rowreseausociaux=$resultreseausociaux->fetch_assoc()) {
+									echo "<a class='btn btn-social-icon btn-".utf8_encode($rowreseausociaux["NomReseau"])."' href='".utf8_encode($rowreseausociaux["Lien"])."' target='_blank'><i class='fa fa-".utf8_encode($rowreseausociaux["NomReseau"])."'></i></a>";
+								}
+							}else{
+								echo "0 result";
+							}
+							echo "</section>";
+						}
+					} else {
+						echo "0 results";
+					}
+
+					include('./PHP/deconnexion.php');
+				?>
 			</div>
 		</div>
 	</body>
