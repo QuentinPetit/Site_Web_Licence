@@ -102,30 +102,46 @@
 						while ($row = $result->fetch_assoc()) {
 							if ($right)
 							{
-								echo "<section class='col-xs-12' style='text-align: right;'> 
+								echo "<div class='row'>
+								<section class='col-xs-12 col-sm-4'>
+								</section>
+								<section class='col-xs-12 col-sm-8' style='text-align: right;'> 
 								<a name='".utf8_encode($row["Nom"])."' href='parcoursDetail.php?parcoursId=".utf8_encode($row["ID_parcours"])."'><h3>".utf8_encode($row["Nom"])."</h3></a>
 								<p>".utf8_encode($row["Description"])."</p>";
+								$sqlreseausociaux = "SELECT * FROM reseausociaux WHERE ID_parcours = ".utf8_encode($row["ID_parcours"]);
+								$resultreseausociaux = $conn->query($sqlreseausociaux);
+								if ($resultreseausociaux->num_rows>0){
+									while ($rowreseausociaux=$resultreseausociaux->fetch_assoc()) {
+										echo "<a class='btn btn-social-icon btn-".utf8_encode($rowreseausociaux["NomReseau"])."' href='".utf8_encode($rowreseausociaux["Lien"])."' target='_blank'><i class='fa fa-".utf8_encode($rowreseausociaux["NomReseau"])."'></i></a>";
+									}
+								}else{
+									echo "0 result";
+								}
+								echo "</section>
+								</div>";
 								$right=FALSE;
 							}
 							elseif (!$right)
 							{
-								echo "<section class='col-xs-12'> 
+								echo "<div class='row'>
+								<section class='col-xs-12 col-sm-8' style='text-align: left'> 
 								<a name='".utf8_encode($row["Nom"])."' href='parcoursDetail.php?parcoursId=".utf8_encode($row["ID_parcours"])."'><h3>".utf8_encode($row["Nom"])."</h3></a>
 								<p>".utf8_encode($row["Description"])."</p>";
+								$sqlreseausociaux = "SELECT * FROM reseausociaux WHERE ID_parcours = ".utf8_encode($row["ID_parcours"]);
+								$resultreseausociaux = $conn->query($sqlreseausociaux);
+								if ($resultreseausociaux->num_rows>0){
+									while ($rowreseausociaux=$resultreseausociaux->fetch_assoc()) {
+										echo "<a class='btn btn-social-icon btn-".utf8_encode($rowreseausociaux["NomReseau"])."' href='".utf8_encode($rowreseausociaux["Lien"])."' target='_blank'><i class='fa fa-".utf8_encode($rowreseausociaux["NomReseau"])."'></i></a>";
+									}
+								}else{
+									echo "0 result";
+								}
+								echo "</section>
+								<section class='col-xs-12 col-sm-4'>
+								</section>
+								</div>";
 								$right=TRUE;
 							}
-
-							
-							$sqlreseausociaux = "SELECT * FROM reseausociaux WHERE ID_parcours = ".utf8_encode($row["ID_parcours"]);
-							$resultreseausociaux = $conn->query($sqlreseausociaux);
-							if ($resultreseausociaux->num_rows>0){
-								while ($rowreseausociaux=$resultreseausociaux->fetch_assoc()) {
-									echo "<a class='btn btn-social-icon btn-".utf8_encode($rowreseausociaux["NomReseau"])."' href='".utf8_encode($rowreseausociaux["Lien"])."' target='_blank'><i class='fa fa-".utf8_encode($rowreseausociaux["NomReseau"])."'></i></a>";
-								}
-							}else{
-								echo "0 result";
-							}
-							echo "</section>";
 						}
 					} else {
 						echo "0 results";
