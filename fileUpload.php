@@ -5,7 +5,7 @@
   <meta charset="utf-8">
 </head>
 <body>
-  <<?php include('./PHP/connexion.php'); ?>
+  <?php include('./PHP/connexion.php'); ?>
   <form action="fileUpload.php" method="POST" enctype="multipart/form-data">
     <h1>Ajouter un projet</h1>
     <textarea name="nomProjets" maxlength="50" placeholder="Nom du projet"></textarea>
@@ -13,11 +13,27 @@
     <textarea name="caractéristiques" placeholder="Caractéristiques du projet : toute technique spécifiques au projet (lancer de rayon, shader, modélisation low-poly...)"></textarea>
     <select>
       <option disabled="true">Année Scolaire</option>
-      <<?php  ?>
+      <?php 
+        $sql = "SELECT * FROM anneescolaire ORDER BY DateFin DESC";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+          while ($row = $result->fetch_assoc()) {
+            $EndYears = date("Y", strtotime($row["DateFin"]));
+            $StartYears = date("Y", strtotime($row["DateDebut"]));
+            ?>
+            <option value=<?php $row["ID_Annee"]; ?>> <?php echo $StartYears."-".$EndYears; ?> </option>
+            <?php
+          }
+        } else {
+          echo "0 results";
+        }
+        
+      ?>
     </select>
     <input type="file" name="userfile"><input type="submit" name="submit" value="Ajouter">
   </form>
-  <<?php include('./PHP/deconnexion.php'); ?>
+  <?php include('./PHP/deconnexion.php'); ?>
   <?php
     if (isset($_POST['submit'])) {
       $array = explode(".", $_FILES["userfile"]["name"]);
