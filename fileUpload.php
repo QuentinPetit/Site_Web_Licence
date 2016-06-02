@@ -82,14 +82,14 @@
       $poids=$_POST['poids'];
 
       //Récupération du nom du dossier année scolaire
-      $nomDossier=null;
+      $anneeDossier=null;
       $sql = "SELECT * FROM anneescolaire WHERE ID_Annee=".$anneeScolaireSelect;
       $result = $conn->query($sql);
       if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
           $EndYears = date("Y", strtotime($row["DateFin"]));
           $StartYears = date("Y", strtotime($row["DateDebut"]));
-          $nomDossier = $StartYears."-".$EndYears;
+          $anneeDossier = $StartYears."-".$EndYears;
         }
       } else {
         echo "0 results";
@@ -107,22 +107,20 @@
       {
         $dossierParcours=$parcoursSelect;
       }
-      echo $dossierParcours;
       //Extraction du zip
       $array = explode(".", $_FILES["userfile"]["name"]);
       $fileName = $array[0];
       $fileExtension = strtolower(end($array));
 
       if ($fileExtension == "zip") {
-        if (is_dir("Projets/".$nomDossier."/".$dossierParcours."/".$fileName) == false) {
+        if (is_dir("Projets/".$anneeDossier."/".$dossierParcours."/".$fileName) == false) {
           move_uploaded_file($_FILES["userfile"]["tmp_name"], "tmp/".$_FILES["userfile"]["name"]);
           $zip = new ZipArchive();
           $zip -> open("tmp/".$_FILES["userfile"]["name"]);
-
           for ($num=0; $num < $zip -> numFiles; $num++) { 
             $fileInfo =$zip -> statIndex($num);
             echo "Extract ".$fileInfo["name"]."</br>";
-            $zip -> extractTo("Projets/".$nomDossier."/".$dossierParcours."/".$fileName);
+            $zip -> extractTo("Projets/".$anneeDossier."/".$dossierParcours."/");
           }
           $zip -> close();
           unlink("tmp/".$_FILES["userfile"]["name"]);
