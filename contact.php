@@ -46,11 +46,12 @@
 	<head>
 		<title>Licence Professionnelle Image & Son</title>
 			<meta charset="UTF-8"/>
-			<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+			<link href='https://fonts.googleapis.com/css?family=Open+Sans|Nunito' rel='stylesheet' type='text/css'>
+			<link rel="stylesheet" type="text/css" href="./Ressources/BootstrapCustom/css/bootstrap.min.css">
 			<link type="text/css" rel="stylesheet" href="./CSS/style.css">
-			<link rel="stylesheet" type="text/css" href="./Ressources/bootstrap-3.3.6-dist/css/bootstrap.min.css">
 			<script type="text/javascript" src="./Ressources/owl-carousel/jquery-1.9.1.min.js"></script>
-			<script type="text/javascript" src="./Ressources/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+			<script type="text/javascript" src="./Ressources/bootstrapCustom/js/bootstrap.min.js"></script>
+			<link type="text/css" rel="stylesheet" href="./CSS/customNavbar.css">
 	</head>
 	<header>
 		<?php include('./PHP/header.php') ?>
