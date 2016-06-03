@@ -6,6 +6,8 @@
 		<link href='https://fonts.googleapis.com/css?family=Open+Sans|Nunito' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" type="text/css" href="./Ressources/BootstrapCustom/css/bootstrap.min.css">
 		<link type="text/css" rel="stylesheet" href="./CSS/style.css">
+		<link rel="stylesheet" type="text/css" href="./CSS/style.php?background=<?php echo $_GET['parcoursId']; ?>" >
+		
 		<link type="text/css" rel="stylesheet" href="./CSS/customNavbar.css">
 		<script type="text/javascript" src="./Ressources/owl-carousel/jquery-1.9.1.min.js"></script>
 		<script type="text/javascript" src="./Ressources/bootstrapCustom/js/bootstrap.min.js"></script>
@@ -14,8 +16,8 @@
 		<?php include('./PHP/header.php') ?>
 	</header>
 	<body>
-		<div class="row">
-			<div class="col-xs-12 well">
+		<div class="container-fluid">
+			<div class="col-xs-12 parallax2">
 				<?php
 
 					include('./PHP/connexion.php');
@@ -27,25 +29,25 @@
 						while ($row = $result->fetch_assoc()) {
 							echo "<h1>".utf8_encode($row["Nom"])."</h1>";
 							echo "
-								<article>
+								<div class='row grayBackground'>
 									<h2>Objectifs</h2>
 									<p>".utf8_encode($row["Objectifs"])."</p>
-								</article>";
+								</div>";
 							echo "
-								<article>
+								<div class='row grayBackground'>
 									<h2>Compétences visées</h2>
 									<p>".utf8_encode($row["Competences"])."</p>
-								</article>";
+								</div>";
 							echo "
-								<article>
+								<div class='row grayBackground'>
 									<h2>Logiciels utilisés</h2>
 									<p>".utf8_encode($row["Logiciels"])."</p>
-								</article>";
+								</div>";
 							echo "
-								<article>
+								<div class='row grayBackground'>
 									<h2>Admissions</h2>
 									<p>".utf8_encode($row["Admission"])."</p>
-								</article>";
+								</div>";
 						}
 					} else {
 						echo "0 results";

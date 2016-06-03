@@ -109,7 +109,8 @@
 								</section>
 								<section class='col-xs-12 col-sm-6' style='text-align: right;'> 
 								<a name='".utf8_encode($row["Nom"])."' href='parcoursDetail.php?parcoursId=".utf8_encode($row["ID_parcours"])."'><h3>".utf8_encode($row["Nom"])."</h3></a>
-								<p>".utf8_encode($row["Description"])."</p>";
+								<p>".utf8_encode($row["Description"])."</p>
+								<a class='btn btn-default' href=".utf8_encode($row["Plaquette"])." target='_blank'>Télécharger la plaquette</a>";
 								$sqlreseausociaux = "SELECT * FROM reseausociaux WHERE ID_parcours = ".utf8_encode($row["ID_parcours"]);
 								$resultreseausociaux = $conn->query($sqlreseausociaux);
 								if ($resultreseausociaux->num_rows>0){
@@ -128,7 +129,8 @@
 								echo "<div class='row grayBackground'>
 								<section class='col-xs-12 col-sm-6' style='text-align: left'> 
 								<a name='".utf8_encode($row["Nom"])."' href='parcoursDetail.php?parcoursId=".utf8_encode($row["ID_parcours"])."'><h3>".utf8_encode($row["Nom"])."</h3></a>
-								<p>".utf8_encode($row["Description"])."</p>";
+								<p>".utf8_encode($row["Description"])."</p>
+								<a class='btn btn-default' href=".utf8_encode($row["Plaquette"])." target='_blank'>Télécharger la plaquette</a>";
 								$sqlreseausociaux = "SELECT * FROM reseausociaux WHERE ID_parcours = ".utf8_encode($row["ID_parcours"]);
 								$resultreseausociaux = $conn->query($sqlreseausociaux);
 								if ($resultreseausociaux->num_rows>0){
