@@ -178,30 +178,27 @@ color:#000;
     margin-top: 0; // remove the gap so it doesn't close
  }
 
-.picholder:hover .overlay{opacity:1;}
-.picholder:hover .fancypics{opacity:0.7;}
 
-.picholder{
-  width: 20%;
-  overflow: hidden;
+.img-overlay {
   position: relative;
-  height: 200px;
-  padding: 0;
 }
 
-.overlay {
-  bottom: 0;left: 0; top: 0; right: 0;
-  position: absolute;
-  background-color:rgba(255,255,255,0.5);
-  opacity:0;
-}
-
-.fancypics{
-  height: 200px;
+.project-overlay {
+  position :absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  position:absolute;
-  display: block;
-};
+  height: 100%;
+  background-color: rgba(128,128,128,0.7);
+  color: black;
+  padding: 2%;
+  opacity: 0;
+}
+
+.project-overlay:hover {
+  opacity:1;
+}
+
 
 .pictureresize{
   width: 100%;
@@ -210,14 +207,6 @@ color:#000;
   display:block;
 }
 
-.text_box{
-  color:#5f5f5f;
-  weight:bold;
-  font-size:2vw;
-  padding-top: 10%;
-  opacity:1;
-  margin:5px;
-}
 
 .star-rating {
   vertical-align: bottom;

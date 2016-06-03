@@ -4,38 +4,32 @@
 		$name = $_POST['name'];
 		$email = $_POST['email'];
 		$message = $_POST['message'];
-		$human = intval($_POST['human']);
-		$from = 'Demo Contact Form'; 
+		$from = 'Demande de contact site web'; 
 		$to = 'quentin43@sfr.fr'; 
-		$subject = 'Message from your website ';
-		$errName;$errEmail;$errMessage;$errHuman;
+		$subject = 'Message venant de votre site ';
+		$errName;$errEmail;$errMessage;
 		$body = "From: $name\n E-Mail: $email\n Message:\n $message";
 
 		// Check if name has been entered
 		if (!$_POST['name']) {
-			$errName = 'Please enter your name';
+			$errName = 'Veuillez saisir votre nom';
 		}
 
 		// Check if email has been entered and is valid
 		if (!$_POST['email'] || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-			$errEmail = 'Please enter a valid email address';
+			$errEmail = 'Veuillez entrer une adresse email valide';
 		}
-
 		//Check if message has been entered
 		if (!$_POST['message']) {
-			$errMessage = 'Please enter your message';
+			$errMessage = 'Veuillez saisir votre message';
 		}
-		//Check if simple anti-bot test is correct
-		if ($human !== 5) {
-			$errHuman = 'Your anti-spam is incorrect';
-		}
-		echo $errName+" "+$errEmail+" "+$errMessage+" "+$errHuman;
+		echo $errName+" "+$errEmail+" "+$errMessage;
 		// If there are no errors, send the email
-		if (!$errName && !$errEmail && !$errMessage && !$errHuman) {
+		if (!$errName && !$errEmail && !$errMessage) {
 			if (mail ($to, $subject, $body, $from)) {
-				$result='<div class="alert alert-success">Thank You! I will be in touch</div>';
+				$result='<div class="alert alert-success">Votre demande a bien &eacutet&eacute envoy&eacutee</div>';
 			} else {
-				$result='<div class="alert alert-danger">Sorry there was an error sending your message. Please try again later</div>';
+				$result='<div class="alert alert-danger">D&eacutesol&eacutes, nous n\'avons pas pû faire parvenir votre message, veuillez essayer plus tard, s\'il vous plaît</div>';
 			}
 		}
 	}
@@ -62,16 +56,16 @@
 
 				<form class="form-horizontal" role="form" method="post" action="contact.php">
 					<div class="form-group">
-						<label for="name" class="col-sm-2 control-label">Name</label>
+						<label for="name" class="col-sm-2 control-label">Nom</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="name" name="name" placeholder="First & Last Name" value="<?php echo htmlspecialchars($_POST['name']); ?>">
+							<input type="text" class="form-control" id="name" name="name" placeholder="Nom & Pr&eacutenom" value="<?php echo htmlspecialchars($_POST['name']); ?>">
 							<?php echo "<p class='text-danger'>$errName</p>";?>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="email" class="col-sm-2 control-label">Email</label>
 						<div class="col-sm-10">
-							<input type="email" class="form-control" id="email" name="email" placeholder="example@domain.com" value="<?php echo htmlspecialchars($_POST['email']); ?>">
+							<input type="email" class="form-control" id="email" name="email" placeholder="dupontjean@gmail.com" value="<?php echo htmlspecialchars($_POST['email']); ?>">
 							<?php echo "<p class='text-danger'>$errEmail</p>";?>
 						</div>
 					</div>
@@ -83,15 +77,8 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="human" class="col-sm-2 control-label">2 + 3 = ?</label>
-						<div class="col-sm-10">
-							<input type="text" class="form-control" id="human" name="human" placeholder="Your Answer">
-							<?php echo "<p class='text-danger'>$errHuman</p>";?>
-						</div>
-					</div>
-					<div class="form-group">
 						<div class="col-sm-10 col-sm-offset-2">
-							<input id="submit" name="submit" type="submit" value="Send" class="btn btn-primary">
+							<input id="submit" name="submit" type="submit" value="Envoyer" class="btn btn-danger">
 						</div>
 					</div>
 					<div class="form-group">

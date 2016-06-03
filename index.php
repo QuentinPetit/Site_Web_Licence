@@ -104,10 +104,10 @@
 							if ($right)
 							{
 								echo "<div class='row grayBackground'>
-								<section class='col-xs-12 col-sm-6'>
+								<section class='hidden-xs hidden-sm col-md-6'>
 								<img src='".utf8_encode($row["Mascotte"])."' class='img-responsive mascot'>
 								</section>
-								<section class='col-xs-12 col-sm-6' style='text-align: right;'> 
+								<section class='col-xs-12 col-md-6' style='text-align: right;'> 
 								<a name='".utf8_encode($row["Nom"])."' href='parcoursDetail.php?parcoursId=".utf8_encode($row["ID_parcours"])."'><h3>".utf8_encode($row["Nom"])."</h3></a>
 								<p>".utf8_encode($row["Description"])."</p>
 								<a class='btn btn-default' href=".utf8_encode($row["Plaquette"])." target='_blank'>Télécharger la plaquette</a>";
@@ -127,7 +127,7 @@
 							elseif (!$right)
 							{
 								echo "<div class='row grayBackground'>
-								<section class='col-xs-12 col-sm-6' style='text-align: left'> 
+								<section class='col-xs-12 col-md-6' style='text-align: left'> 
 								<a name='".utf8_encode($row["Nom"])."' href='parcoursDetail.php?parcoursId=".utf8_encode($row["ID_parcours"])."'><h3>".utf8_encode($row["Nom"])."</h3></a>
 								<p>".utf8_encode($row["Description"])."</p>
 								<a class='btn btn-default' href=".utf8_encode($row["Plaquette"])." target='_blank'>Télécharger la plaquette</a>";
@@ -141,7 +141,7 @@
 									echo "0 result";
 								}
 								echo "</section>
-								<section class='col-xs-12 col-sm-6'>
+								<section class='hidden-xs hidden-sm col-md-6'>
 								<img src='".utf8_encode($row["Mascotte"])."' class='img-responsive mascot''>
 								</section>
 								</div>";

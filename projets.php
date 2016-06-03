@@ -9,6 +9,7 @@
 		<link rel="stylesheet" href="./Ressources/bootstrap-rating-master/bootstrap-rating.css">
 		<link type="text/css" rel="stylesheet" href="./CSS/style.css">
 		<link type="text/css" rel="stylesheet" href="./CSS/customNavbar.css">
+		<link rel="stylesheet" type="text/css" href="./CSS/style.php?background=<?php echo $_GET['parcoursId']; ?>" >
 		<script type="text/javascript" src="./Ressources/owl-carousel/jquery-1.9.1.min.js"></script>
 		<script type="text/javascript" src="./Ressources/bootstrapCustom/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="./Ressources/bootstrap-rating-master/bootstrap-rating.js"></script>
@@ -17,7 +18,7 @@
 		<?php include('./PHP/header.php') ?>
 	</header>
 	<body>
-		<div class="row">
+		<div class="container-fluid parallax2">
 			
 				<?php
 
@@ -27,7 +28,7 @@
 					$init=false;
 					include('./PHP/connexion.php');
 
-					$sql="SELECT projets.Nom AS NomProjet, matieres.Nom AS NomMatiere, anneescolaire.DateFin, anneescolaire.DateDebut, projets.Miniature, projets.Poids, projets.ID_projets, Couleur FROM projets, matierestoprojet, matieres, anneescolaire, projetstoparcours, parcours WHERE projets.ID_Annee = anneescolaire.ID_Annee 
+					$sql="SELECT projets.Nom AS NomProjet, matieres.Nom AS NomMatiere, anneescolaire.DateFin, anneescolaire.DateDebut, projets.Miniature, projets.Poids, projets.ID_projets FROM projets, matierestoprojet, matieres, anneescolaire, projetstoparcours, parcours WHERE projets.ID_Annee = anneescolaire.ID_Annee 
 						AND projets.ID_projets = matierestoprojet.ID_projets
 						AND matieres.ID_matieres = matierestoprojet.ID_matieres
 						AND projets.ID_projets = projetstoparcours.ID_projets
@@ -39,7 +40,7 @@
 						$firstrow = $result->fetch_assoc();
 						$result->data_seek(0);
 					echo"<div class='col-xs-12'>";						
-						echo"<section class='col-xs-12 well' style='background:".utf8_encode($firstrow["Couleur"])."'>";
+						echo"<section class='col-xs-12'>";
 						while ($row = $result->fetch_assoc()) {
 							if ($init==false) {
 								$EndYears = date("Y", strtotime($row["DateFin"]));
@@ -56,7 +57,7 @@
 								$EndYears = date("Y", strtotime($row["DateFin"]));
 								echo "</section>";
 								echo "</section>";
-								echo"<section class='col-xs-12 well' style='background:".utf8_encode($row["Couleur"])."'>";
+								echo"<section class='col-xs-12'>";
 								echo "<h1>".$StartYears."-".$EndYears."</h1>";
 								echo "<section class='col-xs-12 container-fluid'>";
 								echo "<h2>".utf8_encode($row["NomMatiere"])."</h2>";
@@ -72,14 +73,17 @@
 							}
 							$poids = ($row["Poids"]/100)*5;
 							echo "
-							<div class='col-xs-12 col-sm-6 col-md-3 picholder'>
-									<img class='fancypics' src='".utf8_encode($row["Miniature"])."'>
-									<a href='projet.php?projetID=".utf8_encode($row["ID_projets"])."'>
-										<div class='overlay'>
-											<p class='text_box'>".utf8_encode($row["NomProjet"])."</p>
-											<div class='star-rating'><input id='inner-rating' type='hidden' class='rating' data-readonly value='".$poids."'></div>
+							<div class='col-xs-12 col-sm-6 col-md-3'>
+								<a href='projet.php?projetID=".utf8_encode($row["ID_projets"])."'>
+									<div class='img-overlay'>
+										<img class='img-responsive' src='".utf8_encode($row["Miniature"])."'>
+										<div class='project-overlay'>
+											<p>".utf8_encode($row["NomProjet"])."</p>
+											<div class='star-rating'><input id='inner-rating' type='hidden' class='rating' data-readonly value='".$poids."'>
+											</div>
 										</div>
-									</a>
+									</div>
+								</a>
 							</div>";							
 							
 						} echo "</section>";
