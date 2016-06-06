@@ -283,3 +283,7 @@ img.mascot {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+#contactContainer {
+  padding-top: 15px;
+}

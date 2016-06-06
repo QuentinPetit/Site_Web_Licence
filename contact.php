@@ -45,20 +45,51 @@
 			<link type="text/css" rel="stylesheet" href="./CSS/style.css">
 			<script type="text/javascript" src="./Ressources/owl-carousel/jquery-1.9.1.min.js"></script>
 			<script type="text/javascript" src="./Ressources/bootstrapCustom/js/bootstrap.min.js"></script>
+			<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBLXxfXzOpl5sEZIm_0w58AbupLMYtSAPU"></script>
+			<script>
+				var myCenter=new google.maps.LatLng(45.0401016,3.8806784);
+				var marker;
+				function initialize() {
+					var mapProp = {
+						center:myCenter,
+						zoom:13,
+						mapTypeId:google.maps.MapTypeId.HYBRID
+					};
+					var map=new google.maps.Map(document.getElementById("googleMap"), mapProp);
+					var marker=new google.maps.Marker({
+						position:myCenter,
+						animation:google.maps.Animation.DROP
+					});
+
+					marker.setMap(map);
+				}
+				google.maps.event.addDomListener(window, 'load', initialize);
+			</script>
 			<link type="text/css" rel="stylesheet" href="./CSS/customNavbar.css">
 	</head>
 	<header>
 		<?php include('./PHP/header.php') ?>
 	</header>
 	<body>
-		<div class="row">
-			<div class="col-xs-12 well">
+		<div class="container-fluid" id="contactContainer">
+			<div class="col-xs-12 col-md-4">
+				<p>Coordonées secrétariat :</p>
+				<ul>
+					<li>Adresse : 3-5, rue Lashermes - CS 10219, 43006, Le Puy En Velay Cedex</li>
+					<li>Téléphone : 04 71 09 90 88</li>
+					<li>Fax : 04 71 09 90 78</li>
+					<li>Email : laura.fournel@udamail.fr</li>
+				</ul>
+				<div id="googleMap" style="width: 450px;height: 350px;"></div>
+			</div>
+
+			<div class="col-xs-12 col-md-8">
 
 				<form class="form-horizontal" role="form" method="post" action="contact.php">
 					<div class="form-group">
 						<label for="name" class="col-sm-2 control-label">Nom</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="name" name="name" placeholder="Nom & Pr&eacutenom" value="<?php echo htmlspecialchars($_POST['name']); ?>">
+							<input type="text" class="form-control" id="name" name="name" placeholder="Nom & Pr\&eacutenom" value="<?php echo htmlspecialchars($_POST['name']); ?>">
 							<?php echo "<p class='text-danger'>$errName</p>";?>
 						</div>
 					</div>
