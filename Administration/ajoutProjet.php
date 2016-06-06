@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Unzip file Upload test</title>
+  <title>Ajout de projet</title>
   <meta charset="utf-8">
 </head>
 <body>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Ven 03 Juin 2016 à 14:58
+-- Généré le :  Lun 06 Juin 2016 à 15:55
 -- Version du serveur :  5.7.11
 -- Version de PHP :  5.6.19
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `site_data`
 --
+CREATE DATABASE IF NOT EXISTS `site_data` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `site_data`;
 
 -- --------------------------------------------------------
 
@@ -54,6 +56,13 @@ CREATE TABLE `administrateur` (
   `UserName` varchar(20) NOT NULL,
   `Password` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Cette table représente chacun des administrateurs ';
+
+--
+-- Contenu de la table `administrateur`
+--
+
+INSERT INTO `administrateur` (`ID_administrateur`, `Nom`, `Prenom`, `UserName`, `Password`) VALUES
+(1, 'Monsieur', 'Patate', 'potato', 'puree');
 
 -- --------------------------------------------------------
 
@@ -252,9 +261,9 @@ CREATE TABLE `eleves` (
   `Prenom` varchar(20) NOT NULL,
   `UserName` varchar(20) NOT NULL,
   `Password` varchar(10) NOT NULL,
-  `CV_visibility` tinyint(1) NOT NULL,
-  `CV_PDF` tinytext NOT NULL,
-  `CV_en_Ligne` tinytext NOT NULL
+  `CV_visibility` tinyint(1) NOT NULL DEFAULT '0',
+  `CV_PDF` tinytext,
+  `CV_en_Ligne` tinytext
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Cette table représente chacun des élèves de la promo. ';
 
 --
@@ -263,7 +272,7 @@ CREATE TABLE `eleves` (
 
 INSERT INTO `eleves` (`ID_eleves`, `Nom`, `Prenom`, `UserName`, `Password`, `CV_visibility`, `CV_PDF`, `CV_en_Ligne`) VALUES
 (13, 'PETIT', 'Quentin', '', '', 1, '', 'http://quentinpetit.alwaysdata.net/'),
-(14, 'NONG', 'William', '', '', 1, '', 'https://fr.linkedin.com/in/william-nong-2b2b84a4'),
+(14, 'NONG', 'William', 'user', '1234', 1, '', 'https://fr.linkedin.com/in/william-nong-2b2b84a4'),
 (15, 'GOT', 'Bruno', '', '', 1, '', 'http://www.bruno-got.net/'),
 (16, 'ABEL', 'Antoine', '', '', 1, '', 'http://antoien.wix.com/antoineabelcv'),
 (17, 'COUTURIER', 'Étienne', '', '', 1, '', 'http://www.couturieretienne.fr/'),
@@ -291,7 +300,8 @@ INSERT INTO `eleves` (`ID_eleves`, `Nom`, `Prenom`, `UserName`, `Password`, `CV_
 (39, 'DAUSSY', 'Johann', '', '', 0, '', ''),
 (40, 'BITTANTE', 'Roseline', '', '', 0, '', ''),
 (41, 'NOUEL', 'Paul', '', '', 0, '', ''),
-(43, 'CORAL', 'Céline', '', '', 0, '', '');
+(43, 'CORAL', 'Céline', '', '', 0, '', ''),
+(47, 'Aigre', 'Doux', 'Sauce', 'chinois', 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -773,7 +783,7 @@ ALTER TABLE `actualites`
 -- AUTO_INCREMENT pour la table `administrateur`
 --
 ALTER TABLE `administrateur`
-  MODIFY `ID_administrateur` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_administrateur` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT pour la table `anneescolaire`
 --
@@ -793,7 +803,7 @@ ALTER TABLE `datatoprojets`
 -- AUTO_INCREMENT pour la table `eleves`
 --
 ALTER TABLE `eleves`
-  MODIFY `ID_eleves` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `ID_eleves` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 --
 -- AUTO_INCREMENT pour la table `elevestoprojet`
 --
