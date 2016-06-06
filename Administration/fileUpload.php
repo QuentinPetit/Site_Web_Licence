@@ -5,7 +5,7 @@
   <meta charset="utf-8">
 </head>
 <body>
-  <?php include('./PHP/connexion.php'); ?>
+  <?php include('../PHP/connexion.php'); ?>
   <form action="fileUpload.php" method="POST" enctype="multipart/form-data">
     <h1>Ajouter un projet</h1>
     <textarea name="nomProjets" maxlength="50" placeholder="Nom du projet"></textarea>
@@ -113,17 +113,17 @@
       $fileExtension = strtolower(end($array));
 
       if ($fileExtension == "zip") {
-        if (is_dir("Projets/".$anneeDossier."/".$dossierParcours."/".$fileName) == false) {
-          move_uploaded_file($_FILES["userfile"]["tmp_name"], "tmp/".$_FILES["userfile"]["name"]);
+        if (is_dir("../Projets/".$anneeDossier."/".$dossierParcours."/".$fileName) == false) {
+          move_uploaded_file($_FILES["userfile"]["tmp_name"], "../tmp/".$_FILES["userfile"]["name"]);
           $zip = new ZipArchive();
-          $zip -> open("tmp/".$_FILES["userfile"]["name"]);
+          $zip -> open("../tmp/".$_FILES["userfile"]["name"]);
           for ($num=0; $num < $zip -> numFiles; $num++) { 
             $fileInfo =$zip -> statIndex($num);
             echo "Extract ".$fileInfo["name"]."</br>";
-            $zip -> extractTo("Projets/".$anneeDossier."/".$dossierParcours."/");
+            $zip -> extractTo("../Projets/".$anneeDossier."/".$dossierParcours."/");
           }
           $zip -> close();
-          unlink("tmp/".$_FILES["userfile"]["name"]);
+          unlink("../tmp/".$_FILES["userfile"]["name"]);
         } else {
           echo $fileName."was already unzipped";
         }
@@ -133,6 +133,6 @@
       
     }
   ?>
-  <?php include('./PHP/deconnexion.php'); ?>
+  <?php include('../PHP/deconnexion.php'); ?>
 </body>
 </html>
