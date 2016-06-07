@@ -34,9 +34,8 @@
 						while ($row = $result->fetch_assoc()) {
 							echo "<h1>".utf8_encode($row["Nom"])."</h1>";
 
-							$sqldata = "SELECT projets.ID_projets, data.Lien, type.Type FROM projets, data, datatoprojets, type 
-							WHERE projets.ID_projets = datatoprojets.ID_projets 
-							AND data.ID_data = datatoprojets.ID_data
+							$sqldata = "SELECT projets.ID_projets, data.Lien, type.Type FROM projets, data, type 
+							WHERE projets.ID_projets = data.ID_projets 
 							AND type.ID_type = data.ID_type
 							AND projets.ID_projets = '".$projetID."'ORDER BY type.Type DESC";
 							$resultdata = $conn->query($sqldata);
