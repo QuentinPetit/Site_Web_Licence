@@ -17,7 +17,5 @@
 	<?php include('../PHP/navbarAdmin.php') ?>
 </header>
 <body>
-	<h1>Bienvenue, <?php echo $user_statut.", ".$user_ID.", ".$user_login; ?> </h1>
-	<h2><a href = "logout.php">Sign Out</a></h2>
 </body>
 </html>

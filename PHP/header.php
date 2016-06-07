@@ -42,7 +42,7 @@
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="index.php">Accueil</a></li>
 				<li class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="parcours.html">Projets</a>
+					<a class="dropdown-toggle" data-toggle="dropdown" href="">Projets</a>
 					<ul class="dropdown-menu">
 						<?php
 							
