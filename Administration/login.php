@@ -115,10 +115,10 @@
 							<div class="col-lg-12">
 								<form id="login-form" action="" method="post" role="form" style="display: block;">
 									<div class="form-group">
-										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" maxlength="20">
 									</div>
 									<div class="form-group">
-										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" maxlength="10">
 									</div>
 									<div class="form-group">
 										<div class="row">
@@ -143,19 +143,19 @@
 								
 								<form id="register-form" action="" method="post" role="form" style="display: none;">
 									<div class="form-group">
-										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" maxlength="20">
 									</div>
 									<div class="form-group">
-										<input type="text" name="name" id="name" tabindex="1" class="form-control" placeholder="Nom" maxlength="20" value="">
+										<input type="text" name="name" id="name" tabindex="1" class="form-control" placeholder="Nom" maxlength="20">
 									</div>
 									<div class="form-group">
-										<input type="text" name="firstName" id="firstName" tabindex="1" class="form-control" placeholder="Prénom" maxlength="20" value="">
+										<input type="text" name="firstName" id="firstName" tabindex="1" class="form-control" placeholder="Prénom" maxlength="20">
 									</div>
 									<div class="form-group">
-										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" maxlength="10">
 									</div>
 									<div class="form-group">
-										<input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
+										<input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password" maxlength="10">
 									</div>
 									<div class="form-group">
 										<div class="row">
