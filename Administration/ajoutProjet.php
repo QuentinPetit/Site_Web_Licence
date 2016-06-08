@@ -173,8 +173,7 @@
 		      $anneeScolaireSelect=$_POST['anneeScolaireSelect'];
 		      $parcoursSelect=$_POST['parcoursSelect'];
 		      $participantsSelect=$_POST['participantsSelect'];
-		    	$matiereSelect=$_POST['matiereSelect'];
-		      
+		      $matiereSelect=$_POST['matiereSelect'];
 		      $software=$_POST['software'];
 		      $hardware=$_POST['hardware'];
 		      //$poids=$_POST['poids'];
@@ -228,12 +227,6 @@
 		          			$projectFile="./Projets/".$anneeDossier."/".$dossierParcours."/". $zip -> getNameIndex($num);
 		          		}
 		          	}
-
-		          	//print_r($arrayTmp);
-		          	//echo "</br> File name ". $zip -> getNameIndex($num) ."</br>";
-		            //$fileInfo =$zip -> statIndex($num);
-		            //echo "Extract ".$fileInfo["name"]."</br>";
-		            //echo "File name ". $zip -> getNameIndex($num) ."</br>";
 		            $zip -> extractTo("../Projets/".$anneeDossier."/".$dossierParcours."/");
 		          }
 		          $zip -> close();
@@ -259,7 +252,54 @@
 		      }
 
 		      $miniature="./Projets/".$anneeDossier."/".$dossierParcours."/".$fileName."/miniature.jpg";
-		      $sql="INSERT INTO projet (ID_Annee, Nom, Date, Description, Caracteristique, Logiciel, Materiel, Poids, Miniature, Fichier_Projet, Lien) VALUES ('".$anneeScolaireSelect."', '".$nomProjets."', '".date('Y-m-d')."', '".$description."', '".$caracteristiques."', '".$software."', '".$hardware."', '".$poids."', '".$miniature."', '".$projectFile."', '".$site."');";
+		      $sql="INSERT INTO projets (ID_Annee, Nom, Date, Description, Caracteristique, Logiciel, Materiel, Poids, Miniature, Fichier_Projet, Lien) VALUES ('".$anneeScolaireSelect."', '".$nomProjets."', NOW(), '".$description."', '".$caracteristiques."', '".$software."', '".$hardware."', '".$poids."', '".$miniature."', '".$projectFile."', '".$site."');";
+		      $conn->query($sql);
+
+		      $sqlLastProject="SELECT * FROM projets ORDER BY Date DESC LIMIT 1";
+		      $resultLastProject = $conn->query($sqlLastProject);
+		      $rowLastProject = $resultLastProject->fetch_assoc();
+		      $IDLastProject = $rowLastProject['ID_projets'];
+
+		      $typeArray = array();
+		      $sqlTypes="SELECT * FROM type"; 
+		      $resultTypes = $conn->query($sqlTypes);
+		      while ($rowTypes = $resultTypes->fetch_assoc()) {
+		      	$typeArray[utf8_encode($rowTypes['Type'])]=$rowTypes['ID_type'];
+		      	//array_push($typeArray, $rowTypes['Type'] => $rowTypes['Type']);
+		      }
+
+		      foreach ($dataPath as $singleData) {
+		      	$singleDataTmp = explode(".", $singleData);
+		      	if (end($singleDataTmp) == "jpg" || end($singleDataTmp) == "jpeg" || end($singleDataTmp) == "png" || end($singleDataTmp) == "gif") {
+		      		$type = $typeArray["Image"];
+		      	}
+		      	if (end($singleDataTmp) == "mp4"){
+		      		$type = $typeArray["Vidéo MP4"];
+		      	}
+		      	if (end($singleDataTmp) == "obj") {
+		      		$type = $typeArray["Modélisation"];
+		      	}
+		      	$sqlData = "INSERT INTO data (ID_type, ID_Projets, Lien) VALUES('".$type."', '".$IDLastProject."', '".$singleData."');";
+		      	$conn -> query($sqlData);
+		      }
+
+		      foreach ($parcoursSelect as $parcoursSelected) {
+		      	$sqlIDParcours = "SELECT * FROM parcours WHERE Dossier = '".$parcoursSelected."'";
+		      	$resultIDParcours = $conn->query($sqlIDParcours);
+		      	$rowIDParcours = $resultIDParcours->fetch_assoc();
+		      	$sqlprojetstoparcours = "INSERT INTO projetstoparcours (ID_projets, ID_parcours) VALUES ('".$IDLastProject."','".$rowIDParcours['ID_parcours']."');";
+		      	$conn -> query($sqlprojetstoparcours);
+		      }
+
+		      foreach ($participantsSelect as $participantsSelected) {
+		      	$sqlelevestoprojet = "INSERT INTO elevestoprojet (ID_eleves, ID_projets) VALUES ('".$participantsSelected."','".$IDLastProject."');";
+		      	$conn->query($sqlelevestoprojet);
+		      }
+
+		      foreach ($matiereSelect as $matiereSelected) {
+		      	$sqlmatierestoprojet = "INSERT INTO matierestoprojet (ID_projets, ID_matieres) VALUES ('".$IDLastProject."','".$matiereSelected."');";
+		      	$conn->query($sqlmatierestoprojet);
+		      }
 	    	}
     }
   ?>
