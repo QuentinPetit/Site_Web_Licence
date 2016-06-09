@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 08 Juin 2016 à 15:25
+-- Généré le :  Jeu 09 Juin 2016 à 15:47
 -- Version du serveur :  5.7.11
 -- Version de PHP :  5.6.19
 
@@ -40,11 +40,10 @@ CREATE TABLE `actualites` (
 INSERT INTO `actualites` (`ID_actualites`, `DateCreation`, `Titre`, `Article`) VALUES
 (1, '2016-02-12', 'Journée Portes Ouvertes', 'Venez participer aux journées portes ouvertes le 12 Mars, de 9h à 17h sur le site du Puy En Velay.'),
 (2, '2016-02-19', 'Inscriptions', 'Inscription du 1er mars au 31 mars 2016 :\r\nhttps://candidature.u-clermont1.fr/WebCiell2'),
-(3, '2016-06-08', 'TrÃ¨s prochainement', 'Lancement du site de la licence'),
-(4, '2016-06-08', 'ééééééé', 'èèèèèèè'),
+(3, '2016-06-08', 'Très prochainement', 'Lancement du site de la licence'),
+(4, '2016-06-08', 'autre chose', 'une connerie'),
 (5, '2016-06-08', 'Succès', ':DDDD'),
-(6, '2016-06-08', 'Wow', ';D'),
-(7, '2016-06-08', 'work ', 'plz');
+(6, '2016-06-08', 'Wow', ';D');
 
 -- --------------------------------------------------------
 
@@ -409,7 +408,7 @@ CREATE TABLE `parcours` (
   `Competences` text NOT NULL,
   `Logiciels` text NOT NULL,
   `Admission` text NOT NULL,
-  `Plaquette` varchar(100) NOT NULL,
+  `Plaquette` varchar(200) NOT NULL,
   `Mascotte` varchar(200) NOT NULL,
   `Fond` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -421,7 +420,8 @@ CREATE TABLE `parcours` (
 INSERT INTO `parcours` (`ID_parcours`, `Nom`, `Dossier`, `Description`, `Objectifs`, `Competences`, `Logiciels`, `Admission`, `Plaquette`, `Mascotte`, `Fond`) VALUES
 (1, 'Infographie pour l\'Architecture', 'Archi', 'Thèmes abordés : illustrations, architecture intérieure 3D, architecture extérieure 3D, mise en situation photo-réaliste, animations 3D en architecture – visites virtuelles, initiation à la maquette numérique 3D – BIM (Building Information Model)', 'Former des infographistes 3D pour l\'Architecture.\n2 domaines principaux :\n<li>archi intérieure/archi extérieure ; thèmes abordés : illustrations, architecture intérieure 3D, architecture extérieure 3D, mise en situation photo-réaliste, animations 3D en architecture – visites virtuelles,</li><li>\ninitiation à la maquette numérique 3D, initiation au BIM (Building Information Model).</li>', 'Acquisition des notions d\'infographie pour l\'architecture (plans de masse, élévations, architecture intérieure/extérieure…), de la modélisation au rendu, de la réalisation d\'animation et de vidéo architecturale, de la prise en compte de l\'éclairage, de maquette numérique - BIM (partie visualisation 3D)', '3DSMax, AutoCAD, ArchiCAD, Photoshop, After Effects, VRay, Lumion<br>\n[Prévision 2016 : BIM (Archicad, Revit), Sketchup]', 'Le parcours <b>Infographie pour l\'architecture</b> est accessible aux titulaires d\'un BAC+2, principalement :\n<li>BTS AEA Agencement Environnement Architectural/BTS ERA Etude et Réalisation d\'Agencements,</li><li>\nBTS Design d\'Espace,</li><li>\nDUT Informatique (Imagerie Numérique)/ DUT MMI (avec connaissances de modélisation). </li>\nLe recrutement se fait sur dossier, examiné par un jury ; CV (description des logiciels connus/utilisés), portfolio en ligne et lettre de motivation sont exigés.', '', 'Images/Mascottes/Lapin.png', '../Images/backgroundParcours/vue_interieure_2b.jpg'),
 (2, 'Technical Artist', 'TechArt', 'Étude de la chaîne complète : dessin main levée, modélisation, texturing, animation [rigging, skinning] ; initiation à la modélisation et l\'animation procédurales.', 'Former des infographistes 3D pour l\'Animation.\n2 domaines principaux :\n<li>* modélisation et animation traditionnelles ; étude de la chaîne complète : dessin main levée, modélisation, texturing, animation [rigging,skinning]</li><li>\n* [2016] modélisation et animation procédurales</li>', 'Maîtrise de la chaîne de production (dessin main levée, modélisation, texturing, animation [rigging,skinng]) selon les approches modélisation et animation traditionnelles et procédurales.', '3DSMax, Photoshop, After Effects, Substance Designer', 'Le parcours <b>Technical Artist</b> est accessible aux titulaires d\'un BAC+2, ayant des connaissances  d\'un modeleur 3D (par ex. : 3dsMAX, Maya ou Blender) et en programmation, principalement :\n<li>DUT Informatique (Imagerie Numérique),</li><li>\nDUT MMI,</li><li>\nDiplôme des Métiers d\'Arts (DMA) cinéma d\'animation,</li><li>\nBTS Design Graphique option communication et médias numériques [+ connaissances de modélisation et programmation],</li><li>\nBTS Métiers de l\'Audiovisuel option métiers de l\'image,</li><li>\nautres formations titulaires d\'une Mise à niveau en arts appliqués (MANAA) … </li>\n \nLe recrutement se fait sur dossier, examiné par un jury ; CV (description des logiciels connus/utilisés), portfolio en ligne et lettre de motivation sont exigés.\n<b>ATTENTION : à partir de 2016,</b> il sera demandé aux candidats de <b>connaître un langage de programmation</b>, afin de faire l\'acquisition des modélisation et animation procédurales.', '', 'Images/Mascottes/Dragon.png', '../Images/backgroundParcours/Perso2.png'),
-(3, '3D Temps Réel et Réalité Virtuelle', '3DTR', 'Thèmes abordés : développement de projet informatique, concepts avancés liés aux jeux vidéos (Game/Level Design, Intelligence Artificielle, algorithmes de synthèse/traitement d\'images, shaders), développement d\'applications utilisant différents périphériques de Réalité Virtuelle (LeapMotion, Oculus Rift …).', 'Former des programmeurs pour le jeu vidéo ou pour la Réalité Virtuelle.\n2 domaines principaux :\n<li>3D Temps Réel : développement d\'un jeu vidéo (Unity 3D, shaders, intelligence artificielle ...)</li><li>\nRéalité Virtuelle : découverte de différents périphériques (Oculus Rift ...)</li>', 'Développement de projet informatique en groupe (analyse, conception, organisation, planification)\r\net prise de responsabilités associées (chef de projet …), maîtrise d\'un moteur haut niveau de création\r\nde jeux vidéo (focus intelligence artificielle, développement de shaders), initiation à la réalité virtuelle.', 'Visual Studio, C++, Git, SourceTree, GanttProject, CMake, Unity (ShaderLab), Unreal Engine 4<br>\n[Prévision 2016 : Unreal Engine 4]', 'Le parcours <b>3D Temps Réel et Réalité Virtuelle</b> est accessible aux titulaires d\'un BAC+2, ayant un très bon niveau en langage de programmation orienté objet (C++ ou C#) ainsi que des connaissances en modélisation (3dsMax ou Blender), principalement :\n<li>DUT Informatique (Imagerie Numérique)\n</li><li>DUT MMI,\n</li><li>BTS Services Informatiques aux Organisations (SIO), option SLAM (Solutions Logicielles et Applications Métiers),\n</li><li>BTS Systèmes Numériques, Option Informatique et Réseaux.</li>\nLe recrutement se fait sur dossier, examiné par un jury ; CV (description des logiciels connus/utilisés), portfolio en ligne et lettre de motivation sont exigés.', '', 'Images/Mascottes/Lynx.png', '../Images/backgroundParcours/CaptureMenu.png');
+(3, '3D Temps Réel et Réalité Virtuelle', '3DTR', 'Thèmes abordés : développement de projet informatique, concepts avancés liés aux jeux vidéos (Game/Level Design, Intelligence Artificielle, algorithmes de synthèse/traitement d\'images, shaders), développement d\'applications utilisant différents périphériques de Réalité Virtuelle (LeapMotion, Oculus Rift …).', 'Former des programmeurs pour le jeu vidéo ou pour la Réalité Virtuelle.\n2 domaines principaux :\n<li>3D Temps Réel : développement d\'un jeu vidéo (Unity 3D, shaders, intelligence artificielle ...)</li><li>\nRéalité Virtuelle : découverte de différents périphériques (Oculus Rift ...)</li>', 'Développement de projet informatique en groupe (analyse, conception, organisation, planification)\r\net prise de responsabilités associées (chef de projet …), maîtrise d\'un moteur haut niveau de création\r\nde jeux vidéo (focus intelligence artificielle, développement de shaders), initiation à la réalité virtuelle.', 'Visual Studio, C++, Git, SourceTree, GanttProject, CMake, Unity (ShaderLab), Unreal Engine 4<br>\n[Prévision 2016 : Unreal Engine 4]', 'Le parcours <b>3D Temps Réel et Réalité Virtuelle</b> est accessible aux titulaires d\'un BAC+2, ayant un très bon niveau en langage de programmation orienté objet (C++ ou C#) ainsi que des connaissances en modélisation (3dsMax ou Blender), principalement :\n<li>DUT Informatique (Imagerie Numérique)\n</li><li>DUT MMI,\n</li><li>BTS Services Informatiques aux Organisations (SIO), option SLAM (Solutions Logicielles et Applications Métiers),\n</li><li>BTS Systèmes Numériques, Option Informatique et Réseaux.</li>\nLe recrutement se fait sur dossier, examiné par un jury ; CV (description des logiciels connus/utilisés), portfolio en ligne et lettre de motivation sont exigés.', '', 'Images/Mascottes/Lynx.png', '../Images/backgroundParcours/CaptureMenu.png'),
+(5, 'asdf', 'asdg', 'asdf', 'asdf', 'asdf', 'asf', 'asdf', './Plaquettes/Notions_de_base.pdf', './Images/Mascottes/caisseNormal.png', './Images/backgroundParcours/caisseDiffuse.png');
 
 -- --------------------------------------------------------
 
@@ -543,8 +543,7 @@ CREATE TABLE `promotions` (
 --
 
 INSERT INTO `promotions` (`ID_Promo`, `Lien`, `ID_Annee`) VALUES
-(1, './Images/Promotion/promotion2015-2016.jpg', 5),
-(3, './Images/Promotion/SpaceJumpGateQuentin2.jpg', 8);
+(1, './Images/Promotion/promotion2015-2016.jpg', 5);
 
 -- --------------------------------------------------------
 
@@ -569,7 +568,8 @@ INSERT INTO `reseausociaux` (`ID_reseausociaux`, `Lien`, `NomReseau`, `ID_parcou
 (3, 'https://twitter.com/LicenceMINDTA', 'twitter', 2),
 (4, 'https://plus.google.com/108769605229460730961/posts', 'google-plus', 2),
 (5, 'https://plus.google.com/116795798420491985205/posts', 'google-plus', 1),
-(6, 'https://plus.google.com/114066764502272808569/posts', 'google-plus', 3);
+(6, 'https://plus.google.com/114066764502272808569/posts', 'google-plus', 3),
+(7, 'https://twitter.com/datboimemes', 'twitter', 5);
 
 -- --------------------------------------------------------
 
@@ -750,7 +750,7 @@ ALTER TABLE `matierestoprojet`
 -- AUTO_INCREMENT pour la table `parcours`
 --
 ALTER TABLE `parcours`
-  MODIFY `ID_parcours` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID_parcours` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT pour la table `projets`
 --
@@ -760,7 +760,7 @@ ALTER TABLE `projets`
 -- AUTO_INCREMENT pour la table `projetstoparcours`
 --
 ALTER TABLE `projetstoparcours`
-  MODIFY `ID_projetstoparcours` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `ID_projetstoparcours` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 --
 -- AUTO_INCREMENT pour la table `promotions`
 --
@@ -770,7 +770,7 @@ ALTER TABLE `promotions`
 -- AUTO_INCREMENT pour la table `reseausociaux`
 --
 ALTER TABLE `reseausociaux`
-  MODIFY `ID_reseausociaux` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID_reseausociaux` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT pour la table `type`
 --
