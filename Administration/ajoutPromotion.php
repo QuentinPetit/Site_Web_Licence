@@ -54,7 +54,7 @@
 			}
 			// Check if $uploadOk is set to 0 by an error
 			if ($uploadOk == 0) {
-			    $error="Désolé, votre fichier n'a pas été mis en ligne.";
+			    $errorUpload="Désolé, votre fichier n'a pas été mis en ligne.";
 			// if everything is ok, try to upload file
 			} else {
 			    if (move_uploaded_file($_FILES["promotionPicture"]["tmp_name"], $target_file)) {
@@ -65,7 +65,7 @@
 			  			$error="Une erreur s'est produite. Veuillez réessayer ultérieurement.";
 			  		}
 			    } else {
-			        $error="Sorry, there was an error uploading your file.";
+			        $error="Désolé, une erreur est survenue lors de la mise en ligne de votre fichier";
 			    }
 			}
 
@@ -79,6 +79,10 @@
 					if (isset($error))
 					{
 						echo "<div class='alert alert-danger'>".$error."</div>"; 
+					}
+					if (isset($errorUpload))
+					{
+						echo "<div class='alert alert-danger'>".$errorUpload."</div>"; 
 					}
 					if (isset($message)) 
 					{
