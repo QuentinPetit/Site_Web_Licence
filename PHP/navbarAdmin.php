@@ -46,7 +46,7 @@
 								<a class='dropdown-toggle' data-toggle='dropdown' href=''>Actualités</a>
 								<ul class='dropdown-menu'>
 									<li><a href='ajoutActu.php'>Ajouter une actualité</a></li>
-									<li><a href='modifActu.php'>Modifier une actualité</a></li>
+									<li><a href='listeActu.php'>Modifier une actualité</a></li>
 								</ul>
 							</li>
 							<li class='dropdown'>
