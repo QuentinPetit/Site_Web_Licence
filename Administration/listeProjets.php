@@ -21,7 +21,7 @@
 	<?php include('../PHP/connexion.php'); ?>
 	<?php 
 	if (isset($_POST['editer'])) {
-		header("location: modifProjets.php?projetID=".$_POST['projetsSelect']);
+		header("location: modifProjet.php?projetID=".$_POST['projetsSelect']);
 	}
 	if (isset($_POST['supprimer'])) {
 		$projetsSelect = $_POST['projetsSelect'];

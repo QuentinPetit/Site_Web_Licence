@@ -6,29 +6,57 @@
 <body>
 <?php include('../PHP/connexion.php'); ?>
 <?php 
-if (isset($_POST['submit']) &&
-	isset($_POST['text'])) {
-	$uploadOK = 1;
-	$text = $_POST['text'];
-	$target_dir = "../Images";
-
-	$target_file = $target_dir.basename(($_FILES["file"]["name"]));
-
-	move_uploaded_file($_FILES['file']['tmp_name'], $target_file);
-
-	$sql="INSERT INTO test (filepath, filetext) VALUES ('./Images/".$_FILES["file"]["name"]."', '".$text."');";
-	if ($conn->query($sql)===TRUE) {
-		echo "pouet";
+$sqlEleves = "SELECT * FROM eleves ORDER BY ID_eleves DESC";
+	$resultEleves = $conn->query($sqlEleves);
+	$sqlElevesToProjet = "SELECT ID_eleves FROM elevestoprojet WHERE ID_projets=21";
+	$resultElevesToProjet = $conn->query($sqlElevesToProjet);
+	$arrayIDs = array();
+	if ($resultElevesToProjet->num_rows > 0) {
+		while ($rowElevesToProjet = $resultElevesToProjet->fetch_assoc()) {
+			array_push($arrayIDs, $rowElevesToProjet['ID_eleves']);
+		}
 	} else {
-		echo "poulet de merde!";
+		echo "0 results";
 	}
-}
+	if ($resultEleves->num_rows > 0) {
+		while ($rowEleves = $resultEleves->fetch_assoc()) {
+			$lastID;
+			$init = false;
+			foreach ($arrayIDs as $arrayID) {
+				echo "arrayID=".$arrayID."   rowEleves[ID_eleves]=".$rowEleves["ID_eleves"]."</br>";
+				/*if ($arrayID == $rowEleves["ID_eleves"]) {
+					echo $rowEleves["ID_eleves"]." ".utf8_encode($rowEleves["Nom"])." ".utf8_encode($rowEleves["Prenom"])." selected</br>";
+				} else {
+					echo $rowEleves["ID_eleves"]." ".utf8_encode($rowEleves["Nom"])." ".utf8_encode($rowEleves["Prenom"])."</br>";
+				}*/
+				if ($init==false){
+					if ($arrayID == $rowEleves["ID_eleves"]) {
+						echo $rowEleves["ID_eleves"]." ".utf8_encode($rowEleves["Nom"])." ".utf8_encode($rowEleves["Prenom"])." selected</br>";
+					} else {
+						echo"<option value=".$rowEleves["ID_eleves"].">".utf8_encode($rowEleves["Nom"])." ".utf8_encode($rowEleves["Prenom"])."</option>";
+					}
+					$init=true;
+					$lastID=$rowEleves["ID_eleves"];
+				} else {
+					if ($lastID!=$rowEleves["ID_eleves"]) {
+						if ($arrayID == $rowEleves["ID_eleves"]) {
+							echo $rowEleves["ID_eleves"]." ".utf8_encode($rowEleves["Nom"])." ".utf8_encode($rowEleves["Prenom"])." selected</br>";
+						} else {
+							echo $rowEleves["ID_eleves"]." ".utf8_encode($rowEleves["Nom"])." ".utf8_encode($rowEleves["Prenom"])."</br>";
+						}
+						$lastID=$rowEleves["ID_eleves"];
+					}
+					
+				}
+				
+				
+			}
+		}
+	} else {
+		echo "0 results";
+	}
+
  ?>
  <?php include('../PHP/deconnexion.php'); ?>
-<form action="test.php" method="POST" enctype="multipart/form-data">
-	<input type="file" name="file"></input>
-	<textarea name="text"></textarea>
-	<button type="submit" name="submit">prout</button>	
-</form>
 </body>
 </html>

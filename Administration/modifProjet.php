@@ -55,7 +55,7 @@
 
 				<div class="form-group">
 					<label>Caractéristiques</label>
-					<textarea class="form-control" name="caracteristiques" placeholder="Caractéristiques du projet : toute technique spécifiques au projet (lancer de rayon, shader, modélisation low-poly...)" rows="5" wrap="hard"><?php echo utf8_encode($row['Caracteristiques']); ?></textarea>					
+					<textarea class="form-control" name="caracteristiques" placeholder="Caractéristiques du projet : toute technique spécifiques au projet (lancer de rayon, shader, modélisation low-poly...)" rows="5" wrap="hard"><?php echo utf8_encode($row['Caracteristique']); ?></textarea>					
 				</div>
 
 				<div class="form-group">
@@ -84,12 +84,43 @@
 						<?php 
 						$sqlEleves = "SELECT * FROM eleves ORDER BY ID_eleves DESC";
 						$resultEleves = $conn->query($sqlEleves);
-						$sqlElevesToProjet;
-
+						$sqlElevesToProjet = "SELECT ID_eleves FROM elevestoprojet WHERE ID_projets=".$_GET['projetID'];
+						$resultElevesToProjet = $conn->query($sqlElevesToProjet);
+						$arrayIDs = array();
+						if ($resultElevesToProjet->num_rows > 0) {
+							while ($rowElevesToProjet = $resultElevesToProjet->fetch_assoc()) {
+								array_push($arrayIDs, $rowElevesToProjet['ID_eleves']);
+							}
+						} else {
+							echo "0 results";
+						}
 						if ($resultEleves->num_rows > 0) {
 							while ($rowEleves = $resultEleves->fetch_assoc()) {
-
-								echo"<option value=".$rowEleves["ID_eleves"].">".utf8_encode($rowEleves["Nom"])." ".utf8_encode($rowEleves["Prenom"])." </option>";
+								$lastID;
+								$init = false;
+								foreach ($arrayIDs as $arrayID) {
+									if ($init==false){
+										if ($arrayID == $rowEleves["ID_eleves"]) {
+											echo"<option value=".$rowEleves["ID_eleves"]." selected='true'>".utf8_encode($rowEleves["Nom"])." ".utf8_encode($rowEleves["Prenom"])." </option>";
+										} else {
+											echo"<option value=".$rowEleves["ID_eleves"].">".utf8_encode($rowEleves["Nom"])." ".utf8_encode($rowEleves["Prenom"])."</option>";
+										}
+										$init=true;
+										$lastID=$rowEleves["ID_eleves"];
+									} else {
+										if ($lastID!=$rowEleves["ID_eleves"]) {
+											if ($arrayID == $rowEleves["ID_eleves"]) {
+												echo"<option value=".$rowEleves["ID_eleves"]." selected='true'>".utf8_encode($rowEleves["Nom"])." ".utf8_encode($rowEleves["Prenom"])." </option>";
+											} else {
+												echo"<option value=".$rowEleves["ID_eleves"].">".utf8_encode($rowEleves["Nom"])." ".utf8_encode($rowEleves["Prenom"])."</option>";
+											}
+											$lastID=$rowEleves["ID_eleves"];
+										}
+										
+									}
+									
+									
+								}
 							}
 						} else {
 							echo "0 results";
