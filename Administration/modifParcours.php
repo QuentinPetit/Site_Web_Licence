@@ -19,6 +19,8 @@
 <body>
 	<?php include('../PHP/connexion.php'); ?>
 	<?php 
+	
+	
 	if (isset($_POST['submit']) &&
 		isset($_POST['nomParcours']) &&
 		isset($_POST['description']) &&
@@ -45,62 +47,82 @@
 			$dossier=$_POST['dossier'];
 
 			$uploadOk = 1;
+			$sql="SELECT * FROM parcours WHERE ID_parcours=".$_GET['parcoursID'].";";
+			$result = $conn->query($sql);
+			$row=$result->fetch_assoc();
+			$array = explode("/", utf8_encode($row['Plaquette']));
+			$oldPlaquette = end($array);
+			$array = explode("/", utf8_encode($row['Mascotte']));
+			$oldMascotte = end($array);
+			$array = explode("/", utf8_encode($row['Fond']));
+			$oldFond = end($array);
+	
 
 			$target_dirBackground = "../Images/backgroundParcours/";
 			$target_dirMascotte = "../Images/Mascottes/";
 			$target_dirPlaquette = "../Plaquettes/";
-
-			$target_fileBackground=$target_dirBackground.basename($_FILES["fond"]["name"]);
-			$target_fileMascotte=$target_dirMascotte.basename($_FILES["mascotte"]["name"]);
-			$target_filePlaquette=$target_dirPlaquette.basename($_FILES["plaquette"]["name"]);
-
-			$mascotFileType = pathinfo($target_fileMascotte, PATHINFO_EXTENSION);
-			$plaquetteFileType = pathinfo($target_filePlaquette, PATHINFO_EXTENSION);
-			$backgroundFileType = pathinfo($target_fileBackground, PATHINFO_EXTENSION);
-
-			if($mascotFileType != "jpg" && $mascotFileType != "png" && $mascotFileType != "jpeg"
-			&& $mascotFileType != "gif" ) {
-				$error="Désolé, seuls les fichiers JPG, JPEG, PNG & GIF sont autorisés pour les mascottes.";
-				$uploadOk = 0;
+			if (isset($_FILES['fond'])) {
+				$target_fileBackground=$target_dirBackground.basename($_FILES["fond"]["name"]);
+				$backgroundFileType = pathinfo($target_fileBackground, PATHINFO_EXTENSION);
+				if($backgroundFileType != "jpg" && $backgroundFileType != "png" && $backgroundFileType != "jpeg"
+				&& $backgroundFileType != "gif" ) {
+					$error="Désolé, seuls les fichiers JPG, JPEG, PNG & GIF sont autorisés pour les images de fond.";
+					$uploadOk = 0;
+				}
+				if (file_exists($target_fileBackground)) {
+					$error = "Cette image de fond existe déjà";
+					$uploadOk = 0;
+				}
 			}
-
-			if($backgroundFileType != "jpg" && $backgroundFileType != "png" && $backgroundFileType != "jpeg"
-			&& $backgroundFileType != "gif" ) {
-				$error="Désolé, seuls les fichiers JPG, JPEG, PNG & GIF sont autorisés pour les images de fond.";
-				$uploadOk = 0;
+			if (isset($_FILES["mascotte"])) {
+				$target_fileMascotte=$target_dirMascotte.basename($_FILES["mascotte"]["name"]);
+				$mascotFileType = pathinfo($target_fileMascotte, PATHINFO_EXTENSION);
+				if($mascotFileType != "jpg" && $mascotFileType != "png" && $mascotFileType != "jpeg"
+				&& $mascotFileType != "gif" ) {
+					$error="Désolé, seuls les fichiers JPG, JPEG, PNG & GIF sont autorisés pour les mascottes.";
+					$uploadOk = 0;
+				}
+				if (file_exists($target_fileMascotte)) {
+					$error = "Cette mascotte existe déjà";
+					$uploadOk = 0;
+				}
 			}
-
-			if($plaquetteFileType != "pdf" ) {
-				$error="Désolé, seuls les fichiers PDF sont autorisés pour les plaquettes.";
-				$uploadOk = 0;
+			if (isset($_FILES["plaquette"])) {
+				$target_filePlaquette=$target_dirPlaquette.basename($_FILES["plaquette"]["name"]);
+				$plaquetteFileType = pathinfo($target_filePlaquette, PATHINFO_EXTENSION);
+				if($plaquetteFileType != "pdf" ) {
+					$error="Désolé, seuls les fichiers PDF sont autorisés pour les plaquettes.";
+					$uploadOk = 0;
+				}
+				if (file_exists($target_filePlaquette)) {
+					$error = "Cette plaquette existe déjà";
+					$uploadOk = 0;
+				}
 			}
-
-			if (file_exists($target_fileBackground)) {
-				$error = "Cette image de fond existe déjà";
-				$uploadOk = 0;
-			}
-			if (file_exists($target_fileMascotte)) {
-				$error = "Cette mascotte existe déjà";
-				$uploadOk = 0;
-			}
-			if (file_exists($target_filePlaquette)) {
-				$error = "Cette plaquette existe déjà";
-				$uploadOk = 0;
-			}
-
-			if ($uploadOk == 0) {
-				$errorUpload = "Désolé, vos messages n'ont pas pu être uploadés";
+			if (isset($_FILES['fond'])) {
+				$filefond=$_FILES["fond"]["name"];
+				move_uploaded_file($_FILES['fond']['tmp_name'], $target_fileBackground);
 			} else {
-				if (move_uploaded_file($_FILES['fond']['tmp_name'], $target_fileBackground) && move_uploaded_file($_FILES['mascotte']['tmp_name'], $target_fileMascotte) && move_uploaded_file($_FILES['plaquette']['tmp_name'], $target_filePlaquette)) {
-					$sql = "INSERT INTO parcours (Nom, Dossier, Description, Objectifs, Competences, Logiciels, Admission, Plaquette, Mascotte, Fond) VALUES ('".utf8_decode($nomParcours)."','".utf8_decode($dossier)."','".utf8_decode($description)."','".utf8_decode($objectifs)."','".utf8_decode($competences)."','".utf8_decode($logiciels)."','".utf8_decode($admission)."','./Plaquettes/".$_FILES["plaquette"]["name"]."','./Images/Mascottes/".$_FILES["mascotte"]["name"]."','./Images/backgroundParcours/".$_FILES["fond"]["name"]."');";
-					if ($conn->query($sql) === TRUE) {
-						$message="Le parcours a bien été rajouté";
-					} else {
-						$error="Une erreur s'est produite. Veuillez réessayer ultérieurement.";
-					}
-				} else {
-			        $error="Désolé, une erreur est survenue lors de la mise en ligne de votre fichier";
-			    }
+				$filefond = $oldFond;
+			}
+			if (isset($_FILES["mascotte"])) {
+				$filemascotte = $_FILES["mascotte"]["name"];
+				move_uploaded_file($_FILES['mascotte']['tmp_name'], $target_fileMascotte);
+			} else {
+				$filemascotte = $oldMascotte;
+			}
+			if (isset($_FILES["plaquette"])) {
+				$fileplaquette = $_FILES["plaquette"]["name"];
+				move_uploaded_file($_FILES['plaquette']['tmp_name'], $target_filePlaquette);
+			} else {
+				$fileplaquette = $oldPlaquette;
+			}
+
+			$sql = "UPDATE parcours SET Nom='".utf8_decode($nomParcours)."', Objectifs='".utf8_decode($objectifs)."', Description='".utf8_decode($description)."', Competences='".utf8_decode($competences)."', Logiciels='".utf8_decode($logiciels)."', Plaquette='./Plaquettes/".$fileplaquette."', Mascotte='./Images/Mascottes/".$filemascotte."', Fond='./Images/backgroundParcours/".$filefond."' WHERE ID_parcours=".$_GET['parcoursID'].";";
+			if ($conn->query($sql) === TRUE) {
+				$message = "Le parcours a bien été modifié";
+			} else {
+				$error="Une erreur s'est produite. Veuillez réessayer ultérieurement.";
 			}
 		}
 	}
