@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Ven 10 Juin 2016 à 10:23
+-- Généré le :  Ven 10 Juin 2016 à 14:46
 -- Version du serveur :  5.7.11
 -- Version de PHP :  5.6.19
 
@@ -168,12 +168,7 @@ INSERT INTO `data` (`ID_data`, `ID_type`, `ID_Projets`, `Lien`) VALUES
 (62, 1, 29, './Projets/2015-2016/Archi/Camille/Cliché musée de la mine 2.jpg'),
 (63, 1, 29, './Projets/2015-2016/Archi/Camille/Cliché musée de la mine 3.jpg'),
 (64, 1, 29, './Projets/2015-2016/Archi/Camille/Cliché musée de la mine 4.jpg'),
-(65, 1, 29, './Projets/2015-2016/Archi/Camille/Cliché musée de la mine 5.jpg'),
-(101, 1, 42, './Projets/2015-2016/Archi/ziptest/data/chat1.png'),
-(102, 1, 42, './Projets/2015-2016/Archi/ziptest/data/chat2.jpg'),
-(103, 1, 42, './Projets/2015-2016/Archi/ziptest/data/chien1.jpg'),
-(104, 1, 42, './Projets/2015-2016/Archi/ziptest/data/oiseau1.jpg'),
-(105, 2, 42, './Projets/2015-2016/Archi/ziptest/data/test2_injected.mp4');
+(65, 1, 29, './Projets/2015-2016/Archi/Camille/Cliché musée de la mine 5.jpg');
 
 -- --------------------------------------------------------
 
@@ -280,9 +275,7 @@ INSERT INTO `elevestoprojet` (`ID_elevestoprojet`, `ID_eleves`, `ID_projets`) VA
 (32, 20, 25),
 (33, 20, 26),
 (34, 20, 27),
-(35, 36, 29),
-(36, 47, 42),
-(37, 41, 42);
+(35, 36, 29);
 
 -- --------------------------------------------------------
 
@@ -389,9 +382,7 @@ INSERT INTO `matierestoprojet` (`ID_matierestoprojet`, `ID_projets`, `ID_matiere
 (25, 25, 13),
 (26, 26, 19),
 (27, 27, 14),
-(28, 29, 24),
-(29, 42, 11),
-(30, 42, 9);
+(28, 29, 24);
 
 -- --------------------------------------------------------
 
@@ -476,8 +467,7 @@ INSERT INTO `projets` (`ID_projets`, `ID_Annee`, `Nom`, `Date`, `Description`, `
 (25, 5, 'Space', '2016-03-24 00:00:00', 'Application texture planète sur 3 sphères/Rendu.', 'Rendu', '3ds Max', '', 40, './Projets/2015-2016/TechArt/Images Eléa Bouyssou/Space/Space.jpg', '', ''),
 (26, 5, 'Voiture', '2016-03-24 00:00:00', 'Modélisation d\'une voiture/Rendu', 'Modélisation, Rendu', '3ds Max', '', 80, './Projets/2015-2016/TechArt/Images Eléa Bouyssou/Voiture/Voiture.png', '', ''),
 (27, 5, 'Feu D\'artifice', '2016-03-24 00:00:00', 'Utilisation du système de particules de 3ds Max pour la création d\'un feu d\'artifice.', 'Modélisation', '3ds Max', '', 30, './Images/placeholder.png', '', ''),
-(29, 5, 'Visite du musée de la mine', '2016-03-24 00:00:00', 'Non Renseigné', 'Photographie', '', '', 50, './Projets/2015-2016/Archi/Camille/Cliché musée de la mine.jpg', '', ''),
-(42, 5, 'fzqe', '2016-06-08 11:31:35', 'fsezaqdsqdfc', 'qsdsdfsfd', 'pidjpi', 'po', 70, './Projets/2015-2016/Archi/ziptest/miniature.jpg', './Projets/2015-2016/Archi/ziptest/projet/owl.carousel.zip', '');
+(29, 5, 'Visite du musée de la mine', '2016-03-24 00:00:00', 'Non Renseigné', 'Photographie', '', '', 50, './Projets/2015-2016/Archi/Camille/Cliché musée de la mine.jpg', '', '');
 
 -- --------------------------------------------------------
 
@@ -524,7 +514,8 @@ INSERT INTO `projetstoparcours` (`ID_projetstoparcours`, `ID_projets`, `ID_parco
 (26, 26, 2),
 (27, 27, 2),
 (28, 29, 1),
-(32, 42, 1);
+(36, 2, 5),
+(37, 16, 5);
 
 -- --------------------------------------------------------
 
@@ -760,7 +751,7 @@ ALTER TABLE `projets`
 -- AUTO_INCREMENT pour la table `projetstoparcours`
 --
 ALTER TABLE `projetstoparcours`
-  MODIFY `ID_projetstoparcours` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `ID_projetstoparcours` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 --
 -- AUTO_INCREMENT pour la table `promotions`
 --
