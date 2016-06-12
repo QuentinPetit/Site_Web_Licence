@@ -18,8 +18,41 @@
 </header>
 <body>
 	<?php include('../PHP/connexion.php'); ?>
-	<?php  
-	print_r($_POST);
+	<?php 
+
+		function copyr($source, $dest)
+		{
+		    // Check for symlinks
+		    if (is_link($source)) {
+		        return symlink(readlink($source), $dest);
+		    }
+		    
+		    // Simple copy for a file
+		    if (is_file($source)) {
+		        return copy($source, $dest);
+		    }
+
+		    // Make destination directory
+		    if (!is_dir($dest)) {
+		        mkdir($dest);
+		    }
+
+		    // Loop through the folder
+		    $dir = dir($source);
+		    while (false !== $entry = $dir->read()) {
+		        // Skip pointers
+		        if ($entry == '.' || $entry == '..') {
+		            continue;
+		        }
+
+		        // Deep copy directories
+		        copyr("$source/$entry", "$dest/$entry");
+		    }
+
+		    // Clean up
+		    $dir->close();
+		    return true;
+		}
 		if (isset($_POST['submit']) && 
 			isset($_POST['nomProjets']) && 
 			isset($_POST['description']) && 
@@ -30,15 +63,15 @@
 			isset($_POST['site']) && 
 			isset($_POST['software']) && 
 			isset($_POST['hardware']) && 
-			isset($_POST['matiereSelect']) ) {
-			echo "toto";
+			isset($_POST['matiereSelect']) &&
+			isset($_POST['idData'])) {
 			if ($_POST['nomProjets'] != "" && 
 				$_POST['description'] != "" && 
 				$_POST['caracteristiques'] != "" && 
 				count($_POST['parcoursSelect'])>0 && 
-				ount($_POST['participantsSelect'])>0 && 
-				$_POST['software'] !="" && 
-				$_POST['hardware'] !="" &&
+				count($_POST['participantsSelect'])>0 && 
+				//$_POST['software'] !="" && 
+				//$_POST['hardware'] !="" &&
 				count($_POST['matiereSelect'])>0) {
 
 					$nomProjets=$_POST['nomProjets'];
@@ -52,6 +85,54 @@
 					$hardware=$_POST['hardware'];
 					$idData=$_POST['idData'];
 
+					$uploadOk = 1;
+					$sqlgetproject="SELECT * FROM projets WHERE ID_projets=".$_GET['projetID'].";";
+					$resultgetproject = $conn->query($sqlgetproject);
+					$rowgetproject=$resultgetproject->fetch_assoc();
+
+					if ($anneeScolaireSelect=!$rowgetproject['ID_Annee']) {
+						$anneeDossier=null;
+						$sqlnomannee = "SELECT * FROM anneescolaire WHERE ID_Annee=".$anneeScolaireSelect;
+						$resultnomannee = $conn->query($sqlnomannee);
+						if ($resultnomannee->num_rows > 0) {
+							while ($rownomannee= $result->fetch_assoc()) {
+								$EndYears = date("Y", strtotime($rownomannee["DateFin"]));
+								$StartYears = date("Y", strtotime($rownomannee["DateDebut"]));
+								$anneeDossier = $StartYears."-".$EndYears;
+							}
+						} else {
+							echo "0 results";
+						}
+						
+					}
+					
+					/*$array = explode("/", utf8_encode($rowgetproject['Miniature']));
+					$oldMiniature = end($array);
+					$secondtolast=count($array)-2;
+					$thirdtolast=count($array)-3;
+					$fourthtolast=count($array)-4;
+					$project_dir = 	$array[$fourthtolast]."/".$array[$thirdtolast]."/".$array[$secondtolast];			
+					$array = explode("/", utf8_encode($rowgetproject['Fichier_Projet']));
+					$oldFichier = end($array);
+
+
+					$target_dirMiniature = "../Projets/".$project_dir."/";
+					$target_dirFichier = "../Projets/".$project_dir."/projet/";
+
+					$sqlselectiddata="SELECT * FROM data WHERE ID_Projets=".$_GET['projetID'];
+					$resultselectiddata=$conn->query($sqlselectiddata);
+					//Verification des data a retirer
+					if ($resultselectiddata->num_rows > 0) {
+						while ($rowselectiddata = $resultselectiddata->fetch_assoc()) {
+							if (in_array($rowselectiddata["ID_data"], $idData) == FALSE) {
+								$sqldeleteidata = "DELETE FROM data WHERE ID_data=".$rowselectiddata["ID_data"].";";
+								$conn -> query($sqldeleteidata);
+							}
+						}
+					}
+					if(isset($_FILES['userfile'])){
+
+					}*/
 			}
 		}
 	?>
@@ -89,6 +170,32 @@
 				<div class="form-group">
 					<label>Caractéristiques</label>
 					<textarea class="form-control" name="caracteristiques" placeholder="Caractéristiques du projet : toute technique spécifiques au projet (lancer de rayon, shader, modélisation low-poly...)" rows="5" wrap="hard"><?php echo utf8_encode($row['Caracteristique']); ?></textarea>					
+				</div>
+
+				<div class="form-group">
+					<label>Choix de l'année scolaire</label>
+					<select class="form-control" name="anneeScolaireSelect">
+
+						<option disabled="true">Année Scolaire</option>
+						<?php 
+						$sqlDate = "SELECT * FROM anneescolaire ORDER BY DateFin DESC";
+						$resultDate = $conn->query($sqlDate);
+
+						if ($resultDate->num_rows > 0) {
+							while ($rowDate = $resultDate->fetch_assoc()) {
+								$EndYears = date("Y", strtotime($rowDate["DateFin"]));
+								$StartYears = date("Y", strtotime($rowDate["DateDebut"]));
+								if ($rowDate["ID_Annee"]==$row["ID_Annee"]) {
+									echo "<option value=".$rowDate["ID_Annee"]." selected='true'>".$StartYears."-".$EndYears."</option>";
+								} else {
+									echo "<option value=".$rowDate["ID_Annee"].">".$StartYears."-".$EndYears."</option>";
+								}
+							}
+						} else {
+							echo "0 results";
+						}
+						?>
+					</select>
 				</div>
 
 				<div class="form-group">
@@ -204,7 +311,7 @@
 					</select>
 				</div>
 				<div class="form-group">
-					<label>Fichier à uploader (.zip)</label>
+					<label>Fichiers d'illustration du projet (zip)</label>
 					</br>
 					<?php  
 						$sqlData = "SELECT * FROM data WHERE ID_Projets=".$_GET['projetID'];
@@ -214,7 +321,7 @@
 								$array = explode("/", utf8_encode($rowData["Lien"]));
 								if($rowData["ID_type"]!=3)
 								{
-									echo "<input type='checkbox' name='idData' value=".$rowData["ID_data"]." checked='true'>".end($array)."</input> </br>";
+									echo "<input type='checkbox' name='idData[]' value=".$rowData["ID_data"]." checked='true'>".end($array)."</input> </br>";
 								}
 							}
 						} else {
@@ -223,6 +330,18 @@
 						
 					?>
 					<input type="file" class="form-control" name="userfile">				
+				</div>
+				<div class="form-group">
+					<label>Miniature (.jpg, .png, .gif)</label>
+					</br>
+					<label><?php  $array=explode("/", utf8_encode($row["Miniature"])); $oldMiniature=end($array); echo end($array);?></label>
+					<input type="file" class="form-control" name="miniatureUpload">				
+				</div>
+				<div class="form-group">
+					<label>Fichiers source du projet (.zip)</label>
+					</br>
+					<label><?php  $array=explode("/", utf8_encode($row["Fichier_Projet"])); echo end($array);?></label>
+					<input type="file" class="form-control" name="projetUpload">					
 				</div>
 				<div class="form-group">
 					<label>Lien du site de présentation</label>
