@@ -22,37 +22,38 @@
 
 		function copyr($source, $dest)
 		{
-		    // Check for symlinks
-		    if (is_link($source)) {
-		        return symlink(readlink($source), $dest);
-		    }
-		    
-		    // Simple copy for a file
-		    if (is_file($source)) {
-		        return copy($source, $dest);
-		    }
+			// Check for symlinks
+			if (is_link($source)) {
+			    return symlink(readlink($source), $dest);
+			}
 
-		    // Make destination directory
-		    if (!is_dir($dest)) {
-		        mkdir($dest);
-		    }
+			// Simple copy for a file
+			if (is_file($source)) {
+			    return copy($source, $dest);
+			}
 
-		    // Loop through the folder
-		    $dir = dir($source);
-		    while (false !== $entry = $dir->read()) {
-		        // Skip pointers
-		        if ($entry == '.' || $entry == '..') {
-		            continue;
-		        }
+			// Make destination directory
+			if (!is_dir($dest)) {
+			    mkdir($dest);
+			}
 
-		        // Deep copy directories
-		        copyr("$source/$entry", "$dest/$entry");
-		    }
+			// Loop through the folder
+			$dir = dir($source);
+			while (false !== $entry = $dir->read()) {
+			    // Skip pointers
+			    if ($entry == '.' || $entry == '..') {
+			        continue;
+			    }
 
-		    // Clean up
-		    $dir->close();
-		    return true;
+			    // Deep copy directories
+			    copyr("$source/$entry", "$dest/$entry");
+			}
+
+			// Clean up
+			$dir->close();
+			return true;
 		}
+
 		if (isset($_POST['submit']) && 
 			isset($_POST['nomProjets']) && 
 			isset($_POST['description']) && 
@@ -89,23 +90,110 @@
 					$sqlgetproject="SELECT * FROM projets WHERE ID_projets=".$_GET['projetID'].";";
 					$resultgetproject = $conn->query($sqlgetproject);
 					$rowgetproject=$resultgetproject->fetch_assoc();
+					print_r($rowgetproject);
 
-					if ($anneeScolaireSelect=!$rowgetproject['ID_Annee']) {
+					if ($anneeScolaireSelect!=$rowgetproject['ID_Annee'] ) {
+						$array = explode("/", utf8_encode($rowgetproject['Miniature']));
+						$oldMiniature = end($array);
+						$secondtolast=count($array)-2;
+						$thirdtolast=count($array)-3;
+						$fourthtolast=count($array)-4;
+						$oldproject_dir = 	"../Projets/".$array[$fourthtolast]."/".$array[$thirdtolast]."/".$array[$secondtolast];
 						$anneeDossier=null;
 						$sqlnomannee = "SELECT * FROM anneescolaire WHERE ID_Annee=".$anneeScolaireSelect;
 						$resultnomannee = $conn->query($sqlnomannee);
 						if ($resultnomannee->num_rows > 0) {
-							while ($rownomannee= $result->fetch_assoc()) {
+							while ($rownomannee= $resultnomannee->fetch_assoc()) {
 								$EndYears = date("Y", strtotime($rownomannee["DateFin"]));
 								$StartYears = date("Y", strtotime($rownomannee["DateDebut"]));
 								$anneeDossier = $StartYears."-".$EndYears;
 							}
+							$array[$fourthtolast]=$anneeDossier;
 						} else {
-							echo "0 results";
+
 						}
-						
+						$project_dir = 	"../Projets/".$array[$fourthtolast]."/".$array[$thirdtolast]."/".$array[$secondtolast];
+						$forlinkquery = "./Projets/".$array[$fourthtolast]."/".$array[$thirdtolast]."/".$array[$secondtolast];
+						if($oldproject_dir!=$project_dir){
+							//print_r($project_dir);
+							if(copyr($oldproject_dir,$project_dir)==true){
+								$sqlDataSelect = "SELECT * FROM data WHERE ID_projets=".$_GET['projetID'].";";
+								$resultDataSelect = $conn->query($sqlDataSelect);
+								if($resultDataSelect->num_rows>0){
+									while ($rowDataSelect=$resultDataSelect->fetch_assoc()){
+										if($rowDataSelect['ID_type']!=3){
+											$olddatalien=explode("/", utf8_encode($rowDataSelect['Lien']));
+											$datalien = $forlinkquery."/data/".end($olddatalien);
+											$sqlupdatedata = "UPDATE data SET Lien='".$datalien."' WHERE ID_projets=".$_GET['projetID'].";";
+											$conn->query($sqlupdatedata);
+										}
+									}
+								}
+								$lienminiature=$forlinkquery."/".$oldMiniature;
+								$sqlupdateminiature="UPDATE projets SET Miniature='".$lienminiature."' WHERE ID_projets=".$_GET['projetID'].";";
+								$conn->query($sqlupdateminiature);
+								$oldlienprojet = explode("/", utf8_encode($rowgetproject['Fichier_Projet']));
+								$lienprojet=$forlinkquery."/projet/".end($oldlienprojet);
+								$sqlupdatelienprojet = "UPDATE projets SET Fichier_Projet='".$lienprojet."' WHERE ID_projets=".$_GET['projetID'].";";
+								$conn->query($sqlupdatelienprojet);
+							}
+						}
 					}
-					
+					//Parcours
+					$sqlselectparcours = "SELECT * FROM projetstoparcours WHERE ID_projets='".$_GET['projetID']."';";
+					$resultselectparcours = $conn->query($sqlselectparcours);
+					if ($resultselectparcours->num_rows>0) {
+						while ($rowselectparcours=$resultselectparcours->fetch_assoc()) {
+							
+						}
+					}
+					if ($parcoursSelect!=$rowgetproject['ID_Annee'] ) {
+						$array = explode("/", utf8_encode($rowgetproject['Miniature']));
+						$oldMiniature = end($array);
+						$secondtolast=count($array)-2;
+						$thirdtolast=count($array)-3;
+						$fourthtolast=count($array)-4;
+						$oldproject_dir = 	"../Projets/".$array[$fourthtolast]."/".$array[$thirdtolast]."/".$array[$secondtolast];
+						$anneeDossier=null;
+						$sqlnomannee = "SELECT * FROM anneescolaire WHERE ID_Annee=".$anneeScolaireSelect;
+						$resultnomannee = $conn->query($sqlnomannee);
+						if ($resultnomannee->num_rows > 0) {
+							while ($rownomannee= $resultnomannee->fetch_assoc()) {
+								$EndYears = date("Y", strtotime($rownomannee["DateFin"]));
+								$StartYears = date("Y", strtotime($rownomannee["DateDebut"]));
+								$anneeDossier = $StartYears."-".$EndYears;
+							}
+							$array[$fourthtolast]=$anneeDossier;
+						} else {
+
+						}
+						$project_dir = 	"../Projets/".$array[$fourthtolast]."/".$array[$thirdtolast]."/".$array[$secondtolast];
+						$forlinkquery = "./Projets/".$array[$fourthtolast]."/".$array[$thirdtolast]."/".$array[$secondtolast];
+						if($oldproject_dir!=$project_dir){
+							//print_r($project_dir);
+							if(copyr($oldproject_dir,$project_dir)==true){
+								$sqlDataSelect = "SELECT * FROM data WHERE ID_projets=".$_GET['projetID'].";";
+								$resultDataSelect = $conn->query($sqlDataSelect);
+								if($resultDataSelect->num_rows>0){
+									while ($rowDataSelect=$resultDataSelect->fetch_assoc()){
+										if($rowDataSelect['ID_type']!=3){
+											$olddatalien=explode("/", utf8_encode($rowDataSelect['Lien']));
+											$datalien = $forlinkquery."/data/".end($olddatalien);
+											$sqlupdatedata = "UPDATE data SET Lien='".$datalien."' WHERE ID_projets=".$_GET['projetID'].";";
+											$conn->query($sqlupdatedata);
+										}
+									}
+								}
+								$lienminiature=$forlinkquery."/".$oldMiniature;
+								$sqlupdateminiature="UPDATE projets SET Miniature='".$lienminiature."' WHERE ID_projets=".$_GET['projetID'].";";
+								$conn->query($sqlupdateminiature);
+								$oldlienprojet = explode("/", utf8_encode($rowgetproject['Fichier_Projet']));
+								$lienprojet=$forlinkquery."/projet/".end($oldlienprojet);
+								$sqlupdatelienprojet = "UPDATE projets SET Fichier_Projet='".$lienprojet."' WHERE ID_projets=".$_GET['projetID'].";";
+								$conn->query($sqlupdatelienprojet);
+							}
+						}
+					}
 					/*$array = explode("/", utf8_encode($rowgetproject['Miniature']));
 					$oldMiniature = end($array);
 					$secondtolast=count($array)-2;
