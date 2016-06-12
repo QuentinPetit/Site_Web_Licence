@@ -40,6 +40,7 @@
 									<li><a href='ajoutParcours.php'>Ajouter un parcours</a></li>
 									<li><a href='listeParcours.php'>Modifier un parcours</a></li>
 									<li><a href='ajoutReseauxSociaux.php'>Ajouter un réseau social a un parcours</a></li>
+									<li><a href='listeReseau.php'>Modifier un réseau social</a></li>
 								</ul>
 							</li>
 							<li class='dropdown'>
