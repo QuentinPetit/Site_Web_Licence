@@ -19,7 +19,7 @@
 								<a class='dropdown-toggle' data-toggle='dropdown' href=''>Projets</a>
 								<ul class='dropdown-menu'>
 									<li><a href='ajoutProjet.php'>Ajouter un projet</a></li>
-									<li><a href='modifProjet.php'>Modifier un projet</a></li>
+									<li><a href='listeProjets.php'>Modifier un projet</a></li>
 								</ul>
 							</li>";
 							break;

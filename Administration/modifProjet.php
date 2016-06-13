@@ -54,6 +54,12 @@
 			return true;
 		}
 
+		function deleteDir($path) {
+		return is_file($path) ?
+			@unlink($path) :
+			array_map(__FUNCTION__, glob($path.'/*')) == @rmdir($path);
+		}
+
 		if (isset($_POST['submit']) && 
 			isset($_POST['nomProjets']) && 
 			isset($_POST['description']) && 
@@ -90,7 +96,6 @@
 					$sqlgetproject="SELECT * FROM projets WHERE ID_projets=".$_GET['projetID'].";";
 					$resultgetproject = $conn->query($sqlgetproject);
 					$rowgetproject=$resultgetproject->fetch_assoc();
-					print_r($rowgetproject);
 
 					if ($anneeScolaireSelect!=$rowgetproject['ID_Annee'] ) {
 						$array = explode("/", utf8_encode($rowgetproject['Miniature']));
@@ -124,7 +129,7 @@
 										if($rowDataSelect['ID_type']!=3){
 											$olddatalien=explode("/", utf8_encode($rowDataSelect['Lien']));
 											$datalien = $forlinkquery."/data/".end($olddatalien);
-											$sqlupdatedata = "UPDATE data SET Lien='".$datalien."' WHERE ID_projets=".$_GET['projetID'].";";
+											$sqlupdatedata = "UPDATE data SET Lien='".$datalien."' WHERE ID_data=".$rowDataSelect['ID_data'].";";
 											$conn->query($sqlupdatedata);
 										}
 									}
@@ -136,42 +141,26 @@
 								$lienprojet=$forlinkquery."/projet/".end($oldlienprojet);
 								$sqlupdatelienprojet = "UPDATE projets SET Fichier_Projet='".$lienprojet."' WHERE ID_projets=".$_GET['projetID'].";";
 								$conn->query($sqlupdatelienprojet);
+								deleteDir($oldproject_dir);
 							}
 						}
 					}
 					//Parcours
-					$sqlselectparcours = "SELECT * FROM projetstoparcours WHERE ID_projets='".$_GET['projetID']."';";
-					$resultselectparcours = $conn->query($sqlselectparcours);
-					if ($resultselectparcours->num_rows>0) {
-						while ($rowselectparcours=$resultselectparcours->fetch_assoc()) {
-							
-						}
-					}
-					if ($parcoursSelect!=$rowgetproject['ID_Annee'] ) {
+					$sqlgetproject="SELECT * FROM projets WHERE ID_projets=".$_GET['projetID'].";";
+					$resultgetproject = $conn->query($sqlgetproject);
+					$rowgetproject=$resultgetproject->fetch_assoc();
+					if (count($parcoursSelect)>=2) {
 						$array = explode("/", utf8_encode($rowgetproject['Miniature']));
 						$oldMiniature = end($array);
 						$secondtolast=count($array)-2;
 						$thirdtolast=count($array)-3;
 						$fourthtolast=count($array)-4;
 						$oldproject_dir = 	"../Projets/".$array[$fourthtolast]."/".$array[$thirdtolast]."/".$array[$secondtolast];
-						$anneeDossier=null;
-						$sqlnomannee = "SELECT * FROM anneescolaire WHERE ID_Annee=".$anneeScolaireSelect;
-						$resultnomannee = $conn->query($sqlnomannee);
-						if ($resultnomannee->num_rows > 0) {
-							while ($rownomannee= $resultnomannee->fetch_assoc()) {
-								$EndYears = date("Y", strtotime($rownomannee["DateFin"]));
-								$StartYears = date("Y", strtotime($rownomannee["DateDebut"]));
-								$anneeDossier = $StartYears."-".$EndYears;
-							}
-							$array[$fourthtolast]=$anneeDossier;
-						} else {
-
-						}
-						$project_dir = 	"../Projets/".$array[$fourthtolast]."/".$array[$thirdtolast]."/".$array[$secondtolast];
-						$forlinkquery = "./Projets/".$array[$fourthtolast]."/".$array[$thirdtolast]."/".$array[$secondtolast];
-						if($oldproject_dir!=$project_dir){
-							//print_r($project_dir);
-							if(copyr($oldproject_dir,$project_dir)==true){
+						if ($array[$thirdtolast]!="Common") {
+							$array[$thirdtolast] = "Common";
+							$project_dir = 	"../Projets/".$array[$fourthtolast]."/".$array[$thirdtolast]."/".$array[$secondtolast];
+							$forlinkquery = "./Projets/".$array[$fourthtolast]."/".$array[$thirdtolast]."/".$array[$secondtolast];
+							if (copyr($oldproject_dir, $project_dir)==true) {
 								$sqlDataSelect = "SELECT * FROM data WHERE ID_projets=".$_GET['projetID'].";";
 								$resultDataSelect = $conn->query($sqlDataSelect);
 								if($resultDataSelect->num_rows>0){
@@ -179,7 +168,7 @@
 										if($rowDataSelect['ID_type']!=3){
 											$olddatalien=explode("/", utf8_encode($rowDataSelect['Lien']));
 											$datalien = $forlinkquery."/data/".end($olddatalien);
-											$sqlupdatedata = "UPDATE data SET Lien='".$datalien."' WHERE ID_projets=".$_GET['projetID'].";";
+											$sqlupdatedata = "UPDATE data SET Lien='".$datalien."' WHERE ID_data=".$rowDataSelect['ID_data'].";";
 											$conn->query($sqlupdatedata);
 										}
 									}
@@ -192,35 +181,90 @@
 								$sqlupdatelienprojet = "UPDATE projets SET Fichier_Projet='".$lienprojet."' WHERE ID_projets=".$_GET['projetID'].";";
 								$conn->query($sqlupdatelienprojet);
 							}
+							$sqldeleteprojettoparcours="DELETE FROM projetstoparcours WHERE ID_projets=".$_GET['projetID'];
+							$conn->query($sqldeleteprojettoparcours);
+							foreach ($parcoursSelect as $parcoursSelected) {
+								$sqlIDParcours = "SELECT * FROM parcours WHERE Dossier = '".$parcoursSelected."'";
+								$resultIDParcours = $conn->query($sqlIDParcours);
+								$rowIDParcours = $resultIDParcours->fetch_assoc();
+								$sqlinsertprojetstoparcours = "INSERT INTO projetstoparcours (ID_projets, ID_parcours) VALUES ('".$_GET['projetID']."','".$rowIDParcours['ID_parcours']."');";
+								$conn -> query($sqlinsertprojetstoparcours);
+							}
+							deleteDir($oldproject_dir);
+						}
+					} else {
+						$array = explode("/", utf8_encode($rowgetproject['Miniature']));
+						$oldMiniature = end($array);
+						$secondtolast=count($array)-2;
+						$thirdtolast=count($array)-3;
+						$fourthtolast=count($array)-4;
+						$oldproject_dir = 	"../Projets/".$array[$fourthtolast]."/".$array[$thirdtolast]."/".$array[$secondtolast];
+						if ($array[$thirdtolast] != $parcoursSelect[0]) {
+							$array[$thirdtolast] = $parcoursSelect[0];
+							$project_dir = 	"../Projets/".$array[$fourthtolast]."/".$array[$thirdtolast]."/".$array[$secondtolast];
+							$forlinkquery = "./Projets/".$array[$fourthtolast]."/".$array[$thirdtolast]."/".$array[$secondtolast];
+							if (copyr($oldproject_dir, $project_dir)==true) {
+								$sqlDataSelect = "SELECT * FROM data WHERE ID_projets=".$_GET['projetID'].";";
+								$resultDataSelect = $conn->query($sqlDataSelect);
+								if($resultDataSelect->num_rows>0){
+									while ($rowDataSelect=$resultDataSelect->fetch_assoc()){
+										if($rowDataSelect['ID_type']!=3){
+											$olddatalien=explode("/", utf8_encode($rowDataSelect['Lien']));
+											$datalien = $forlinkquery."/data/".end($olddatalien);
+											$sqlupdatedata = "UPDATE data SET Lien='".$datalien."' WHERE ID_data=".$rowDataSelect['ID_data'].";";
+											$conn->query($sqlupdatedata);
+										}
+									}
+								}
+								$lienminiature=$forlinkquery."/".$oldMiniature;
+								$sqlupdateminiature="UPDATE projets SET Miniature='".$lienminiature."' WHERE ID_projets=".$_GET['projetID'].";";
+								$conn->query($sqlupdateminiature);
+								$oldlienprojet = explode("/", utf8_encode($rowgetproject['Fichier_Projet']));
+								$lienprojet=$forlinkquery."/projet/".end($oldlienprojet);
+								$sqlupdatelienprojet = "UPDATE projets SET Fichier_Projet='".$lienprojet."' WHERE ID_projets=".$_GET['projetID'].";";
+								$conn->query($sqlupdatelienprojet);
+							}
+							$sqldeleteprojettoparcours="DELETE FROM projetstoparcours WHERE ID_projets=".$_GET['projetID'];
+							$conn->query($sqldeleteprojettoparcours);
+							foreach ($parcoursSelect as $parcoursSelected) {
+								$sqlIDParcours = "SELECT * FROM parcours WHERE Dossier = '".$parcoursSelected."'";
+								$resultIDParcours = $conn->query($sqlIDParcours);
+								$rowIDParcours = $resultIDParcours->fetch_assoc();
+								$sqlinsertprojetstoparcours = "INSERT INTO projetstoparcours (ID_projets, ID_parcours) VALUES ('".$_GET['projetID']."','".$rowIDParcours['ID_parcours']."');";
+								$conn -> query($sqlinsertprojetstoparcours);
+							}
+							deleteDir($oldproject_dir);
 						}
 					}
-					/*$array = explode("/", utf8_encode($rowgetproject['Miniature']));
-					$oldMiniature = end($array);
-					$secondtolast=count($array)-2;
-					$thirdtolast=count($array)-3;
-					$fourthtolast=count($array)-4;
-					$project_dir = 	$array[$fourthtolast]."/".$array[$thirdtolast]."/".$array[$secondtolast];			
-					$array = explode("/", utf8_encode($rowgetproject['Fichier_Projet']));
-					$oldFichier = end($array);
 
+					$sqldeleteelevestoprojet = "DELETE FROM elevestoprojet WHERE ID_projets=".$_GET['projetID'];
+					$conn -> query($sqldeleteelevestoprojet);
 
-					$target_dirMiniature = "../Projets/".$project_dir."/";
-					$target_dirFichier = "../Projets/".$project_dir."/projet/";
+					foreach ($participantsSelect as $participantsSelected) {
+						$sqlelevestoprojet = "INSERT INTO elevestoprojet (ID_eleves, ID_projets) VALUES ('".$participantsSelected."','".$_GET['projetID']."');";
+						$conn->query($sqlelevestoprojet);
+					}
 
-					$sqlselectiddata="SELECT * FROM data WHERE ID_Projets=".$_GET['projetID'];
-					$resultselectiddata=$conn->query($sqlselectiddata);
-					//Verification des data a retirer
-					if ($resultselectiddata->num_rows > 0) {
-						while ($rowselectiddata = $resultselectiddata->fetch_assoc()) {
-							if (in_array($rowselectiddata["ID_data"], $idData) == FALSE) {
-								$sqldeleteidata = "DELETE FROM data WHERE ID_data=".$rowselectiddata["ID_data"].";";
-								$conn -> query($sqldeleteidata);
+					$sqldeletematieretoprojet = "DELETE FROM matierestoprojet WHERE ID_projets=".$_GET['projetID'];
+					$conn -> query($sqldeletematieretoprojet);
+
+					foreach ($matiereSelect as $matiereSelected) {
+						$sqlmatierestoprojet = "INSERT INTO matierestoprojet (ID_projets, ID_matieres) VALUES ('".$_GET['projetID']."','".$matiereSelected."');";
+						$conn->query($sqlmatierestoprojet);
+					}
+					$sqlselectiddata="SELECT * FROM data WHERE ID_Projets =".$_GET['projetID'];
+					$resultselectidata=$conn->query($sqlselectiddata);
+					if($resultselectidata->num_rows>0)
+					{
+						while ($rowselectiddata = $resultselectidata->fetch_assoc()) {
+							if (in_array($rowselectiddata['ID_data'], $idData) == FALSE)
+							{
+								$sqldeleteiddata = "DELETE FROM data WHERE ID_data=".$rowselectiddata['ID_data'];
+								$conn->query($sqldeleteiddata);
 							}
 						}
 					}
-					if(isset($_FILES['userfile'])){
-
-					}*/
+					print_r($idData);
 			}
 		}
 	?>

@@ -106,7 +106,13 @@
 		</div>
 
 		<button type="submit" class="btn btn-primary" name="editer">Éditer</button>
-		<button type="submit" class="btn btn-danger" name="supprimer">Supprimer</button>
+		<?php 
+		if ($user_statut=="enseignant") {
+			?>
+			<button type="submit" class="btn btn-danger" name="supprimer">Supprimer</button>
+		<?php }
+		 ?>
+		
 	</form>
 </div>
 </div>
