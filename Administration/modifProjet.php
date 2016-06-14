@@ -72,7 +72,6 @@
 			isset($_POST['hardware']) && 
 			isset($_POST['matiereSelect']) &&
 			isset($_POST['idData'])) {
-			print_r($_FILES);
 			if ($_POST['nomProjets'] != "" && 
 				$_POST['description'] != "" && 
 				$_POST['caracteristiques'] != "" && 
@@ -122,7 +121,6 @@
 						$project_dir = 	"../Projets/".$array[$fourthtolast]."/".$array[$thirdtolast]."/".$array[$secondtolast];
 						$forlinkquery = "./Projets/".$array[$fourthtolast]."/".$array[$thirdtolast]."/".$array[$secondtolast];
 						if($oldproject_dir!=$project_dir){
-							//print_r($project_dir);
 							if(copyr($oldproject_dir,$project_dir)==true){
 								$sqlDataSelect = "SELECT * FROM data WHERE ID_projets=".$_GET['projetID'].";";
 								$resultDataSelect = $conn->query($sqlDataSelect);
