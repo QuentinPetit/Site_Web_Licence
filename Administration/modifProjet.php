@@ -72,6 +72,7 @@
 			isset($_POST['hardware']) && 
 			isset($_POST['matiereSelect']) &&
 			isset($_POST['idData'])) {
+			print_r($_FILES);
 			if ($_POST['nomProjets'] != "" && 
 				$_POST['description'] != "" && 
 				$_POST['caracteristiques'] != "" && 
@@ -91,6 +92,7 @@
 					$software=$_POST['software'];
 					$hardware=$_POST['hardware'];
 					$idData=$_POST['idData'];
+					
 
 					$uploadOk = 1;
 					$sqlgetproject="SELECT * FROM projets WHERE ID_projets=".$_GET['projetID'].";";
@@ -141,6 +143,8 @@
 								$lienprojet=$forlinkquery."/projet/".end($oldlienprojet);
 								$sqlupdatelienprojet = "UPDATE projets SET Fichier_Projet='".$lienprojet."' WHERE ID_projets=".$_GET['projetID'].";";
 								$conn->query($sqlupdatelienprojet);
+								$sqlupdateidannee="UPDATE projets SET ID_Annee='".$anneeScolaireSelect."' WHERE ID_projets=".$_GET['projetID'].";";
+								$conn->query($sqlupdateidannee);
 								deleteDir($oldproject_dir);
 							}
 						}
@@ -264,7 +268,119 @@
 							}
 						}
 					}
-					print_r($idData);
+					$sqlgetproject="SELECT * FROM projets WHERE ID_projets=".$_GET['projetID'].";";
+					$resultgetproject = $conn->query($sqlgetproject);
+					$rowgetproject=$resultgetproject->fetch_assoc();
+					if ($_FILES['userfile']['name']!="") {
+						$array = explode("/", utf8_encode($rowgetproject['Miniature']));
+						$oldMiniature = end($array);
+						$secondtolast=count($array)-2;
+						$thirdtolast=count($array)-3;
+						$fourthtolast=count($array)-4;
+						$dataPath = array();
+						$uploadarray = explode(".", $_FILES["userfile"]["name"]);
+						$fileName = $uploadarray[0];
+						$fileExtension = strtolower(end($uploadarray));
+						$projectFile = null;
+						$anneeDossier=$array[$fourthtolast];
+						$dossierParcours=$array[$thirdtolast];
+						if ($fileExtension == "zip") {
+							
+							move_uploaded_file($_FILES["userfile"]["tmp_name"], "../tmp/".$_FILES["userfile"]["name"]);
+							$zip = new ZipArchive();
+							$zip -> open("../tmp/".$_FILES["userfile"]["name"]);
+							for ($num=0; $num < $zip -> numFiles; $num++) {
+								$arrayTmp = explode("/", $zip -> getNameIndex($num));
+								if (end($arrayTmp)!="") {
+									if ($arrayTmp[1]=="data")
+									{
+										array_push($dataPath, "./Projets/".$anneeDossier."/".$dossierParcours."/". $zip -> getNameIndex($num));
+									}
+								}
+								$zip -> extractTo("../Projets/".$anneeDossier."/".$dossierParcours."/");
+							}
+							$zip -> close();
+							unlink("../tmp/".$_FILES["userfile"]["name"]);
+
+						} else {
+							echo "Only .zip";
+						}
+						$typeArray = array();
+						$sqlTypes="SELECT * FROM type"; 
+						$resultTypes = $conn->query($sqlTypes);
+						while ($rowTypes = $resultTypes->fetch_assoc()) {
+							$typeArray[utf8_encode($rowTypes['Type'])]=$rowTypes['ID_type'];
+					      	//array_push($typeArray, $rowTypes['Type'] => $rowTypes['Type']);
+						}
+						foreach ($dataPath as $singleData) {
+							$singleDataTmp = explode(".", $singleData);
+							if (end($singleDataTmp) == "jpg" || end($singleDataTmp) == "jpeg" || end($singleDataTmp) == "png" || end($singleDataTmp) == "gif") {
+								$type = $typeArray["Image"];
+							}
+							if (end($singleDataTmp) == "mp4"){
+								$type = $typeArray["Vidéo MP4"];
+							}
+							if (end($singleDataTmp) == "obj") {
+								$type = $typeArray["Modélisation"];
+							}
+							$sqlData = "INSERT INTO data (ID_type, ID_Projets, Lien) VALUES('".$type."', '".$_GET['projetID']."', '".$singleData."');";
+							$conn -> query($sqlData);
+						}
+					}
+					
+
+					if ($_FILES['miniatureUpload']['name']!="") {
+						$array = explode("/", utf8_encode($rowgetproject['Miniature']));
+						$secondtolast=count($array)-2;
+						$thirdtolast=count($array)-3;
+						$fourthtolast=count($array)-4;
+						$target_dirMiniature = "../Projets/".$array[$fourthtolast]."/".$array[$thirdtolast]."/".$array[$secondtolast]."/";
+						$target_fileMiniature=$target_dirMiniature.basename($_FILES["miniatureUpload"]["name"]);
+						echo $target_fileMiniature;
+						$miniatureFileType = pathinfo($target_fileMiniature, PATHINFO_EXTENSION);
+						if($miniatureFileType != "jpg" ) {
+							$error="Désolé, seuls les fichiers JPG sont autorisés pour les miniatures.";
+							$uploadOk = 0;
+						}
+						if (file_exists($target_fileMiniature)) {
+							echo "Replacing thumbnail";
+							unlink($target_fileMiniature);
+							move_uploaded_file($_FILES['miniatureUpload']['tmp_name'], $target_fileMiniature);
+						}
+					}
+					if ($_FILES['projetUpload']['name']!="") {
+						$array = explode("/", utf8_encode($rowgetproject['Miniature']));
+						$secondtolast=count($array)-2;
+						$thirdtolast=count($array)-3;
+						$fourthtolast=count($array)-4;
+						$target_dirProjet = "../Projets/".$array[$fourthtolast]."/".$array[$thirdtolast]."/".$array[$secondtolast]."/projet/";
+						$target_fileProjet=$target_dirProjet.basename($_FILES["projetUpload"]["name"]);
+						echo $target_fileProjet;
+						$projetFileType = pathinfo($target_fileProjet, PATHINFO_EXTENSION);
+						if($projetFileType != "zip" ) {
+							$error="Désolé, seuls les fichiers zip sont autorisés pour les projets.";
+							$uploadOk = 0;
+						}
+						if (file_exists($target_fileProjet)) {
+							echo "Replacing thumbnail";
+							unlink($target_fileProjet);
+							move_uploaded_file($_FILES['projetUpload']['tmp_name'], $target_fileProjet);
+						}
+					}
+					$poids=null;
+					if ($user_statut=="enseignant") {
+						$poids=$_POST['poids'];
+					} else {
+						$poids=$rowgetproject['Poids'];
+					}
+					$site = null;
+					if ($_POST['site']!="") {
+						$site=$_POST['site'];
+					} else {
+						$site=$rowgetproject['Lien'];
+					}
+					$sqlupdate = "UPDATE projets  SET Nom ='".utf8_decode($nomProjets)."', Description ='".utf8_decode($description)."', Caracteristique ='".utf8_decode($caracteristiques)."', Logiciel ='".utf8_decode($software)."', Materiel ='".utf8_decode($hardware)."', Lien ='".utf8_decode($site)."', Poids = '".$poids."' WHERE ID_projets=".$_GET['projetID'].";";
+					$conn->query($sqlupdate);
 			}
 		}
 	?>
@@ -318,6 +434,7 @@
 								$EndYears = date("Y", strtotime($rowDate["DateFin"]));
 								$StartYears = date("Y", strtotime($rowDate["DateDebut"]));
 								if ($rowDate["ID_Annee"]==$row["ID_Annee"]) {
+
 									echo "<option value=".$rowDate["ID_Annee"]." selected='true'>".$StartYears."-".$EndYears."</option>";
 								} else {
 									echo "<option value=".$rowDate["ID_Annee"].">".$StartYears."-".$EndYears."</option>";
