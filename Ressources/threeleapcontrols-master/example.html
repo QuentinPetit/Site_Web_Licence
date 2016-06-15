@@ -99,7 +99,7 @@
           object.receiveShadow = true;
 
           // leap object controls
-          var objectControls = new THREE.LeapObjectControls(camera, object);
+          /*var objectControls = new THREE.LeapObjectControls(camera, object);
 
           objectControls.rotateEnabled  = true;
           objectControls.rotateSpeed    = 3;
@@ -115,11 +115,11 @@
           objectControls.panSpeed       = 3;
           objectControls.panHands       = 2;
           objectControls.panFingers     = [6, 12];
-          objectControls.panRightHanded = false; // for left-handed person
+          objectControls.panRightHanded = false; // for left-handed person*/
 
           scene.add(object);
           objects.push(object);
-          objectsControls.push(objectControls);
+          //objectsControls.push(objectControls);
         };
 
         // light
@@ -134,7 +134,7 @@
         render();
       };
       
-      function changeControlsIndex() {
+      /*function changeControlsIndex() {
         if (lastControlsIndex == controlsIndex) {
           if (index != controlsIndex && controlsIndex > -2) {
             // new object or camera to control
@@ -146,7 +146,7 @@
           };
         }; 
         lastControlsIndex = controlsIndex;
-      };
+      };*/
 
       function transform(tipPosition, w, h) {
         var width = 150;
@@ -162,7 +162,7 @@
         return [x, y];
       };
 
-      function showCursor(frame) {
+      /*function showCursor(frame) {
         var hl = frame.hands.length;
         var fl = frame.pointables.length;
 
@@ -177,9 +177,9 @@
           $("#cursor").css('left', -1000);
           $("#cursor").css('top', -1000);
         };
-      };
+      };:µ
 
-      function focusObject(frame) {
+      /*function focusObject(frame) {
         var hl = frame.hands.length;
         var fl = frame.pointables.length;
 
@@ -204,7 +204,7 @@
         };
 
         return -2;
-      };
+      };*/
 
       function render() {
         renderer.render(scene, camera);
@@ -223,15 +223,16 @@
         // leap loop
         Leap.loop(function(frame) {
           // show cursor
-          showCursor(frame);
+          //showCursor(frame);
 
           // set correct camera control
-          controlsIndex = focusObject(frame);
-          if (index == -1) {
+          //controlsIndex = focusObject(frame);
+          cameraControls.update(frame);
+          /*if (index == -1) {
             cameraControls.update(frame);
           } else {
             objectsControls[index].update(frame);
-          };
+          };*/
 
           // custom modifications (here: show coordinate system always on target and light movement)
           coords1.position = cameraControls.target;
@@ -243,7 +244,7 @@
         });
 
         // detect controls change
-        setInterval(changeControlsIndex, 250);
+        //setInterval(changeControlsIndex, 250);
       });
     </script>   
   </head>
