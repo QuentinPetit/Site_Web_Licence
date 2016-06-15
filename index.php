@@ -22,6 +22,10 @@
 	</header>
 
 	<body>
+	<script src="http://js.leapmotion.com/leap-0.6.4.js"></script>
+	<script src="http://js.leapmotion.com/leap-plugins-0.1.10.js"></script>
+	<div id="cursor"></div>
+	<script src="./Ressources/APILeapMotionNavigation/V1.00/browserAPI.js"></script>
 		<div class="container-fluid parallax1">
 			<div class="actu col-xs-12 col-sm-8">
 			<h1>Actualités</h1>
