@@ -23,8 +23,6 @@
 			while ($row = $result->fetch_assoc()) {
 				echo "url(".utf8_encode($row["Fond"]).");";
 			}
-		} else {
-			echo "0 results";
 		}
      ?>
   background-position: 50% 50%;

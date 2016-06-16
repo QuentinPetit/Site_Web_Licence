@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Accueil </title>
+	<title>Modification du projet </title>
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans|Nunito' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="../Ressources/BootstrapCustom/css/bootstrap.min.css">
 	<script type="text/javascript" src="../Ressources/owl-carousel/jquery-1.9.1.min.js"></script>
@@ -438,9 +438,7 @@
 									echo "<option value=".$rowDate["ID_Annee"].">".$StartYears."-".$EndYears."</option>";
 								}
 							}
-						} else {
-							echo "0 results";
-						}
+						} 
 						?>
 					</select>
 				</div>
@@ -459,8 +457,6 @@
 							while ($rowProjetsToParcours = $resultProjetsToParcours->fetch_assoc()) {
 								array_push($arrayIDs, $rowProjetsToParcours['ID_parcours']);
 							}
-						} else {
-							echo "0 results";
 						}
 						if ($resultParcours->num_rows > 0) {
 							while ($rowParcours = $resultParcours->fetch_assoc()) {
@@ -476,8 +472,6 @@
 									echo"<option value=".$rowParcours["Dossier"]." >".utf8_encode($rowParcours["Nom"])."</option>";
 								}
 							}
-						} else {
-							echo "0 results";
 						}
 						?>
 					</select>
@@ -496,8 +490,6 @@
 							while ($rowElevesToProjet = $resultElevesToProjet->fetch_assoc()) {
 								array_push($arrayIDs, $rowElevesToProjet['ID_eleves']);
 							}
-						} else {
-							echo "0 results";
 						}
 						if ($resultEleves->num_rows > 0) {
 							while ($rowEleves = $resultEleves->fetch_assoc()) {
@@ -514,8 +506,6 @@
 								}
 								
 							}
-						} else {
-							echo "0 results";
 						}
 						?>
 					</select>
@@ -534,8 +524,6 @@
 							while ($rowMatieresToProjet = $resultMatieresToProjet->fetch_assoc()) {
 								array_push($arrayIDs, $rowMatieresToProjet['ID_matieres']);
 							}
-						} else {
-							echo "0 results";
 						}
 						if ($resultMatieres->num_rows > 0) {
 							while ($rowMatieres = $resultMatieres->fetch_assoc()) {
@@ -551,8 +539,6 @@
 									echo"<option value=".$rowMatieres["ID_matieres"].">".utf8_encode($rowMatieres["Nom"])."</option>";
 								}
 							}
-						} else {
-							echo "0 results";
 						}
 						?>
 					</select>
@@ -571,8 +557,6 @@
 									echo "<input type='checkbox' name='idData[]' value=".$rowData["ID_data"]." checked='true'>".end($array)."</input> </br>";
 								}
 							}
-						} else {
-							echo "0 result";
 						}
 						
 					?>

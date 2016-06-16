@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Accueil </title>
+	<title>Liens vers les réseaux sociaux</title>
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans|Nunito' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="../Ressources/BootstrapCustom/css/bootstrap.min.css">
 	<script type="text/javascript" src="../Ressources/owl-carousel/jquery-1.9.1.min.js"></script>
@@ -80,10 +80,7 @@
 					}
 				} 
 				echo "</div>";
-			} else {
-				echo "0 Result";
 			}
-
 			?>					
 		</div>
 

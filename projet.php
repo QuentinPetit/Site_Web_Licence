@@ -282,8 +282,6 @@
 									}
 								}
 								echo "</div>";
-							} else {
-								echo "0 data";
 							}
 
 							/*<div align='center' class='embed-responsive embed-responsive-16by9 videoplayer'>
@@ -329,15 +327,16 @@
 								
 								</div>
 								<div class='break col-xs-12 col-sm-4'>
-									<a class='btn btn-default' href=".utf8_encode($row["Fichier_Projet"]).">Télécharger le projet</a>
-									<a class='btn btn-default' href=".utf8_encode($row["Lien"])." target='_blank'>Site du projet</a>
+									<a class='btn btn-default' href=".utf8_encode($row["Fichier_Projet"]).">Télécharger le projet</a>";
+									if (utf8_encode($row["Lien"])!="") {
+										echo "<a class='btn btn-default' href=".utf8_encode($row["Lien"])." target='_blank'>Site du projet</a>";
+									}
+									echo "
+
 								</div>
 							
 							</div>";
-
 						}
-					} else {
-						echo "0 results";
 					}
 					
 

@@ -20,8 +20,6 @@
 				while($row = $result->fetch_assoc()) {
 				echo "<img src='".utf8_encode($row["Lien"])."' class='img-responsive'/>";
 				}
-			} else {
-				 echo "0 results";
 			}
 			
 			include('./PHP/deconnexion.php');
@@ -57,8 +55,6 @@
 								while($row = $result->fetch_assoc()) {
 								echo "<li><a href='projets.php?parcoursId=".utf8_encode($row["ID_parcours"])."'>". utf8_encode($row["Nom"]) ."</a></li>";
 								}
-							} else {
-								 echo "0 results";
 							}
 
 							include('./PHP/deconnexion.php');

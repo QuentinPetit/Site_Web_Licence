@@ -19,8 +19,6 @@
 				while($row = $result->fetch_assoc()) {
 				echo "<img src='.".utf8_encode($row["Lien"])."' class='img-responsive'/>";
 				}
-			} else {
-				 echo "0 results";
 			}
 			
 			include('../PHP/deconnexion.php');

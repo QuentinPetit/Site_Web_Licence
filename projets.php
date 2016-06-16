@@ -87,8 +87,6 @@
 							</div>";							
 							
 						} echo "</section>";
-					} else {
-						echo "0 results";
 					}
 					
 

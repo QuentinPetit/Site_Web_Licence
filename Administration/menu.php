@@ -36,8 +36,6 @@
 						echo "<h2>". utf8_encode($row["Titre"]) ."</h2>";
 						echo "<article>". utf8_encode($row["Article"]) ."</article>";
 						}
-					} else {
-						 echo "0 results";
 					}
 				?>  
 			</div>
@@ -56,8 +54,6 @@
 										</a>
 									</div>";
 								}	
-							} else {
-								 echo "0 results";
 							}
 					?> 
 				</div>

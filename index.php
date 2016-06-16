@@ -42,8 +42,6 @@
 						echo "<h2>". utf8_encode($row["Titre"]) ."</h2>";
 						echo "<article>". utf8_encode($row["Article"]) ."</article>";
 						}
-					} else {
-						 echo "0 results";
 					}
 
 					include('./PHP/deconnexion.php');
@@ -82,9 +80,7 @@
 										}	
 									}
 								}
-							} else {
-								 echo "0 results";
-							}
+							} 
 
 						include('./PHP/deconnexion.php');
 
@@ -121,8 +117,6 @@
 									while ($rowreseausociaux=$resultreseausociaux->fetch_assoc()) {
 										echo "<a class='btn btn-lg btn-social-icon btn-".utf8_encode($rowreseausociaux["NomReseau"])."' href='".utf8_encode($rowreseausociaux["Lien"])."' target='_blank'><i class='fa fa-".utf8_encode($rowreseausociaux["NomReseau"])."'></i></a>";
 									}
-								}else{
-									echo "0 result";
 								}
 								echo "</section>
 								</div>";
@@ -141,8 +135,6 @@
 									while ($rowreseausociaux=$resultreseausociaux->fetch_assoc()) {
 										echo "<a class='btn btn-lg btn-social-icon btn-".utf8_encode($rowreseausociaux["NomReseau"])."' href='".utf8_encode($rowreseausociaux["Lien"])."' target='_blank'><i class='fa fa-".utf8_encode($rowreseausociaux["NomReseau"])."'></i></a>";
 									}
-								}else{
-									echo "0 result";
 								}
 								echo "</section>
 								<section class='hidden-xs hidden-sm col-md-6'>
@@ -152,8 +144,6 @@
 								$right=TRUE;
 							}
 						}
-					} else {
-						echo "0 results";
 					}
 
 					include('./PHP/deconnexion.php');

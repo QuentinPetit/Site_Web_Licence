@@ -40,13 +40,9 @@
 								while ($rowreseausociaux=$resultreseausociaux->fetch_assoc()) {
 									echo "<a class='btn btn-social-icon btn-".utf8_encode($rowreseausociaux["NomReseau"])."' href='".utf8_encode($rowreseausociaux["Lien"])."' target='_blank'><i class='fa fa-".utf8_encode($rowreseausociaux["NomReseau"])."'></i></a>";
 								}
-							}else{
-								echo "0 result";
 							}
 							echo "</section>";
 						}
-					} else {
-						echo "0 results";
 					}
 
 					include('./PHP/deconnexion.php');
@@ -71,8 +67,6 @@
 							</div>";
 						}
 
-					} else {
-						echo "0 results";
 					}
 					
 

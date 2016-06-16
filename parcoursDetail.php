@@ -49,8 +49,6 @@
 									<p>".utf8_encode($row["Admission"])."</p>
 								</div>";
 						}
-					} else {
-						echo "0 results";
 					}
 
 					include('./PHP/deconnexion.php');
