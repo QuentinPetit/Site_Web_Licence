@@ -82,23 +82,56 @@
 													<script type="text/javascript">
 														var container;
 														var camera, scene, renderer;
-
+														var animRequest;
 														var mouseX = 0, mouseY = 0;
-
 														var windowHalfX = window.innerWidth/2;
 														var windowHalfY = window.innerHeight/2;
 
 														init();
-														animate();
+
+														var controller = new Leap.Controller();
+
+															Leap.loop(function(frame) {
+													          // show cursor
+													          //showCursor(frame);
+													          console.log("LEAP LOOP, FRUIT LOOP");
+															window.cancelAnimationFrame(animRequest);
+													          // set correct camera control
+													          //controlsIndex = focusObject(frame);
+													          cameraControls.update(frame);
+													          /*if (index == -1) {
+													            cameraControls.update(frame);
+													          } else {
+													            objectsControls[index].update(frame);
+													        };*/
+
+													          // custom modifications (here: show coordinate system always on target and light movement)
+													          coords1.position = cameraControls.target;
+													          coords2.position = cameraControls.target;
+													          coords3.position = cameraControls.target;
+													          //light.position   = camera.position;
+
+													          renderLeap();
+													      });
+
+															animate();
+
+														controller.on('deviceDisconnected', function(){
+															console.log("LeapMotion Disconnected");
+															animate();
+														});
 
 														function init() {
 															container = document.createElement('div');
 															document.getElementById("objLoaderParent").appendChild(container);
 
 															//camera
-															camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 1, 2000);
-															camera.position.z = 250;
+															camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 1, 10000);
+													        camera.position.x = 500;
+													        camera.position.y = 500;
+													        camera.position.z = 500;
 															var origin = new THREE.Vector3(0, 0, 0);
+															camera.lookAt(origin);
 															//Leap Motion Controls
 															cameraControls = new THREE.LeapCameraControls(camera);
 
@@ -205,20 +238,6 @@
 
 														}
 
-														function transform(tipPosition, w, h) {
-															var width = 150;
-															var height = 150;
-															var minHeight = 100;
-
-															var ftx = tipPosition[0];
-															var fty = tipPosition[1];
-															ftx = (ftx > width ? width - 1 : (ftx < -width ? -width + 1 : ftx));
-															fty = (fty > 2*height ? 2*height - 1 : (fty < minHeight ? minHeight + 1 : fty));
-															var x = THREE.Math.mapLinear(ftx, -width, width, 0, w);
-															var y = THREE.Math.mapLinear(fty, 2*height, minHeight, 0, h);
-															return [x, y];
-														};
-
 														function onDocumentMouseMove( event ) {
 
 															mouseX = ( event.clientX - windowHalfX ) / 2;
@@ -230,7 +249,7 @@
 
 														function animate() {
 
-															requestAnimationFrame( animate );
+															animRequest=requestAnimationFrame( animate );
 															render();
 
 														}
@@ -246,27 +265,11 @@
 
 														}
 
-												        Leap.loop(function(frame) {
-												          // show cursor
-												          //showCursor(frame);
+														function renderLeap() {
+															renderer.render(scene, camera);
+														};
 
-												          // set correct camera control
-												          //controlsIndex = focusObject(frame);
-												          cameraControls.update(frame);
-												          /*if (index == -1) {
-												            cameraControls.update(frame);
-												          } else {
-												            objectsControls[index].update(frame);
-												          };*/
-
-												          // custom modifications (here: show coordinate system always on target and light movement)
-												          coords1.position = cameraControls.target;
-												          coords2.position = cameraControls.target;
-												          coords3.position = cameraControls.target;
-												          //light.position   = camera.position;
-
-												          render();
-												        });
+												        
 
 													</script>
 												</div>

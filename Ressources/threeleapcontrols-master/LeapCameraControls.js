@@ -87,8 +87,13 @@ THREE.LeapCameraControls = function(camera) {
 
   this.applyGesture = function(frame, action) {
     var hl = frame.hands.length;
-    var fl = frame.pointables.length;
+    var fl = 0;
+    for(var f=0; f<frame.fingers.length;f++){
+      var finger = frame.fingers[f];
+      if (finger.extended) fl++;
+    }
 
+    //console.log("Pointables in frame : ", fl);
     switch(action) {
       case 'rotate':
         if (_this.rotateHands instanceof Array) {
