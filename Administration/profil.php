@@ -74,17 +74,19 @@
 				}
 			} 
 		}
-
-		if ($user_statut == "etudiant") {
-			$sql = "SELECT * FROM ".$user_table." WHERE ID_".$user_table." = '".$user_ID."'";
-			$result = $conn->query($sql);
-			$row=$result->fetch_assoc();
-			
-			if ($row['CV_en_Ligne']!="") {
-				$sqlupdatevisibility = "UPDATE eleves SET CV_visibility=".$_POST['visibility']." WHERE ID_eleves='".$user_ID."';";
-				$conn->query($sqlupdatevisibility);
-			}			
+		if (isset($_POST['visibility'])) {
+			if ($user_statut == "etudiant") {
+				$sql = "SELECT * FROM ".$user_table." WHERE ID_".$user_table." = '".$user_ID."'";
+				$result = $conn->query($sql);
+				$row=$result->fetch_assoc();
+				
+				if ($row['CV_en_Ligne']!="") {
+					$sqlupdatevisibility = "UPDATE eleves SET CV_visibility=".$_POST['visibility']." WHERE ID_eleves='".$user_ID."';";
+					$conn->query($sqlupdatevisibility);
+				}			
+			}
 		}
+		
 
 
 		 ?>
